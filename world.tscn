@@ -1,17 +1,142 @@
-[gd_scene format=3 uid="uid://b0mwdpm0ucqug"]
+[gd_scene format=4 uid="uid://b0mwdpm0ucqug"]
 
-[ext_resource type="Texture2D" uid="uid://cm7545dspw08q" path="res://icon.svg" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://cex60lnvav15l" path="res://loop_timer.gd" id="1_aqk2v"]
+[ext_resource type="Script" uid="uid://d1k1f6f3gxlb4" path="res://player.gd" id="1_fj7yv"]
+[ext_resource type="Texture2D" uid="uid://bcorfdj857iql" path="res://player_sprites.png" id="2_fj7yv"]
+[ext_resource type="Texture2D" uid="uid://bdfewhe3c8asq" path="res://tilemap.png" id="3_tlwt5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
-size = Vector2(8, 8)
+size = Vector2(8, 7)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aqk2v"]
+texture = ExtResource("3_tlwt5")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="TileSet" id="TileSet_036b0"]
+tile_size = Vector2i(8, 8)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_aqk2v")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbfbk"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.19607843, 0.5921569, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ioo17"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wse8f"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.032874554, 0.1905427, 0.34605154, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="Theme" id="Theme_ic0uy"]
+HSlider/constants/center_grabber = 0
+HSlider/constants/grabber_offset = 0
+HSlider/constants/tick_offset = 0
+HSlider/icons/grabber = null
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = null
+HSlider/icons/tick = null
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_gbfbk")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_ioo17")
+HSlider/styles/slider = SubResource("StyleBoxFlat_wse8f")
 
 [node name="world" type="Node2D" unique_id=788739689]
 
+[node name="loop_timer" type="Timer" parent="." unique_id=2424628]
+wait_time = 5.0
+one_shot = true
+script = ExtResource("1_aqk2v")
+
 [node name="player" type="CharacterBody2D" parent="." unique_id=2144539989]
+script = ExtResource("1_fj7yv")
 
 [node name="col" type="CollisionShape2D" parent="player" unique_id=2077254795]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_fj7yv")
 
 [node name="sprite" type="Sprite2D" parent="player" unique_id=1027690536]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_f3sb7")
+texture = ExtResource("2_fj7yv")
+hframes = 8
+vframes = 8
+
+[node name="cam" type="Camera2D" parent="player" unique_id=597625721]
+zoom = Vector2(5, 5)
+position_smoothing_enabled = true
+
+[node name="walls" type="TileMapLayer" parent="." unique_id=1344681809]
+tile_map_data = PackedByteArray("AAD6//v/AAAAAAAAAAD6//z/AAAAAAAAAAD6//3/AAAAAAAAAAD6//7/AAAAAAAAAAD6////AAAAAAAAAAD6/wAAAAAAAAAAAAD6/wEAAAAAAAAAAAD6/wIAAAAAAAAAAAD6/wMAAAAAAAAAAAD6/wQAAAAAAAAAAAD7//v/AAAAAAAAAAD7/wQAAAAAAAAAAAD8//v/AAAAAAAAAAD8/wQAAAAAAAAAAAD9//v/AAAAAAAAAAD9/wQAAAAAAAAAAAD+//v/AAAAAAAAAAD+/wQAAAAAAAAAAAD///v/AAAAAAAAAAD//wQAAAAAAAAAAAAAAPv/AAAAAAAAAAAAAAQAAAAAAAAAAAABAPv/AAAAAAAAAAABAAQAAAAAAAAAAAACAPv/AAAAAAAAAAACAAQAAAAAAAAAAAADAPv/AAAAAAAAAAADAAQAAAAAAAAAAAAEAPv/AAAAAAAAAAAEAAQAAAAAAAAAAAAFAPv/AAAAAAAAAAAFAPz/AAAAAAAAAAAFAP3/AAAAAAAAAAAFAP7/AAAAAAAAAAAFAP//AAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_036b0")
+
+[node name="canvas" type="CanvasLayer" parent="." unique_id=1948678491]
+
+[node name="control" type="Control" parent="canvas" unique_id=1019769493]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="slider_timer" type="HSlider" parent="canvas/control" unique_id=30570187]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -173.5
+offset_top = -54.0
+offset_right = 173.5
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_ic0uy")
+step = 0.01
+value = 50.0
+editable = false
+scrollable = false
+
+[node name="lab_timer" type="Label" parent="canvas/control" unique_id=861540943]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -62.5
+offset_top = -57.0
+offset_right = 62.5
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "5"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="loop_timer" to="loop_timer" method="_on_timeout"]
