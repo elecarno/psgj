@@ -23,7 +23,7 @@ var shoot_direction: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	$shoot_timer.wait_time = SHOOT_INTERVAL
-
+	health = MAX_HEALTH
 
 func activate(body: Node2D):
 	activated = true
@@ -53,7 +53,11 @@ func take_damage(damage: int):
 		
 
 func die():
-	queue_free()
+	$sprite.rotation = deg_to_rad(90)
+	velocity = Vector2.ZERO
+	activated = false
+	$shoot_line.visible = false
+	$col.set_deferred("disabled", true)
 	
 func shoot_projectile():
 	var new_projectile: Projectile = PROJECTILE.instantiate()

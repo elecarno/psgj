@@ -26,8 +26,15 @@ var can_parry: bool = true
 
 var is_grappling: bool = false
 var grapple_target: Enemy = null
-var possessed_weapons: Array[WEAPONS] = [WEAPONS.KNIFE]
+var possessed_weapons: Array[WEAPONS] = [
+	WEAPONS.KNIFE,
+	WEAPONS.SWORD,
+	WEAPONS.PISTOL,
+	WEAPONS.HAND_CANNON,
+	WEAPONS.BEAM_CANNON
+]
 var current_weapon: WEAPONS = WEAPONS.KNIFE
+var current_weapon_idx: int = 0
 var input: Vector2
 
 @onready var grapple_raycast: RayCast2D = $grapple_raycast
@@ -79,9 +86,23 @@ func _physics_process(delta):
 		can_parry = false
 		$parry_timer.start()
 		$parry_cooldown.start()
+		
+	
+	# weapon switching
+	if Input.is_action_just_pressed("switch"):
+		if current_weapon < len(possessed_weapons)-1:
+			current_weapon_idx += 1
+		else:
+			current_weapon_idx = 0
+		current_weapon = possessed_weapons[current_weapon_idx]
+		update_weapon()
 
 	move_and_slide()
 	
+
+func update_weapon():
+	$weapon/sprite.frame_coords = Vector2(current_weapon, 2)
+
 
 func take_damage():
 	health -= 1
@@ -107,11 +128,9 @@ func _on_grapple_detect_body_entered(body: Node2D) -> void:
 # timer timouts
 func _on_cooldown_dash_timeout() -> void:
 	can_dash = true
-	print("can dash")
 
 func _on_cooldown_grapple_timeout() -> void:
 	can_grapple = true
-	print("can grapple")
 
 func _on_parry_timer_timeout() -> void:
 	$parry/col.disabled = true

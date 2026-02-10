@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bcorfdj857iql" path="res://player_sprites.png" id="2_fj7yv"]
 [ext_resource type="Texture2D" uid="uid://bdfewhe3c8asq" path="res://tilemap.png" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://ck4le5qj5ua62" path="res://guard.tscn" id="4_036b0"]
+[ext_resource type="Script" uid="uid://deotyyxlkpkx5" path="res://weapon.gd" id="6_gbfbk"]
 [ext_resource type="Texture2D" uid="uid://s60g356jmc5s" path="res://2d_light.webp" id="6_pkg7o"]
+[ext_resource type="PackedScene" uid="uid://c6jatjqfvu7j0" path="res://projectile.tscn" id="7_ioo17"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dwbse"]
 vertices = PackedVector2Array(4, 4, -4, 4, -4, -4, 4, -4)
@@ -194,6 +196,12 @@ radius = 8.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwbse"]
 size = Vector2(4, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ioo17"]
+size = Vector2(128, 3)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ioo17"]
+radius = 4.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbfbk"]
 content_margin_left = 4.0
 content_margin_top = 4.0
@@ -264,7 +272,7 @@ enemies = [NodePath("../guard"), NodePath("../guard2")]
 shape = SubResource("RectangleShape2D_036b0")
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=2144539989 groups=["player"]]
-z_index = 1
+z_index = 2
 position = Vector2(66, 1)
 collision_layer = 3
 script = ExtResource("1_fj7yv")
@@ -330,19 +338,52 @@ wait_time = 0.25
 one_shot = true
 
 [node name="parry_cooldown" type="Timer" parent="player" unique_id=33424335]
-wait_time = 0.1
+wait_time = 0.5
 one_shot = true
 
 [node name="weapon" type="Node2D" parent="player" unique_id=383713645]
+script = ExtResource("6_gbfbk")
+PROJECTILE = ExtResource("7_ioo17")
 
 [node name="sprite" type="Sprite2D" parent="player/weapon" unique_id=1299238413]
-position = Vector2(3, 1)
-rotation = 0.5235988
+position = Vector2(3, 0)
 texture = ExtResource("2_fj7yv")
-offset = Vector2(4, -4)
+offset = Vector2(4, -3)
 hframes = 8
 vframes = 8
-frame = 9
+frame = 16
+
+[node name="shoot_pivot" type="Node2D" parent="player/weapon/sprite" unique_id=1737796364]
+position = Vector2(6, -1.5)
+
+[node name="beam" type="Area2D" parent="player/weapon/sprite" unique_id=1658391524]
+position = Vector2(6, -1.5)
+
+[node name="col" type="CollisionShape2D" parent="player/weapon/sprite/beam" unique_id=578069019]
+position = Vector2(64, 0)
+shape = SubResource("RectangleShape2D_ioo17")
+
+[node name="beam_line" type="Line2D" parent="player/weapon/sprite" unique_id=640063093]
+position = Vector2(6, -1.5)
+points = PackedVector2Array(0, 0, 128, 0)
+closed = true
+width = 0.0
+default_color = Color(0.92156863, 0, 0, 1)
+
+[node name="firerate" type="Timer" parent="player/weapon" unique_id=987678901]
+wait_time = 0.3
+one_shot = true
+
+[node name="hitbox" type="Area2D" parent="player/weapon" unique_id=1725352337]
+position = Vector2(6, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="col" type="CollisionShape2D" parent="player/weapon/hitbox" unique_id=1333045880]
+shape = SubResource("CircleShape2D_ioo17")
+
+[node name="hitbox_timer" type="Timer" parent="player/weapon" unique_id=2065968700]
+one_shot = true
 
 [node name="light_shadow" type="PointLight2D" parent="player" unique_id=382333714]
 color = Color(0.9999997, 0.77235144, 0.7333224, 1)
@@ -447,3 +488,7 @@ color = Color(0, 0, 0, 1)
 [connection signal="body_entered" from="player/grapple_detect" to="player" method="_on_grapple_detect_body_entered"]
 [connection signal="timeout" from="player/parry_timer" to="player" method="_on_parry_timer_timeout"]
 [connection signal="timeout" from="player/parry_cooldown" to="player" method="_on_parry_cooldown_timeout"]
+[connection signal="body_entered" from="player/weapon/sprite/beam" to="player/weapon" method="_on_beam_body_entered"]
+[connection signal="timeout" from="player/weapon/firerate" to="player/weapon" method="_on_firerate_timeout"]
+[connection signal="body_entered" from="player/weapon/hitbox" to="player/weapon" method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="player/weapon/hitbox_timer" to="player/weapon" method="_on_hitbox_timer_timeout"]
