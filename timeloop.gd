@@ -9,6 +9,8 @@ extends Node
 @onready var slider_timer: HSlider
 @onready var lab_loop_count: Label
 
+var enemies: Array[Enemy]
+
 var current_loop_time: float = 300
 var loop_count: int = 1
 
@@ -40,6 +42,10 @@ func reset_loop():
 	loop_count += 1
 	
 	player.global_position = Vector2.ZERO
+	
+func rewind_enemies():
+	for enemy in enemies:
+		enemy.rewind()
 	
 func _physics_process(delta: float) -> void:
 	lab_timer.text = str(round(loop_timer.time_left))

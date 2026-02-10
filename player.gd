@@ -23,6 +23,7 @@ var health: int = 3
 var can_dash: bool = true
 var can_grapple: bool = true
 var can_parry: bool = true
+var can_rewind: bool = true
 
 var is_grappling: bool = false
 var grapple_target: Enemy = null
@@ -36,14 +37,23 @@ var possessed_weapons: Array[WEAPONS] = [
 var current_weapon: WEAPONS = WEAPONS.KNIFE
 var current_weapon_idx: int = 0
 var input: Vector2
+var rewind_pos: Vector2 = Vector2.ZERO
+var pre_rewind_pos: Vector2 = Vector2.ZERO
 
 @onready var grapple_raycast: RayCast2D = $grapple_raycast
+
+func _ready() -> void:
+	rewind_pos = global_position
 
 func _physics_process(delta):
 	# main movement
 	input = Input.get_vector("left", "right", "up", "down").normalized()
 	if not is_grappling:
 		velocity = lerp(velocity, input * MAX_SPEED, delta * ACCELERATION)
+	
+	# cam pivot
+	#var cam_pivot_pos: Vector2 = (get_local_mouse_position() - position)
+	#$cam_pivot.position = to_local(cam_pivot_pos * 0.2)
 	
 	# fast dash ability
 	if Input.is_action_just_pressed("dash") and can_dash and not is_grappling:
@@ -86,6 +96,7 @@ func _physics_process(delta):
 		can_parry = false
 		$parry_timer.start()
 		$parry_cooldown.start()
+		$weapon/sprite.visible = false
 		
 	
 	# weapon switching
@@ -96,7 +107,21 @@ func _physics_process(delta):
 			current_weapon_idx = 0
 		current_weapon = possessed_weapons[current_weapon_idx]
 		update_weapon()
-
+		
+		
+	# rewind ability
+	if Input.is_action_just_pressed("rewind") and can_rewind:
+		pre_rewind_pos = global_position
+		global_position = rewind_pos
+		timeloop.rewind_enemies()
+		can_rewind = false
+		$rewind_line.width = 3
+		$rewind_cooldown.start()
+		
+	$rewind_line.width = lerpf($rewind_line.width, 0, delta*8)
+	$rewind_line.set_point_position(0, to_local(pre_rewind_pos))
+	$rewind_line.set_point_position(1, to_local(rewind_pos))
+		
 	move_and_slide()
 	
 
@@ -106,6 +131,7 @@ func update_weapon():
 
 func take_damage():
 	health -= 1
+	timeloop.frame_freeze(0.05, 0.5)
 	print("player took 1 damage")
 	if health <= 0:
 		timeloop.reset_loop()
@@ -133,8 +159,17 @@ func _on_cooldown_grapple_timeout() -> void:
 	can_grapple = true
 
 func _on_parry_timer_timeout() -> void:
-	$parry/col.disabled = true
+	$parry/col.set_deferred("disabled", true)
 	$parry/sprite.visible = false
+	$weapon/sprite.visible = true
 
 func _on_parry_cooldown_timeout() -> void:
 	can_parry = true
+
+
+func _on_rewind_timer_timeout() -> void:
+	rewind_pos = global_position
+
+
+func _on_rewind_cooldown_timeout() -> void:
+	can_rewind = true

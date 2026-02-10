@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ck4le5qj5ua62" path="res://guard.tscn" id="4_036b0"]
 [ext_resource type="Script" uid="uid://deotyyxlkpkx5" path="res://weapon.gd" id="6_gbfbk"]
 [ext_resource type="Texture2D" uid="uid://s60g356jmc5s" path="res://2d_light.webp" id="6_pkg7o"]
+[ext_resource type="Script" uid="uid://bufpgle78vfiw" path="res://cam.gd" id="6_wse8f"]
 [ext_resource type="PackedScene" uid="uid://c6jatjqfvu7j0" path="res://projectile.tscn" id="7_ioo17"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dwbse"]
@@ -289,6 +290,10 @@ vframes = 8
 [node name="cam" type="Camera2D" parent="player" unique_id=597625721]
 zoom = Vector2(6, 6)
 position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+script = ExtResource("6_wse8f")
+
+[node name="cam_pivot" type="Node2D" parent="player" unique_id=75568497]
 
 [node name="cooldown_dash" type="Timer" parent="player" unique_id=1333654476]
 wait_time = 0.35
@@ -398,6 +403,19 @@ shadow_filter = 1
 texture = ExtResource("6_pkg7o")
 texture_scale = 2.0
 
+[node name="rewind_timer" type="Timer" parent="player" unique_id=1437950667]
+wait_time = 3.0
+autostart = true
+
+[node name="rewind_cooldown" type="Timer" parent="player" unique_id=1698665716]
+wait_time = 5.0
+one_shot = true
+
+[node name="rewind_line" type="Line2D" parent="player" unique_id=1565579211]
+z_index = -1
+points = PackedVector2Array(0, 0, 0, 0)
+width = 1.0
+
 [node name="guard" parent="." unique_id=1139509445 instance=ExtResource("4_036b0")]
 position = Vector2(136, 80)
 
@@ -492,3 +510,5 @@ color = Color(0, 0, 0, 1)
 [connection signal="timeout" from="player/weapon/firerate" to="player/weapon" method="_on_firerate_timeout"]
 [connection signal="body_entered" from="player/weapon/hitbox" to="player/weapon" method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="player/weapon/hitbox_timer" to="player/weapon" method="_on_hitbox_timer_timeout"]
+[connection signal="timeout" from="player/rewind_timer" to="player" method="_on_rewind_timer_timeout"]
+[connection signal="timeout" from="player/rewind_cooldown" to="player" method="_on_rewind_cooldown_timeout"]

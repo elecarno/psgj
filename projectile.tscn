@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bdlt0bf2p47ce" path="res://projectile.gd" id="1_a85iw"]
 [ext_resource type="Texture2D" uid="uid://bigtbb054pe5w" path="res://enemy_sprites.png" id="2_qxf0c"]
+[ext_resource type="Texture2D" uid="uid://s60g356jmc5s" path="res://2d_light.webp" id="3_dgwo2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxf0c"]
 size = Vector2(4, 2)
@@ -25,6 +26,13 @@ frame = 8
 points = PackedVector2Array(0, 0, 0, 0)
 width = 0.5
 default_color = Color(0.8627451, 0.90588236, 0.4392157, 1)
+
+[node name="light_shadow" type="PointLight2D" parent="." unique_id=1198440927]
+color = Color(0.78967714, 0.64240557, 0.062422834, 1)
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("3_dgwo2")
+texture_scale = 0.1
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

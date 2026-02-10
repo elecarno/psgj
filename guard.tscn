@@ -43,6 +43,16 @@ points = PackedVector2Array(0, 0, 512, 0)
 width = 0.0
 default_color = Color(0.20127451, 0.6400178, 5.7756904e-07, 0.40392157)
 
+[node name="rewind_timer" type="Timer" parent="." unique_id=1531644780]
+wait_time = 3.0
+autostart = true
+
+[node name="rewind_line" type="Line2D" parent="." unique_id=57040963]
+z_index = -1
+points = PackedVector2Array(0, 0, 0, 0)
+width = 1.0
+
 [connection signal="timeout" from="nav_timer" to="." method="_on_nav_timer_timeout"]
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="shoot_delay" to="." method="_on_shoot_delay_timeout"]
+[connection signal="timeout" from="rewind_timer" to="." method="_on_rewind_timer_timeout"]

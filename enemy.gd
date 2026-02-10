@@ -13,6 +13,8 @@ var player: Player
 var activated: bool = false
 var show_shoot_line: bool = false
 var shoot_direction: Vector2 = Vector2.ZERO
+var rewind_pos: Vector2 = Vector2.ZERO
+var pre_rewind_pos: Vector2 = Vector2.ZERO
 
 @onready var nav_agent: NavigationAgent2D = $nav_agent
 
@@ -24,6 +26,8 @@ var shoot_direction: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	$shoot_timer.wait_time = SHOOT_INTERVAL
 	health = MAX_HEALTH
+	timeloop.enemies.append(self)
+	rewind_pos = global_position
 
 func activate(body: Node2D):
 	activated = true
@@ -43,6 +47,17 @@ func _physics_process(delta: float) -> void:
 		
 	if show_shoot_line:
 		$shoot_line.width = lerpf($shoot_line.width, 0, delta * 2)
+		
+	$rewind_line.width = lerpf($rewind_line.width, 0, delta*8)
+	$rewind_line.set_point_position(0, to_local(pre_rewind_pos))
+	$rewind_line.set_point_position(1, to_local(rewind_pos))
+		
+	
+func rewind():
+	if activated:
+		$rewind_line.width = 3
+		pre_rewind_pos = global_position
+		global_position = rewind_pos
 	
 
 func take_damage(damage: int):
@@ -84,3 +99,7 @@ func _on_shoot_delay_timeout() -> void:
 	if activated:
 		shoot_projectile()
 		$shoot_timer.wait_time = SHOOT_INTERVAL + randf_range(-0.25, 0.25)
+
+
+func _on_rewind_timer_timeout() -> void:
+	rewind_pos = global_position
