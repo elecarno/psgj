@@ -1,15 +1,17 @@
 [gd_scene format=4 uid="uid://b0mwdpm0ucqug"]
 
-[ext_resource type="Script" uid="uid://cex60lnvav15l" path="res://loop_timer.gd" id="1_aqk2v"]
-[ext_resource type="Script" uid="uid://d1k1f6f3gxlb4" path="res://player.gd" id="1_fj7yv"]
-[ext_resource type="Script" uid="uid://bqvb0dr4scxf1" path="res://room.gd" id="2_dwbse"]
+[ext_resource type="Script" uid="uid://cex60lnvav15l" path="res://scripts/loop_timer.gd" id="1_aqk2v"]
+[ext_resource type="AudioStream" uid="uid://n74tj0ijyec2" path="res://sfx/ambience1.wav" id="1_k3n1d"]
+[ext_resource type="Script" uid="uid://bqvb0dr4scxf1" path="res://scripts/room.gd" id="2_dwbse"]
 [ext_resource type="Texture2D" uid="uid://bcorfdj857iql" path="res://player_sprites.png" id="2_fj7yv"]
 [ext_resource type="Texture2D" uid="uid://bdfewhe3c8asq" path="res://tilemap.png" id="3_tlwt5"]
-[ext_resource type="PackedScene" uid="uid://ck4le5qj5ua62" path="res://guard.tscn" id="4_036b0"]
-[ext_resource type="Script" uid="uid://deotyyxlkpkx5" path="res://weapon.gd" id="6_gbfbk"]
+[ext_resource type="PackedScene" uid="uid://ck4le5qj5ua62" path="res://prefabs/guard.tscn" id="4_036b0"]
+[ext_resource type="Script" uid="uid://d1k1f6f3gxlb4" path="res://scripts/player.gd" id="5_ic0uy"]
+[ext_resource type="Script" uid="uid://deotyyxlkpkx5" path="res://scripts/weapon.gd" id="6_gbfbk"]
 [ext_resource type="Texture2D" uid="uid://s60g356jmc5s" path="res://2d_light.webp" id="6_pkg7o"]
-[ext_resource type="Script" uid="uid://bufpgle78vfiw" path="res://cam.gd" id="6_wse8f"]
-[ext_resource type="PackedScene" uid="uid://c6jatjqfvu7j0" path="res://projectile.tscn" id="7_ioo17"]
+[ext_resource type="Script" uid="uid://bufpgle78vfiw" path="res://scripts/cam.gd" id="6_wse8f"]
+[ext_resource type="PackedScene" uid="uid://c6jatjqfvu7j0" path="res://prefabs/projectile.tscn" id="7_ioo17"]
+[ext_resource type="Script" uid="uid://2i62rtqxayqf" path="res://scripts/sfx_player.gd" id="11_ic0uy"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dwbse"]
 vertices = PackedVector2Array(4, 4, -4, 4, -4, -4, 4, -4)
@@ -253,6 +255,10 @@ HSlider/styles/slider = SubResource("StyleBoxFlat_wse8f")
 
 [node name="world" type="Node2D" unique_id=788739689]
 
+[node name="sfx_bg" type="AudioStreamPlayer2D" parent="." unique_id=250844739]
+stream = ExtResource("1_k3n1d")
+autoplay = true
+
 [node name="loop_timer" type="Timer" parent="." unique_id=2424628]
 wait_time = 5.0
 one_shot = true
@@ -272,11 +278,17 @@ enemies = [NodePath("../guard"), NodePath("../guard2")]
 [node name="col" type="CollisionShape2D" parent="room" unique_id=753372078]
 shape = SubResource("RectangleShape2D_036b0")
 
+[node name="guard" parent="." unique_id=1139509445 instance=ExtResource("4_036b0")]
+position = Vector2(136, 80)
+
+[node name="guard2" parent="." unique_id=405545415 instance=ExtResource("4_036b0")]
+position = Vector2(100, 85)
+
 [node name="player" type="CharacterBody2D" parent="." unique_id=2144539989 groups=["player"]]
 z_index = 2
 position = Vector2(66, 1)
 collision_layer = 3
-script = ExtResource("1_fj7yv")
+script = ExtResource("5_ic0uy")
 
 [node name="col" type="CollisionShape2D" parent="player" unique_id=2077254795]
 position = Vector2(0, 0.5)
@@ -361,6 +373,61 @@ frame = 16
 [node name="shoot_pivot" type="Node2D" parent="player/weapon/sprite" unique_id=1737796364]
 position = Vector2(6, -1.5)
 
+[node name="flash_pistol" type="CPUParticles2D" parent="player/weapon/sprite/shoot_pivot" unique_id=928762568]
+emitting = false
+lifetime = 0.09999999999999999
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+spread = 25.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.3
+initial_velocity_max = 72.73
+angular_velocity_min = -366.55
+angular_velocity_max = 410.18
+linear_accel_min = -78.18
+linear_accel_max = -42.42
+color = Color(0.9874963, 0.90808916, 0.75522053, 1)
+
+[node name="flash_cannon" type="CPUParticles2D" parent="player/weapon/sprite/shoot_pivot" unique_id=373137787]
+emitting = false
+amount = 16
+lifetime = 0.2
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+lifetime_randomness = 0.25
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.3
+initial_velocity_max = 72.73
+angular_velocity_min = -366.55
+angular_velocity_max = 410.18
+linear_accel_min = -100.0
+linear_accel_max = -100.0
+radial_accel_min = 10.91
+radial_accel_max = 10.91
+color = Color(0.9874963, 0.90808916, 0.75522053, 1)
+
+[node name="flash_beam" type="CPUParticles2D" parent="player/weapon/sprite/shoot_pivot" unique_id=804537453]
+emitting = false
+amount = 32
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+lifetime_randomness = 0.25
+spread = 60.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.3
+initial_velocity_max = 72.73
+angular_velocity_min = -366.55
+angular_velocity_max = 410.18
+linear_accel_min = -100.0
+linear_accel_max = -100.0
+radial_accel_min = 10.91
+radial_accel_max = 10.91
+color = Color(0.92941177, 0.13725491, 0.019607844, 1)
+
 [node name="beam" type="Area2D" parent="player/weapon/sprite" unique_id=1658391524]
 position = Vector2(6, -1.5)
 
@@ -391,6 +458,7 @@ shape = SubResource("CircleShape2D_ioo17")
 one_shot = true
 
 [node name="light_shadow" type="PointLight2D" parent="player" unique_id=382333714]
+visible = false
 color = Color(0.9999997, 0.77235144, 0.7333224, 1)
 shadow_enabled = true
 shadow_filter = 1
@@ -398,13 +466,14 @@ texture = ExtResource("6_pkg7o")
 texture_scale = 3.0
 
 [node name="light_world" type="PointLight2D" parent="player" unique_id=1842722311]
+visible = false
 color = Color(0.9999997, 0.77235144, 0.7333224, 1)
 shadow_filter = 1
 texture = ExtResource("6_pkg7o")
 texture_scale = 2.0
 
 [node name="rewind_timer" type="Timer" parent="player" unique_id=1437950667]
-wait_time = 3.0
+wait_time = 5.0
 autostart = true
 
 [node name="rewind_cooldown" type="Timer" parent="player" unique_id=1698665716]
@@ -415,12 +484,51 @@ one_shot = true
 z_index = -1
 points = PackedVector2Array(0, 0, 0, 0)
 width = 1.0
+default_color = Color(0, 0.77254903, 1, 1)
 
-[node name="guard" parent="." unique_id=1139509445 instance=ExtResource("4_036b0")]
-position = Vector2(136, 80)
+[node name="sfx" type="Node2D" parent="player" unique_id=1230004172]
+script = ExtResource("11_ic0uy")
 
-[node name="guard2" parent="." unique_id=405545415 instance=ExtResource("4_036b0")]
-position = Vector2(100, 85)
+[node name="rewind_particles" type="CPUParticles2D" parent="player" unique_id=309216002]
+emitting = false
+amount = 32
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.2
+emission_shape = 1
+emission_sphere_radius = 3.85
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 24.59
+initial_velocity_max = 24.59
+radial_accel_min = 1.0
+radial_accel_max = 1.0
+color = Color(0.3436738, 0.77071136, 0.8341967, 1)
+
+[node name="rewind_indicator" type="Sprite2D" parent="." unique_id=1985583413]
+position = Vector2(66, 1)
+texture = ExtResource("2_fj7yv")
+hframes = 8
+vframes = 8
+frame = 24
+
+[node name="rewind_particles" type="CPUParticles2D" parent="rewind_indicator" unique_id=1715567920]
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.2
+emission_shape = 1
+emission_sphere_radius = 3.85
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 24.59
+initial_velocity_max = 24.59
+radial_accel_min = 1.0
+radial_accel_max = 1.0
+color = Color(0.3436738, 0.77071136, 0.8341967, 1)
 
 [node name="canvas" type="CanvasLayer" parent="." unique_id=1948678491]
 
@@ -497,6 +605,7 @@ offset_bottom = 64.0
 text = "Health: 3"
 
 [node name="canvas_modulate" type="CanvasModulate" parent="." unique_id=128941423]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [connection signal="timeout" from="loop_timer" to="loop_timer" method="_on_timeout"]

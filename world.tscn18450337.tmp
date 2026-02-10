@@ -1,0 +1,711 @@
+[gd_scene format=4 uid="uid://b0mwdpm0ucqug"]
+
+[ext_resource type="Script" uid="uid://cex60lnvav15l" path="res://scripts/loop_timer.gd" id="1_aqk2v"]
+[ext_resource type="Script" uid="uid://bqvb0dr4scxf1" path="res://scripts/room.gd" id="2_dwbse"]
+[ext_resource type="Texture2D" uid="uid://bcorfdj857iql" path="res://player_sprites.png" id="2_fj7yv"]
+[ext_resource type="Texture2D" uid="uid://bdfewhe3c8asq" path="res://tilemap.png" id="3_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://ck4le5qj5ua62" path="res://prefabs/guard.tscn" id="4_036b0"]
+[ext_resource type="Script" uid="uid://deotyyxlkpkx5" path="res://scripts/weapon.gd" id="6_gbfbk"]
+[ext_resource type="Texture2D" uid="uid://s60g356jmc5s" path="res://2d_light.webp" id="6_pkg7o"]
+[ext_resource type="Script" uid="uid://bufpgle78vfiw" path="res://scripts/cam.gd" id="6_wse8f"]
+[ext_resource type="PackedScene" uid="uid://c6jatjqfvu7j0" path="res://prefabs/projectile.tscn" id="7_ioo17"]
+[ext_resource type="AudioStream" uid="uid://i4i56ivrrwmd" path="res://sfx/pistol.wav" id="11_ic0uy"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_dwbse"]
+vertices = PackedVector2Array(4, 4, -4, 4, -4, -4, 4, -4)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)])
+agent_radius = 0.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pkg7o"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gbfbk"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ioo17"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wse8f"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_pkg7o"]
+vertices = PackedVector2Array(4, 4, -4, 4, -4, -4, 4, -4)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)])
+agent_radius = 0.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ic0uy"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_k3n1d"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2o6r5"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_70uel"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hiqwa"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2u3nc"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_udxuc"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ikiii"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_cbp6q"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_il2jm"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wjb0r"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_26xuy"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bc84e"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_gbfbk"]
+vertices = PackedVector2Array(4, 4, -4, 4, -4, -4, 4, -4)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)])
+agent_radius = 0.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wukud"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mc2jv"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bo7i5"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aqk2v"]
+texture = ExtResource("3_tlwt5")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+0:0/0/z_index = 1
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_pkg7o")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dwbse")
+1:0/0 = 0
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_pkg7o")
+0:1/0 = 0
+0:1/0/z_index = 1
+0:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_gbfbk")
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+1:1/0 = 0
+1:1/0/z_index = 1
+1:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_ic0uy")
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+2:1/0 = 0
+2:1/0/z_index = 1
+2:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_2o6r5")
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+2:2/0 = 0
+2:2/0/z_index = 1
+2:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_70uel")
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+0:2/0 = 0
+0:2/0/z_index = 1
+0:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_ioo17")
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 0, -4, 0)
+0:3/0 = 0
+0:3/0/z_index = 1
+0:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_wse8f")
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+1:3/0 = 0
+1:3/0/z_index = 1
+1:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_k3n1d")
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+2:3/0 = 0
+2:3/0/z_index = 1
+2:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_hiqwa")
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+3:1/0 = 0
+3:1/0/z_index = 1
+3:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_2u3nc")
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+3:2/0 = 0
+3:2/0/z_index = 1
+3:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_udxuc")
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+3:3/0 = 0
+3:3/0/z_index = 1
+3:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_ikiii")
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+4:1/0 = 0
+4:1/0/z_index = 1
+4:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_cbp6q")
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+5:1/0 = 0
+5:1/0/z_index = 1
+5:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_26xuy")
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+5:2/0 = 0
+5:2/0/z_index = 1
+5:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_bc84e")
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+6:1/0 = 0
+6:1/0/z_index = 1
+6:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_wukud")
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+5:3/0 = 0
+5:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_gbfbk")
+4:2/0 = 0
+4:2/0/z_index = 1
+4:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_il2jm")
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+6:2/0 = 0
+6:2/0/z_index = 1
+6:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_mc2jv")
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+4:3/0 = 0
+4:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_wjb0r")
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+6:3/0 = 0
+6:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_bo7i5")
+6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="TileSet" id="TileSet_036b0"]
+tile_size = Vector2i(8, 8)
+occlusion_layer_0/light_mask = 1
+physics_layer_0/collision_layer = 1
+navigation_layer_0/layers = 1
+sources/0 = SubResource("TileSetAtlasSource_aqk2v")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_036b0"]
+size = Vector2(72, 64)
+
+[sub_resource type="GDScript" id="GDScript_wse8f"]
+script/source = "extends CharacterBody2D
+
+enum WEAPONS {
+	KNIFE,
+	SWORD,
+	PISTOL,
+	HAND_CANNON,
+	BEAM_CANNON
+}
+
+const MAX_SPEED = 75
+const ACCELERATION = 15
+const DASH_SPEED = 250
+const GRAPPLE_MAX_SPEED = 220
+const GRAPPLE_ACCELERATION = 7
+
+const GRAPPLE_DAMAGE = 10
+
+const MAX_HEALTH: int = 3
+var health: int = 3
+
+var can_dash: bool = true
+var can_grapple: bool = true
+var can_parry: bool = true
+var can_rewind: bool = true
+
+var is_grappling: bool = false
+var grapple_target: Enemy = null
+var possessed_weapons: Array[WEAPONS] = [
+	WEAPONS.KNIFE,
+	WEAPONS.SWORD,
+	WEAPONS.PISTOL,
+	WEAPONS.HAND_CANNON,
+	WEAPONS.BEAM_CANNON
+]
+var current_weapon: WEAPONS = WEAPONS.KNIFE
+var current_weapon_idx: int = 0
+var input: Vector2
+var rewind_pos: Vector2 = Vector2.ZERO
+var pre_rewind_pos: Vector2 = Vector2.ZERO
+
+@onready var grapple_raycast: RayCast2D = $grapple_raycast
+
+func _ready() -> void:
+	rewind_pos = global_position
+
+func _physics_process(delta):
+	# main movement
+	input = Input.get_vector(\"left\", \"right\", \"up\", \"down\").normalized()
+	if not is_grappling:
+		velocity = lerp(velocity, input * MAX_SPEED, delta * ACCELERATION)
+	
+	#cam pivot
+	$cam.position = lerp($cam.position, get_local_mouse_position() * 0.25, delta*16)
+	
+	# fast dash ability
+	if Input.is_action_just_pressed(\"dash\") and can_dash and not is_grappling:
+		velocity += input * DASH_SPEED
+		can_dash = false
+		$cooldown_dash.start()
+		
+	# grapple ability
+	if Input.is_action_just_pressed(\"grapple\") and can_grapple and not is_grappling:
+		var grapple_target_vector = to_local(get_global_mouse_position())
+		grapple_raycast.target_position = grapple_target_vector
+		grapple_raycast.force_raycast_update()
+		if grapple_raycast.is_colliding():
+			print(\"grapple colliding\")
+			if grapple_raycast.get_collider() is Enemy:
+				print(\"grappling to \" + grapple_raycast.get_collider().name)
+				velocity = Vector2.ZERO
+				grapple_target = grapple_raycast.get_collider()
+				is_grappling = true
+				can_grapple = false
+				timeloop.frame_freeze(0.05, 0.5)
+			else:
+				print(\"not a valid grapple target\")
+				grapple_target = null
+	else:
+		grapple_raycast.target_position = lerp(grapple_raycast.target_position, Vector2.ZERO, delta * GRAPPLE_ACCELERATION)
+		$grapple_line.set_point_position(1, grapple_raycast.target_position)
+	
+	if is_grappling:
+		#$grapple_line.set_point_position(1, to_local(grapple_target.global_position))
+		global_position = lerp(global_position, grapple_target.global_position, delta * GRAPPLE_ACCELERATION)
+
+	
+	# parry ability
+	if Input.is_action_just_pressed(\"parry\") and can_parry:
+		var parry_direction = (get_global_mouse_position() - global_position).normalized()
+		$parry.rotation = parry_direction.angle()
+		$parry/col.disabled = false
+		$parry/sprite.visible = true
+		can_parry = false
+		$parry_timer.start()
+		$parry_cooldown.start()
+		$weapon/sprite.visible = false
+		
+	
+	# weapon switching
+	if Input.is_action_just_pressed(\"switch\"):
+		if current_weapon < len(possessed_weapons)-1:
+			current_weapon_idx += 1
+		else:
+			current_weapon_idx = 0
+		current_weapon = possessed_weapons[current_weapon_idx]
+		update_weapon()
+		
+		
+	# rewind ability
+	if Input.is_action_just_pressed(\"rewind\") and can_rewind:
+		pre_rewind_pos = global_position
+		global_position = rewind_pos
+		timeloop.rewind_enemies()
+		can_rewind = false
+		$rewind_line.width = 3
+		$rewind_cooldown.start()
+		
+	$rewind_line.width = lerpf($rewind_line.width, 0, delta*8)
+	$rewind_line.set_point_position(0, to_local(pre_rewind_pos))
+	$rewind_line.set_point_position(1, to_local(rewind_pos))
+		
+	move_and_slide()
+	
+
+func update_weapon():
+	$weapon/sprite.frame_coords = Vector2(current_weapon, 2)
+
+
+func take_damage():
+	health -= 1
+	timeloop.frame_freeze(0.05, 0.5)
+	print(\"player took 1 damage\")
+	if health <= 0:
+		timeloop.reset_loop()
+		health = MAX_HEALTH
+	$\"../canvas/hud/lab_health\".text = \"Health: \" + str(health)
+
+
+func _on_grapple_detect_body_entered(body: Node2D) -> void:
+	if grapple_target != null:
+		if body.name == grapple_target.name:
+			print(\"grapple stop\")
+			velocity = Vector2.ZERO
+			grapple_target.take_damage(GRAPPLE_DAMAGE)
+			is_grappling = false
+			grapple_target = null
+			grapple_raycast.target_position = Vector2.ZERO
+			$cooldown_grapple.start()
+
+
+# timer timouts
+func _on_cooldown_dash_timeout() -> void:
+	can_dash = true
+
+func _on_cooldown_grapple_timeout() -> void:
+	can_grapple = true
+
+func _on_parry_timer_timeout() -> void:
+	$parry/col.set_deferred(\"disabled\", true)
+	$parry/sprite.visible = false
+	$weapon/sprite.visible = true
+
+func _on_parry_cooldown_timeout() -> void:
+	can_parry = true
+
+
+func _on_rewind_timer_timeout() -> void:
+	rewind_pos = global_position
+
+
+func _on_rewind_cooldown_timeout() -> void:
+	can_rewind = true
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
+size = Vector2(8, 7)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dwbse"]
+radius = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwbse"]
+size = Vector2(4, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ioo17"]
+size = Vector2(128, 3)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ioo17"]
+radius = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbfbk"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.19607843, 0.5921569, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ioo17"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wse8f"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.032874554, 0.1905427, 0.34605154, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="Theme" id="Theme_ic0uy"]
+HSlider/constants/center_grabber = 0
+HSlider/constants/grabber_offset = 0
+HSlider/constants/tick_offset = 0
+HSlider/icons/grabber = null
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = null
+HSlider/icons/tick = null
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_gbfbk")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_ioo17")
+HSlider/styles/slider = SubResource("StyleBoxFlat_wse8f")
+
+[node name="world" type="Node2D" unique_id=788739689]
+
+[node name="loop_timer" type="Timer" parent="." unique_id=2424628]
+wait_time = 5.0
+one_shot = true
+script = ExtResource("1_aqk2v")
+
+[node name="tilemap" type="TileMapLayer" parent="." unique_id=1344681809]
+tile_map_data = PackedByteArray("AAD6//v/AAAAAAIAAAD6//z/AAAAAAIAAAD6//3/AAAGAAMAAAD6//7/AAABAAIAAAD7//v/AAABAAIAAAD8//v/AAABAAIAAAD9//v/AAABAAIAAAD+//v/AAABAAIAAAD///v/AAABAAIAAAAAAPv/AAABAAIAAAAAAAQAAAAEAAIAAAABAPv/AAABAAIAAAABAAQAAAABAAMAAAACAPv/AAABAAIAAAACAAQAAAABAAMAAAADAPv/AAABAAIAAAADAAQAAAABAAMAAAAEAPv/AAABAAIAAAAEAAQAAAABAAMAAAAFAPv/AAADAAIAAAAFAPz/AAADAAMAAAAFAAMAAAADAAIAAAAFAAQAAAABAAMAAAAGAPv/AAABAAIAAAAHAPv/AAABAAIAAAAIAPv/AAABAAIAAAAJAPv/AAABAAIAAAAKAPv/AAABAAIAAAALAPv/AAABAAIAAAAMAPv/AAABAAIAAAANAPv/AAABAAIAAAAOAPv/AAABAAIAAAAPAPv/AAABAAIAAAAQAPv/AAABAAIAAAARAPv/AAABAAIAAAASAPv/AAABAAIAAAATAPv/AAABAAIAAAAUAPv/AAABAAIAAAAVAPv/AAABAAIAAAAGAAQAAAABAAMAAAAHAAQAAAABAAMAAAAIAAQAAAABAAMAAAAJAAQAAAAGAAIAAAAKAAQAAAAGAAEAAAASAAQAAAAEAAEAAAATAAQAAAAEAAIAAAAUAAQAAAABAAMAAAAVAAQAAAABAAMAAAAWAAQAAAABAAMAAAAXAAQAAAABAAMAAAAYAAQAAAABAAMAAAAZAAQAAAABAAMAAAAaAAQAAAABAAMAAAAbAAQAAAABAAMAAAAcAAQAAAABAAMAAAAdAAQAAAABAAMAAAAeAAQAAAABAAMAAAAWAPv/AAABAAIAAAAXAPv/AAABAAIAAAAYAPv/AAABAAIAAAAZAPv/AAABAAIAAAAaAPv/AAABAAIAAAAbAPv/AAABAAIAAAAcAPv/AAABAAIAAAAdAPv/AAABAAIAAAAeAPv/AAABAAIAAAAfAPv/AAABAAIAAAAgAPv/AAACAAIAAAAgAPz/AAACAAIAAAAgAP3/AAACAAIAAAAgAP7/AAACAAIAAAAgAP//AAACAAIAAAAgAAAAAAACAAIAAAAgAAEAAAACAAIAAAAgAAIAAAACAAIAAAAgAAMAAAACAAIAAAAgAAQAAAACAAMAAAAfAAQAAAABAAMAAAAFAP3/AAABAAIAAAAFAAIAAAADAAEAAAAJAAUAAAAAAAIAAAAJAAYAAAAAAAIAAAAJAAcAAAAAAAIAAAAJAAgAAAAAAAIAAAAJAAkAAAAAAAIAAAAJAAoAAAAAAAIAAAAJAAsAAAAAAAIAAAAJAAwAAAAAAAIAAAAJAA0AAAAAAAMAAAATAAUAAAACAAIAAAATAAYAAAACAAIAAAATAAcAAAACAAIAAAATAAgAAAACAAIAAAATAAkAAAACAAIAAAATAAoAAAACAAIAAAATAAsAAAACAAIAAAATAAwAAAACAAIAAAATAA0AAAACAAMAAAASAA0AAAABAAMAAAARAA0AAAABAAMAAAAQAA0AAAABAAMAAAAPAA0AAAABAAMAAAAOAA0AAAABAAMAAAANAA0AAAABAAMAAAAMAA0AAAABAAMAAAALAA0AAAABAAMAAAAKAA0AAAABAAMAAAD5//7/AAABAAIAAAD4//7/AAABAAIAAAD3//7/AAABAAIAAAD2//7/AAAAAAIAAAD2////AAAAAAIAAAD2/wAAAAAAAAIAAAD2/wEAAAAAAAIAAAD2/wIAAAAAAAIAAAD2/wMAAAAAAAIAAAD2/wQAAAAAAAIAAAD2/wUAAAAAAAIAAAD2/wYAAAAAAAIAAAD2/wcAAAAAAAIAAAD2/wgAAAAAAAIAAAD2/wkAAAAAAAIAAAD2/woAAAAAAAIAAAD2/wsAAAAAAAMAAAD3/wsAAAABAAMAAAD4/wsAAAABAAMAAAD5/wsAAAABAAMAAAD6/wsAAAABAAMAAAD7/wsAAAABAAMAAAD8/wsAAAABAAMAAAD9/wsAAAABAAMAAAD+/wsAAAABAAMAAAD//wsAAAABAAMAAAAAAAsAAAACAAMAAAAAAAoAAAACAAIAAAAAAAkAAAACAAIAAAAAAAgAAAACAAIAAAAAAAcAAAACAAIAAAAAAAYAAAACAAIAAAAAAAUAAAACAAIAAAD7//z/AAAFAAMAAAD7//3/AAAFAAMAAAD7//7/AAAFAAMAAAD7////AAAFAAMAAAD7/wAAAAAFAAMAAAD7/wEAAAAFAAMAAAD7/wIAAAAFAAMAAAD7/wMAAAAFAAMAAAD8//z/AAAFAAMAAAD8//3/AAAFAAMAAAD8//7/AAAFAAMAAAD8////AAAFAAMAAAD8/wAAAAAFAAMAAAD8/wEAAAAFAAMAAAD8/wIAAAAFAAMAAAD8/wMAAAAFAAMAAAD9//z/AAAFAAMAAAD9//3/AAAFAAMAAAD9//7/AAAFAAMAAAD9////AAAFAAMAAAD9/wAAAAAFAAMAAAD9/wEAAAAFAAMAAAD9/wIAAAAFAAMAAAD9/wMAAAAFAAMAAAD+//z/AAAFAAMAAAD+//3/AAAFAAMAAAD+//7/AAAFAAMAAAD+////AAAFAAMAAAD+/wAAAAAFAAMAAAD+/wEAAAAFAAMAAAD+/wIAAAAFAAMAAAD+/wMAAAAFAAMAAAD///z/AAAFAAMAAAD///3/AAAFAAMAAAD///7/AAAFAAMAAAD/////AAAFAAMAAAD//wAAAAAFAAMAAAD//wEAAAAFAAMAAAD//wIAAAAFAAMAAAD//wMAAAAFAAMAAAAAAPz/AAAFAAMAAAAAAP3/AAAFAAMAAAAAAP7/AAAFAAMAAAAAAP//AAAFAAMAAAAAAAAAAAAFAAMAAAAAAAEAAAAFAAMAAAAAAAIAAAAFAAMAAAAAAAMAAAAFAAMAAAABAPz/AAAFAAMAAAABAP3/AAAFAAMAAAABAP7/AAAFAAMAAAABAP//AAAFAAMAAAABAAAAAAAFAAMAAAABAAEAAAAFAAMAAAABAAIAAAAFAAMAAAABAAMAAAAFAAMAAAACAPz/AAAFAAMAAAACAP3/AAAFAAMAAAACAP7/AAAFAAMAAAACAP//AAAFAAMAAAACAAAAAAAFAAMAAAACAAEAAAAFAAMAAAACAAIAAAAFAAMAAAACAAMAAAAFAAMAAAADAPz/AAAFAAMAAAADAP3/AAAFAAMAAAADAP7/AAAFAAMAAAADAP//AAAFAAMAAAADAAAAAAAFAAMAAAADAAEAAAAFAAMAAAADAAIAAAAFAAMAAAADAAMAAAAFAAMAAAAEAPz/AAAFAAMAAAAEAP3/AAAFAAMAAAAEAP7/AAAFAAMAAAAEAP//AAAFAAMAAAAEAAAAAAAFAAMAAAAEAAEAAAAFAAMAAAAEAAIAAAAFAAMAAAAEAAMAAAAFAAMAAAD3////AAAFAAMAAAD3/wAAAAAFAAMAAAD3/wEAAAAFAAMAAAD3/wIAAAAFAAMAAAD3/wMAAAAFAAMAAAD3/wQAAAAFAAMAAAD3/wUAAAAFAAMAAAD3/wYAAAAFAAMAAAD3/wcAAAAFAAMAAAD3/wgAAAAFAAMAAAD3/wkAAAAFAAMAAAD3/woAAAAFAAMAAAD4////AAAFAAMAAAD4/wAAAAAFAAMAAAD4/wEAAAAFAAMAAAD4/wIAAAAFAAMAAAD4/wMAAAAFAAMAAAD4/wQAAAAFAAMAAAD4/wUAAAAFAAMAAAD4/wYAAAAFAAMAAAD4/wcAAAAFAAMAAAD4/wgAAAAFAAMAAAD4/wkAAAAFAAMAAAD4/woAAAAFAAMAAAD5////AAAFAAMAAAD5/wAAAAAFAAMAAAD5/wEAAAAFAAMAAAD5/wIAAAAFAAMAAAD5/wMAAAAFAAMAAAD5/wQAAAAFAAMAAAD5/wUAAAAFAAMAAAD5/wYAAAAFAAMAAAD5/wcAAAAFAAMAAAD5/wgAAAAFAAMAAAD5/wkAAAAFAAMAAAD5/woAAAAFAAMAAAD6////AAAFAAMAAAD6/wAAAAAFAAMAAAD6/wEAAAAFAAMAAAD6/wIAAAAFAAMAAAD6/wMAAAAFAAMAAAD6/wQAAAAFAAMAAAD6/wUAAAAFAAMAAAD6/wYAAAAFAAMAAAD6/wcAAAAFAAMAAAD6/wgAAAAFAAMAAAD6/wkAAAAFAAMAAAD6/woAAAAFAAMAAAD7/wQAAAAFAAMAAAD7/wUAAAAFAAMAAAD7/wYAAAAFAAMAAAD7/wcAAAAFAAMAAAD7/wgAAAAFAAMAAAD7/wkAAAAFAAMAAAD7/woAAAAFAAMAAAD8/wQAAAAFAAMAAAD8/wUAAAAFAAMAAAD8/wYAAAAFAAMAAAD8/wcAAAAFAAMAAAD8/wgAAAAFAAMAAAD8/wkAAAAFAAMAAAD8/woAAAAFAAMAAAD9/wQAAAAFAAMAAAD9/wUAAAAFAAMAAAD9/wYAAAAFAAMAAAD9/wcAAAAFAAMAAAD9/wgAAAAFAAMAAAD9/wkAAAAFAAMAAAD9/woAAAAFAAMAAAD+/wQAAAAFAAMAAAD+/wUAAAAFAAMAAAD+/wYAAAAFAAMAAAD+/wcAAAAFAAMAAAD+/wgAAAAFAAMAAAD+/wkAAAAFAAMAAAD+/woAAAAFAAMAAAD//wQAAAAFAAMAAAD//wUAAAAFAAMAAAD//wYAAAAFAAMAAAD//wcAAAAFAAMAAAD//wgAAAAFAAMAAAD//wkAAAAFAAMAAAD//woAAAAFAAMAAAAFAP7/AAAFAAMAAAAFAP//AAAFAAMAAAAFAAAAAAAFAAMAAAAFAAEAAAAFAAMAAAAGAP7/AAAFAAMAAAAGAP//AAAFAAMAAAAGAAAAAAAFAAMAAAAGAAEAAAAFAAMAAAAHAP7/AAAFAAMAAAAHAP//AAAFAAMAAAAHAAAAAAAFAAMAAAAHAAEAAAAFAAMAAAAIAP7/AAAFAAMAAAAIAP//AAAFAAMAAAAIAAAAAAAFAAMAAAAIAAEAAAAFAAMAAAAJAP7/AAAFAAMAAAAJAP//AAAFAAMAAAAJAAAAAAAFAAMAAAAJAAEAAAAFAAMAAAAKAP7/AAAFAAMAAAAKAP//AAAFAAMAAAAKAAAAAAAFAAMAAAAKAAEAAAAFAAMAAAALAP7/AAAFAAMAAAALAP//AAAFAAMAAAALAAAAAAAFAAMAAAALAAEAAAAFAAMAAAAMAP7/AAAFAAMAAAAMAP//AAAFAAMAAAAMAAAAAAAFAAMAAAAMAAEAAAAFAAMAAAANAP7/AAAFAAMAAAANAP//AAAFAAMAAAANAAAAAAAFAAMAAAANAAEAAAAFAAMAAAAOAP7/AAAFAAMAAAAOAP//AAAFAAMAAAAOAAAAAAAFAAMAAAAOAAEAAAAFAAMAAAAPAP7/AAAFAAMAAAAPAP//AAAFAAMAAAAPAAAAAAAFAAMAAAAPAAEAAAAFAAMAAAAQAP7/AAAFAAMAAAAQAP//AAAFAAMAAAAQAAAAAAAFAAMAAAAQAAEAAAAFAAMAAAARAP7/AAAFAAMAAAARAP//AAAFAAMAAAARAAAAAAAFAAMAAAARAAEAAAAFAAMAAAASAP7/AAAFAAMAAAASAP//AAAFAAMAAAASAAAAAAAFAAMAAAASAAEAAAAFAAMAAAATAP7/AAAFAAMAAAATAP//AAAFAAMAAAATAAAAAAAFAAMAAAATAAEAAAAFAAMAAAAUAP7/AAAFAAMAAAAUAP//AAAFAAMAAAAUAAAAAAAFAAMAAAAUAAEAAAAFAAMAAAAVAP7/AAAFAAMAAAAVAP//AAAFAAMAAAAVAAAAAAAFAAMAAAAVAAEAAAAFAAMAAAAWAP7/AAAFAAMAAAAWAP//AAAFAAMAAAAWAAAAAAAFAAMAAAAWAAEAAAAFAAMAAAAXAP7/AAAFAAMAAAAXAP//AAAFAAMAAAAXAAAAAAAFAAMAAAAXAAEAAAAFAAMAAAAYAP7/AAAFAAMAAAAYAP//AAAFAAMAAAAYAAAAAAAFAAMAAAAYAAEAAAAFAAMAAAAZAP7/AAAFAAMAAAAZAP//AAAFAAMAAAAZAAAAAAAFAAMAAAAZAAEAAAAFAAMAAAAaAP7/AAAFAAMAAAAaAP//AAAFAAMAAAAaAAAAAAAFAAMAAAAaAAEAAAAFAAMAAAAbAP7/AAAFAAMAAAAbAP//AAAFAAMAAAAbAAAAAAAFAAMAAAAbAAEAAAAFAAMAAAAcAP7/AAAFAAMAAAAcAP//AAAFAAMAAAAcAAAAAAAFAAMAAAAcAAEAAAAFAAMAAAAdAP7/AAAFAAMAAAAdAP//AAAFAAMAAAAdAAAAAAAFAAMAAAAdAAEAAAAFAAMAAAAeAP7/AAAFAAMAAAAeAP//AAAFAAMAAAAeAAAAAAAFAAMAAAAeAAEAAAAFAAMAAAAfAP7/AAAFAAMAAAAfAP//AAAFAAMAAAAfAAAAAAAFAAMAAAAfAAEAAAAFAAMAAAAGAPz/AAAFAAMAAAAGAP3/AAAFAAMAAAAGAAIAAAAFAAMAAAAGAAMAAAAFAAMAAAAHAPz/AAAFAAMAAAAHAP3/AAAFAAMAAAAHAAIAAAAFAAMAAAAHAAMAAAAFAAMAAAAIAPz/AAAFAAMAAAAIAP3/AAAFAAMAAAAIAAIAAAAFAAMAAAAIAAMAAAAFAAMAAAAJAPz/AAAFAAMAAAAJAP3/AAAFAAMAAAAJAAIAAAAFAAMAAAAJAAMAAAAFAAMAAAAKAPz/AAAFAAMAAAAKAP3/AAAFAAMAAAAKAAIAAAAFAAMAAAAKAAMAAAAFAAMAAAALAPz/AAAFAAMAAAALAP3/AAAFAAMAAAALAAIAAAAFAAMAAAALAAMAAAAFAAMAAAAMAPz/AAAFAAMAAAAMAP3/AAAFAAMAAAAMAAIAAAAFAAMAAAAMAAMAAAAFAAMAAAANAPz/AAAFAAMAAAANAP3/AAAFAAMAAAANAAIAAAAFAAMAAAANAAMAAAAFAAMAAAAOAPz/AAAFAAMAAAAOAP3/AAAFAAMAAAAOAAIAAAAFAAMAAAAOAAMAAAAFAAMAAAAPAPz/AAAFAAMAAAAPAP3/AAAFAAMAAAAPAAIAAAAFAAMAAAAPAAMAAAAFAAMAAAAQAPz/AAAFAAMAAAAQAP3/AAAFAAMAAAAQAAIAAAAFAAMAAAAQAAMAAAAFAAMAAAARAPz/AAAFAAMAAAARAP3/AAAFAAMAAAARAAIAAAAFAAMAAAARAAMAAAAFAAMAAAASAPz/AAAFAAMAAAASAP3/AAAFAAMAAAASAAIAAAAFAAMAAAASAAMAAAAFAAMAAAATAPz/AAAFAAMAAAATAP3/AAAFAAMAAAATAAIAAAAFAAMAAAATAAMAAAAFAAMAAAAUAPz/AAAFAAMAAAAUAP3/AAAFAAMAAAAUAAIAAAAFAAMAAAAUAAMAAAAFAAMAAAAVAPz/AAAFAAMAAAAVAP3/AAAFAAMAAAAVAAIAAAAFAAMAAAAVAAMAAAAFAAMAAAAWAPz/AAAFAAMAAAAWAP3/AAAFAAMAAAAWAAIAAAAFAAMAAAAWAAMAAAAFAAMAAAAXAPz/AAAFAAMAAAAXAP3/AAAFAAMAAAAXAAIAAAAFAAMAAAAXAAMAAAAFAAMAAAAYAPz/AAAFAAMAAAAYAP3/AAAFAAMAAAAYAAIAAAAFAAMAAAAYAAMAAAAFAAMAAAAZAPz/AAAFAAMAAAAZAP3/AAAFAAMAAAAZAAIAAAAFAAMAAAAZAAMAAAAFAAMAAAAaAPz/AAAFAAMAAAAaAP3/AAAFAAMAAAAaAAIAAAAFAAMAAAAaAAMAAAAFAAMAAAAbAPz/AAAFAAMAAAAbAP3/AAAFAAMAAAAbAAIAAAAFAAMAAAAbAAMAAAAFAAMAAAAcAPz/AAAFAAMAAAAcAP3/AAAFAAMAAAAcAAIAAAAFAAMAAAAcAAMAAAAFAAMAAAAdAPz/AAAFAAMAAAAdAP3/AAAFAAMAAAAdAAIAAAAFAAMAAAAdAAMAAAAFAAMAAAAeAPz/AAAFAAMAAAAeAP3/AAAFAAMAAAAeAAIAAAAFAAMAAAAeAAMAAAAFAAMAAAAfAPz/AAAFAAMAAAAfAP3/AAAFAAMAAAAfAAIAAAAFAAMAAAAfAAMAAAAFAAMAAAALAAQAAAAFAAMAAAAMAAQAAAAFAAMAAAANAAQAAAAFAAMAAAAOAAQAAAAFAAMAAAAPAAQAAAAFAAMAAAAQAAQAAAAFAAMAAAARAAQAAAAFAAMAAAAKAAUAAAABAAIAAAAKAAYAAAAFAAMAAAAKAAcAAAAFAAMAAAAKAAgAAAAFAAMAAAAKAAkAAAAFAAMAAAAKAAoAAAAFAAMAAAAKAAsAAAAFAAMAAAAKAAwAAAAFAAMAAAALAAUAAAAFAAMAAAALAAYAAAAFAAMAAAALAAcAAAAFAAMAAAALAAgAAAAFAAMAAAALAAkAAAAFAAMAAAALAAoAAAAFAAMAAAALAAsAAAAFAAMAAAALAAwAAAAFAAMAAAAMAAUAAAAFAAMAAAAMAAYAAAAFAAMAAAAMAAcAAAAFAAMAAAAMAAgAAAAFAAMAAAAMAAkAAAAFAAMAAAAMAAoAAAAFAAMAAAAMAAsAAAAFAAMAAAAMAAwAAAAFAAMAAAANAAUAAAAFAAMAAAANAAYAAAAFAAMAAAANAAcAAAAFAAMAAAANAAgAAAAFAAMAAAANAAkAAAAFAAMAAAANAAoAAAAFAAMAAAANAAsAAAAFAAMAAAANAAwAAAAFAAMAAAAOAAUAAAAFAAMAAAAOAAYAAAAFAAMAAAAOAAcAAAAFAAMAAAAOAAgAAAAFAAMAAAAOAAkAAAAFAAMAAAAOAAoAAAAFAAMAAAAOAAsAAAAFAAMAAAAOAAwAAAAFAAMAAAAPAAUAAAAFAAMAAAAPAAYAAAAFAAMAAAAPAAcAAAAFAAMAAAAPAAgAAAAFAAMAAAAPAAkAAAAFAAMAAAAPAAoAAAAFAAMAAAAPAAsAAAAFAAMAAAAPAAwAAAAFAAMAAAAQAAUAAAAFAAMAAAAQAAYAAAAFAAMAAAAQAAcAAAAFAAMAAAAQAAgAAAAFAAMAAAAQAAkAAAAFAAMAAAAQAAoAAAAFAAMAAAAQAAsAAAAFAAMAAAAQAAwAAAAFAAMAAAARAAUAAAAFAAMAAAARAAYAAAAFAAMAAAARAAcAAAAFAAMAAAARAAgAAAAFAAMAAAARAAkAAAAFAAMAAAARAAoAAAAFAAMAAAARAAsAAAAFAAMAAAARAAwAAAAFAAMAAAASAAUAAAABAAIAAAASAAYAAAAFAAMAAAASAAcAAAAFAAMAAAASAAgAAAAFAAMAAAASAAkAAAAFAAMAAAASAAoAAAAFAAMAAAASAAsAAAAFAAMAAAASAAwAAAAFAAMAAAD6//r/AAAAAAEAAAD7//r/AAABAAEAAAD8//r/AAABAAEAAAD9//r/AAABAAEAAAD+//r/AAABAAEAAAD///r/AAABAAEAAAAAAPr/AAABAAEAAAABAPr/AAABAAEAAAACAPr/AAABAAEAAAADAPr/AAABAAEAAAAEAPr/AAABAAEAAAAFAPr/AAABAAEAAAAGAPr/AAABAAEAAAAHAPr/AAABAAEAAAAIAPr/AAABAAEAAAAJAPr/AAABAAEAAAAKAPr/AAABAAEAAAALAPr/AAABAAEAAAAMAPr/AAABAAEAAAANAPr/AAABAAEAAAAOAPr/AAABAAEAAAAPAPr/AAABAAEAAAAQAPr/AAABAAEAAAARAPr/AAABAAEAAAASAPr/AAABAAEAAAATAPr/AAABAAEAAAAUAPr/AAABAAEAAAAVAPr/AAABAAEAAAAWAPr/AAABAAEAAAAXAPr/AAABAAEAAAAYAPr/AAABAAEAAAAZAPr/AAABAAEAAAAaAPr/AAABAAEAAAAbAPr/AAABAAEAAAAcAPr/AAABAAEAAAAdAPr/AAABAAEAAAAeAPr/AAABAAEAAAAfAPr/AAABAAEAAAAgAPr/AAACAAEAAAD5//3/AAABAAEAAAD4//3/AAABAAEAAAD3//3/AAABAAEAAAD2//3/AAAAAAEAAAA=")
+tile_set = SubResource("TileSet_036b0")
+
+[node name="room" type="Area2D" parent="." unique_id=1411046070 node_paths=PackedStringArray("enemies")]
+position = Vector2(116, 72)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_dwbse")
+enemies = [NodePath("../guard"), NodePath("../guard2"), NodePath("../guard3"), NodePath("../guard4"), NodePath("../guard5"), NodePath("../guard6")]
+
+[node name="col" type="CollisionShape2D" parent="room" unique_id=753372078]
+shape = SubResource("RectangleShape2D_036b0")
+
+[node name="guard" parent="." unique_id=1139509445 instance=ExtResource("4_036b0")]
+position = Vector2(136, 80)
+
+[node name="guard2" parent="." unique_id=405545415 instance=ExtResource("4_036b0")]
+position = Vector2(100, 85)
+
+[node name="guard3" parent="." unique_id=611783461 instance=ExtResource("4_036b0")]
+position = Vector2(143, 59)
+
+[node name="guard4" parent="." unique_id=1452613383 instance=ExtResource("4_036b0")]
+position = Vector2(107, 64)
+
+[node name="guard5" parent="." unique_id=1220713114 instance=ExtResource("4_036b0")]
+position = Vector2(125, 68)
+
+[node name="guard6" parent="." unique_id=1998602728 instance=ExtResource("4_036b0")]
+position = Vector2(89, 73)
+
+[node name="player" type="CharacterBody2D" parent="." unique_id=2144539989 groups=["player"]]
+z_index = 2
+position = Vector2(66, 1)
+collision_layer = 3
+script = SubResource("GDScript_wse8f")
+
+[node name="col" type="CollisionShape2D" parent="player" unique_id=2077254795]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_fj7yv")
+
+[node name="sprite" type="Sprite2D" parent="player" unique_id=1027690536]
+texture = ExtResource("2_fj7yv")
+hframes = 8
+vframes = 8
+
+[node name="cam" type="Camera2D" parent="player" unique_id=597625721]
+zoom = Vector2(6, 6)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+script = ExtResource("6_wse8f")
+
+[node name="cam_pivot" type="Node2D" parent="player" unique_id=75568497]
+
+[node name="cooldown_dash" type="Timer" parent="player" unique_id=1333654476]
+wait_time = 0.35
+one_shot = true
+
+[node name="cooldown_grapple" type="Timer" parent="player" unique_id=890198071]
+wait_time = 1.5
+one_shot = true
+
+[node name="grapple_raycast" type="RayCast2D" parent="player" unique_id=1624755951]
+target_position = Vector2(0, 0)
+collision_mask = 5
+hit_from_inside = true
+
+[node name="grapple_detect" type="Area2D" parent="player" unique_id=1926353847]
+collision_layer = 0
+collision_mask = 4
+
+[node name="col" type="CollisionShape2D" parent="player/grapple_detect" unique_id=1579747951]
+shape = SubResource("CircleShape2D_dwbse")
+
+[node name="grapple_line" type="Line2D" parent="player" unique_id=1275116478]
+z_index = -1
+points = PackedVector2Array(0, 0, 24.45, 0)
+width = 1.0
+default_color = Color(0.66656864, 0.6665687, 0.66656864, 1)
+
+[node name="parry" type="Area2D" parent="player" unique_id=1167804328 groups=["parry_collider"]]
+collision_layer = 2
+collision_mask = 8
+
+[node name="col" type="CollisionShape2D" parent="player/parry" unique_id=614903332]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_dwbse")
+disabled = true
+
+[node name="sprite" type="Sprite2D" parent="player/parry" unique_id=375980018]
+visible = false
+position = Vector2(3, 0)
+texture = ExtResource("2_fj7yv")
+hframes = 8
+vframes = 8
+frame = 8
+
+[node name="parry_timer" type="Timer" parent="player" unique_id=3190101]
+wait_time = 0.25
+one_shot = true
+
+[node name="parry_cooldown" type="Timer" parent="player" unique_id=33424335]
+wait_time = 0.5
+one_shot = true
+
+[node name="weapon" type="Node2D" parent="player" unique_id=383713645]
+script = ExtResource("6_gbfbk")
+PROJECTILE = ExtResource("7_ioo17")
+
+[node name="sprite" type="Sprite2D" parent="player/weapon" unique_id=1299238413]
+position = Vector2(3, 0)
+texture = ExtResource("2_fj7yv")
+offset = Vector2(4, -3)
+hframes = 8
+vframes = 8
+frame = 16
+
+[node name="shoot_pivot" type="Node2D" parent="player/weapon/sprite" unique_id=1737796364]
+position = Vector2(6, -1.5)
+
+[node name="beam" type="Area2D" parent="player/weapon/sprite" unique_id=1658391524]
+position = Vector2(6, -1.5)
+
+[node name="col" type="CollisionShape2D" parent="player/weapon/sprite/beam" unique_id=578069019]
+position = Vector2(64, 0)
+shape = SubResource("RectangleShape2D_ioo17")
+
+[node name="beam_line" type="Line2D" parent="player/weapon/sprite" unique_id=640063093]
+position = Vector2(6, -1.5)
+points = PackedVector2Array(0, 0, 128, 0)
+closed = true
+width = 0.0
+default_color = Color(0.92156863, 0, 0, 1)
+
+[node name="firerate" type="Timer" parent="player/weapon" unique_id=987678901]
+wait_time = 0.3
+one_shot = true
+
+[node name="hitbox" type="Area2D" parent="player/weapon" unique_id=1725352337]
+position = Vector2(6, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="col" type="CollisionShape2D" parent="player/weapon/hitbox" unique_id=1333045880]
+shape = SubResource("CircleShape2D_ioo17")
+
+[node name="hitbox_timer" type="Timer" parent="player/weapon" unique_id=2065968700]
+one_shot = true
+
+[node name="light_shadow" type="PointLight2D" parent="player" unique_id=382333714]
+visible = false
+color = Color(0.9999997, 0.77235144, 0.7333224, 1)
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("6_pkg7o")
+texture_scale = 3.0
+
+[node name="light_world" type="PointLight2D" parent="player" unique_id=1842722311]
+visible = false
+color = Color(0.9999997, 0.77235144, 0.7333224, 1)
+shadow_filter = 1
+texture = ExtResource("6_pkg7o")
+texture_scale = 2.0
+
+[node name="rewind_timer" type="Timer" parent="player" unique_id=1437950667]
+wait_time = 3.0
+autostart = true
+
+[node name="rewind_cooldown" type="Timer" parent="player" unique_id=1698665716]
+wait_time = 5.0
+one_shot = true
+
+[node name="rewind_line" type="Line2D" parent="player" unique_id=1565579211]
+z_index = -1
+points = PackedVector2Array(0, 0, 0, 0)
+width = 1.0
+default_color = Color(0, 0.77254903, 1, 1)
+
+[node name="sfx" type="Node2D" parent="player" unique_id=1230004172]
+
+[node name="sfx_pistol" type="AudioStreamPlayer2D" parent="player/sfx" unique_id=636689449]
+stream = ExtResource("11_ic0uy")
+
+[node name="canvas" type="CanvasLayer" parent="." unique_id=1948678491]
+
+[node name="hud" type="Control" parent="canvas" unique_id=1019769493]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="slider_timer" type="HSlider" parent="canvas/hud" unique_id=30570187]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -173.5
+offset_top = -54.0
+offset_right = 173.5
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme = SubResource("Theme_ic0uy")
+step = 0.01
+value = 50.0
+editable = false
+scrollable = false
+
+[node name="lab_timer" type="Label" parent="canvas/hud" unique_id=861540943]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -62.5
+offset_top = -57.0
+offset_right = 62.5
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "5"
+horizontal_alignment = 1
+
+[node name="lab_loop_count" type="Label" parent="canvas/hud" unique_id=373438710]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = -40.0
+offset_right = 146.0
+offset_bottom = -17.0
+grow_vertical = 0
+text = "Current Loop: 1"
+
+[node name="lab_objective" type="Label" parent="canvas/hud" unique_id=696754296]
+layout_mode = 1
+offset_left = 21.0
+offset_top = 15.0
+offset_right = 146.0
+offset_bottom = 38.0
+text = "Objective: Infiltrate Inner Sector"
+
+[node name="lab_health" type="Label" parent="canvas/hud" unique_id=33003501]
+layout_mode = 1
+offset_left = 21.0
+offset_top = 41.0
+offset_right = 146.0
+offset_bottom = 64.0
+text = "Health: 3"
+
+[node name="canvas_modulate" type="CanvasModulate" parent="." unique_id=128941423]
+visible = false
+color = Color(0, 0, 0, 1)
+
+[connection signal="timeout" from="loop_timer" to="loop_timer" method="_on_timeout"]
+[connection signal="body_entered" from="room" to="room" method="_on_body_entered"]
+[connection signal="timeout" from="player/cooldown_dash" to="player" method="_on_cooldown_dash_timeout"]
+[connection signal="timeout" from="player/cooldown_grapple" to="player" method="_on_cooldown_grapple_timeout"]
+[connection signal="body_entered" from="player/grapple_detect" to="player" method="_on_grapple_detect_body_entered"]
+[connection signal="timeout" from="player/parry_timer" to="player" method="_on_parry_timer_timeout"]
+[connection signal="timeout" from="player/parry_cooldown" to="player" method="_on_parry_cooldown_timeout"]
+[connection signal="body_entered" from="player/weapon/sprite/beam" to="player/weapon" method="_on_beam_body_entered"]
+[connection signal="timeout" from="player/weapon/firerate" to="player/weapon" method="_on_firerate_timeout"]
+[connection signal="body_entered" from="player/weapon/hitbox" to="player/weapon" method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="player/weapon/hitbox_timer" to="player/weapon" method="_on_hitbox_timer_timeout"]
+[connection signal="timeout" from="player/rewind_timer" to="player" method="_on_rewind_timer_timeout"]
+[connection signal="timeout" from="player/rewind_cooldown" to="player" method="_on_rewind_cooldown_timeout"]
