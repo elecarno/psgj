@@ -67,7 +67,7 @@ visible = false
 z_index = -1
 points = PackedVector2Array(0, 0, 0, 0)
 width = 1.0
-default_color = Color(0, 0.77254903, 1, 1)
+default_color = Color(0.34509805, 0.77254903, 0.8352941, 1)
 
 [node name="sfx" type="Node2D" parent="." unique_id=1514908798]
 script = ExtResource("4_4jkaa")
@@ -91,7 +91,7 @@ initial_velocity_min = 24.59
 initial_velocity_max = 24.59
 radial_accel_min = 1.0
 radial_accel_max = 1.0
-color = Color(0.3436738, 0.77071136, 0.8341967, 1)
+color = Color(0.34509805, 0.77254903, 0.8352941, 1)
 
 [connection signal="timeout" from="nav_timer" to="." method="_on_nav_timer_timeout"]
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]

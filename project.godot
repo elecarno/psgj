@@ -15,6 +15,10 @@ run/main_scene="uid://b0mwdpm0ucqug"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://ccikvmmt4bwfw"
+
 [autoload]
 
 timeloop="*uid://crjj30xnl0wh2"
@@ -111,4 +115,4 @@ attack={
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
-environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+environment/defaults/default_clear_color=Color(0.12941177, 0.12941177, 0.13725491, 1)

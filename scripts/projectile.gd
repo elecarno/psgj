@@ -36,6 +36,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("parry_collider"):
 		print("parried")
 		$sfx.play_sound(sfx_parry)
+		$parry_particles.emitting = true
 		timeloop.frame_freeze(0.05, 0.5)
 		timeloop.call_camera_shake(2.0)
 		is_enemy_projectile = false

@@ -27,8 +27,10 @@ func _physics_process(delta: float) -> void:
 	
 	if get_global_mouse_position().x > player.global_position.x:
 		$sprite.scale = Vector2(1,1)
+		$"../sprite".scale = Vector2(1,1)
 	else:
 		$sprite.scale = Vector2(1,-1)
+		$"../sprite".scale = Vector2(-1,1)
 		
 	if Input.is_action_just_pressed("attack") and can_attack:
 		var shoot_direction: Vector2 = global_position.direction_to(get_global_mouse_position())

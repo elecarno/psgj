@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bnr3kggdohc52"]
+
+[ext_resource type="Script" uid="uid://m23suyt23yot" path="res://scripts/autodoor.gd" id="1_wbrlg"]
+[ext_resource type="Texture2D" uid="uid://bdfewhe3c8asq" path="res://tilemap.png" id="2_nxlrg"]
+[ext_resource type="AudioStream" uid="uid://bn5bgqg0il11k" path="res://sfx/door_open.mp3" id="3_nvtpc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3n1d"]
+size = Vector2(16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2o6r5"]
+size = Vector2(16, 12)
+
+[node name="autodoor_h" type="Node2D" unique_id=93097630]
+script = ExtResource("1_wbrlg")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=1001197003]
+texture = ExtResource("2_nxlrg")
+region_enabled = true
+region_rect = Rect2(16, 8, 16, 16)
+
+[node name="detect" type="Area2D" parent="." unique_id=1966726588]
+
+[node name="col" type="CollisionShape2D" parent="detect" unique_id=1533922169]
+shape = SubResource("RectangleShape2D_k3n1d")
+
+[node name="door" type="StaticBody2D" parent="." unique_id=499707143]
+
+[node name="col" type="CollisionShape2D" parent="door" unique_id=867547121]
+shape = SubResource("RectangleShape2D_2o6r5")
+
+[node name="sfx_open" type="AudioStreamPlayer2D" parent="." unique_id=879803551]
+stream = ExtResource("3_nvtpc")
+
+[node name="sfx_close" type="AudioStreamPlayer2D" parent="." unique_id=909391023]
+stream = ExtResource("3_nvtpc")
+pitch_scale = 0.9
+
+[connection signal="body_entered" from="detect" to="." method="_on_detect_body_entered"]
+[connection signal="body_exited" from="detect" to="." method="_on_detect_body_exited"]

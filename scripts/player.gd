@@ -9,9 +9,9 @@ enum WEAPONS {
 	BEAM_CANNON
 }
 
-const MAX_SPEED = 75
+const MAX_SPEED = 115
 const ACCELERATION = 15
-const DASH_SPEED = 250
+const DASH_SPEED = 320
 const GRAPPLE_MAX_SPEED = 220
 const GRAPPLE_ACCELERATION = 7
 
@@ -150,6 +150,7 @@ func take_damage():
 	timeloop.frame_freeze(0.05, 0.5)
 	sfx.play_sound(sfx_damage)
 	print("player took 1 damage")
+	$damage_particles.emitting = true
 	if health <= 0:
 		timeloop.reset_loop()
 		health = MAX_HEALTH
