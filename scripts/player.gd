@@ -28,13 +28,11 @@ var can_rewind: bool = true
 var is_grappling: bool = false
 var grapple_target: Enemy = null
 var possessed_weapons: Array[WEAPONS] = [
-	WEAPONS.KNIFE,
-	WEAPONS.SWORD,
 	WEAPONS.PISTOL,
 	WEAPONS.HAND_CANNON,
-	WEAPONS.BEAM_CANNON
+	WEAPONS.BEAM_CANNON,
 ]
-var current_weapon: WEAPONS = WEAPONS.KNIFE
+var current_weapon: WEAPONS = WEAPONS.PISTOL
 var current_weapon_idx: int = 0
 var input: Vector2 = Vector2.ZERO
 var rewind_pos: Vector2 = Vector2.ZERO
@@ -87,6 +85,7 @@ func _physics_process(delta):
 				is_grappling = true
 				can_grapple = false
 				sfx.play_sound(sfx_grapple_grab)
+				$grapple_failsafe.start()
 				timeloop.frame_freeze(0.05, 0.5)
 			else:
 				print("not a valid grapple target")
@@ -114,7 +113,7 @@ func _physics_process(delta):
 	
 	# weapon switching
 	if Input.is_action_just_pressed("switch"):
-		if current_weapon < len(possessed_weapons)-1:
+		if current_weapon_idx < len(possessed_weapons)-1:
 			current_weapon_idx += 1
 		else:
 			current_weapon_idx = 0
@@ -152,6 +151,7 @@ func take_damage():
 	print("player took 1 damage")
 	$damage_particles.emitting = true
 	if health <= 0:
+		timeloop.stored_mana = 0
 		timeloop.reset_loop()
 		health = MAX_HEALTH
 	$"../canvas/hud/lab_health".text = "Health: " + str(health)
@@ -162,7 +162,7 @@ func _on_grapple_detect_body_entered(body: Node2D) -> void:
 		if body.name == grapple_target.name:
 			print("grapple stop")
 			velocity = Vector2.ZERO
-			grapple_target.take_damage(GRAPPLE_DAMAGE)
+			grapple_target.take_damage(GRAPPLE_DAMAGE, name)
 			is_grappling = false
 			grapple_target = null
 			grapple_raycast.target_position = Vector2.ZERO
@@ -195,3 +195,11 @@ func _on_rewind_timer_timeout() -> void:
 
 func _on_rewind_cooldown_timeout() -> void:
 	can_rewind = true
+
+
+func _on_grapple_failsafe_timeout() -> void:
+	velocity = Vector2.ZERO
+	is_grappling = false
+	grapple_target = null
+	grapple_raycast.target_position = Vector2.ZERO
+	$cooldown_grapple.start()

@@ -23,13 +23,17 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		if not is_enemy_projectile:
 			body.take_damage(PROJECTILE_DAMAGE)
+			#print(name + " hit (enemy) " + body.name)
+			queue_free()
 		else:
 			return
 	
 	if body.is_in_group("player") and is_enemy_projectile:
 		body.take_damage()
+		#print(name + " hit (player) " + body.name)
 		queue_free()
 	else:
+		#print(name + " hit (other) " + body.name)
 		queue_free()
 
 func _on_area_entered(area: Area2D) -> void:

@@ -1,8 +1,13 @@
 class_name Enemy
 extends CharacterBody2D
 
+@onready var mana_pellet: PackedScene = preload("res://prefabs/mana_pellet.tscn")
+
+var room: Room = null
+
 @export var MAX_SPEED = 25
 @export var ACCELERATION = 12
+@export var MANA_GIVE = 0
 
 @export var MAX_HEALTH: int = 10
 var health: int
@@ -27,11 +32,12 @@ var dead: bool = false
 
 # behaviour variables
 @export var beh_hold_distance: bool = true
+@export var beh_burstfire: bool = false
 @export var HOLD_DISTANCE: int = 48
 @export var SHOOT_INTERVAL: float = 1
 
 func _ready() -> void:
-	$shoot_timer.wait_time = SHOOT_INTERVAL + randf_range(-0.25, 0.25)
+	$shoot_timer.wait_time = SHOOT_INTERVAL + randf_range(-0.1, 0.1)
 	health = MAX_HEALTH
 	timeloop.enemies.append(self)
 	rewind_pos = global_position
@@ -43,6 +49,18 @@ func activate(body: Node2D):
 		player = body
 		nav_agent.target_position = player.global_position
 		print("activated enemy, aggro on " + str(body.name))
+		$shoot_line.visible = true
+		$shoot_timer.start()
+
+func deactivate():
+	activated = false
+	dead = false
+	health = MAX_HEALTH
+	$sprite.rotation = deg_to_rad(0)
+	$shoot_line.width = 0
+	$rewind_line.width = 0
+	$col.set_deferred("disabled", false)
+	print("deactivated " + name)
 
 
 func _physics_process(delta: float) -> void:
@@ -53,6 +71,11 @@ func _physics_process(delta: float) -> void:
 		var nav_point_direction = to_local(nav_agent.get_next_path_position()).normalized()
 		velocity = lerp(velocity, nav_point_direction * MAX_SPEED, ACCELERATION * delta)
 		move_and_slide()
+		
+	if velocity.x < 0:
+		$sprite.scale = Vector2(-1, 1)
+	else:
+		$sprite.scale = Vector2(1, 1)
 		
 	if show_shoot_line:
 		$shoot_line.width = lerpf($shoot_line.width, 0, delta * 2)
@@ -71,9 +94,9 @@ func rewind():
 		$rewind_particles.emitting = true
 	
 
-func take_damage(damage: int):
+func take_damage(damage: int, source: String = "unknown"):
 	health -= damage
-	print(name + " took " + str(damage) + " damage")
+	print(name + " took " + str(damage) + " damage from " + source)
 	sfx.play_sound(sfx_damage)
 	$sprite.material.set_shader_parameter("enabled", true)
 	$hit_flash_timer.start()
@@ -89,14 +112,30 @@ func die():
 	activated = false
 	$shoot_line.visible = false
 	$col.set_deferred("disabled", true)
+	room.remaining_enemies -= 1
+	room.update_door()
+	
+	for i in range(MANA_GIVE):
+		var new_pellet: ManaPellet = mana_pellet.instantiate()
+		new_pellet.global_position = global_position + Vector2(
+			randi_range(-3, 3),
+			randi_range(-3, 3)
+		)
+		timeloop.world.add_child(new_pellet)
+		
+	MANA_GIVE = 1
+	
+	print(name + " died")
 	
 func shoot_projectile():
-	var new_projectile: Projectile = PROJECTILE.instantiate()
-	new_projectile.global_position = global_position
-	new_projectile.direction = shoot_direction
-	new_projectile.MAX_SPEED = 150
-	timeloop.world.add_child(new_projectile)
-	sfx.play_sound(sfx_shoot)
+	if activated:
+		var new_projectile: Projectile = PROJECTILE.instantiate()
+		new_projectile.global_position = global_position
+		new_projectile.direction = shoot_direction
+		new_projectile.MAX_SPEED = 150
+		timeloop.world.add_child(new_projectile)
+		sfx.play_sound(sfx_shoot)
+		$shoot_timer.start()
 
 
 func _on_nav_timer_timeout() -> void:
@@ -116,7 +155,9 @@ func _on_shoot_timer_timeout() -> void:
 func _on_shoot_delay_timeout() -> void:
 	if activated:
 		shoot_projectile()
-		$shoot_timer.wait_time = SHOOT_INTERVAL + randf_range(-0.25, 0.25)
+		$shoot_timer.wait_time = SHOOT_INTERVAL + randf_range(-0.15, 0.15)
+		if beh_burstfire:
+			$burst_timer.start()
 
 
 func _on_rewind_timer_timeout() -> void:
@@ -125,3 +166,7 @@ func _on_rewind_timer_timeout() -> void:
 
 func _on_hit_flash_timer_timeout() -> void:
 	$sprite.material.set_shader_parameter("enabled", false)
+
+
+func _on_burst_timer_timeout() -> void:
+	shoot_projectile()

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dsuow743h48na"]
+
+[ext_resource type="Script" uid="uid://rn40pbyg3n6e" path="res://scripts/mana_pellet.gd" id="1_odcxu"]
+[ext_resource type="Texture2D" uid="uid://bcorfdj857iql" path="res://player_sprites.png" id="2_1wvuw"]
+
+[node name="mana_pellet" type="Node2D" unique_id=1433543092]
+script = ExtResource("1_odcxu")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=1285672741]
+texture = ExtResource("2_1wvuw")
+region_enabled = true
+region_rect = Rect2(8, 24, 3, 3)
