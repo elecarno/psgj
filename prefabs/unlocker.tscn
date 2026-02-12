@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b1hvwt8tji7xr"]
+
+[ext_resource type="Script" uid="uid://dtybdq7d8i517" path="res://scripts/unlocker.gd" id="1_agup8"]
+[ext_resource type="Texture2D" uid="uid://bdfewhe3c8asq" path="res://tilemap.png" id="2_ybcyl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n64y2"]
+size = Vector2(8, 8)
+
+[node name="unlocker" type="Area2D" unique_id=1466248864]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_agup8")
+
+[node name="col" type="CollisionShape2D" parent="." unique_id=262501410]
+shape = SubResource("RectangleShape2D_n64y2")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=1995410210]
+texture = ExtResource("2_ybcyl")
+region_enabled = true
+region_rect = Rect2(8, 0, 8, 8)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

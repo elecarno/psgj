@@ -16,7 +16,7 @@ script = ExtResource("1_khy84")
 [node name="sprite" type="Sprite2D" parent="." unique_id=1001197003]
 texture = ExtResource("2_7ml2y")
 region_enabled = true
-region_rect = Rect2(32, 8, 8, 16)
+region_rect = Rect2(48, 8, 8, 16)
 
 [node name="detect" type="Area2D" parent="." unique_id=1966726588]
 collision_mask = 2

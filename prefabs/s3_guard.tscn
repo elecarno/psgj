@@ -19,12 +19,12 @@ shader_parameter/enabled = false
 shader_parameter/tint = Color(1, 1, 1, 1)
 
 [node name="s3_guard" type="CharacterBody2D" unique_id=1139509445 groups=["enemy"]]
-z_index = 1
+z_index = 2
 collision_layer = 4
 script = ExtResource("1_jubfa")
 MAX_SPEED = 35
 ACCELERATION = 18
-MANA_GIVE = 6
+MANA_GIVE = 8
 MAX_HEALTH = 35
 PROJECTILE = ExtResource("2_if7qx")
 PROJECTILE_SPEED = 180.0

@@ -52,7 +52,8 @@ func activate(body: Node2D):
 		$shoot_line.visible = true
 		$shoot_timer.start()
 
-func deactivate():
+
+func reset():
 	activated = false
 	dead = false
 	health = MAX_HEALTH
@@ -60,6 +61,13 @@ func deactivate():
 	$shoot_line.width = 0
 	$rewind_line.width = 0
 	$col.set_deferred("disabled", false)
+	print("reset " + name)
+
+
+func deactivate():
+	activated = false
+	$shoot_line.width = 0
+	$rewind_line.width = 0
 	print("deactivated " + name)
 
 
@@ -83,6 +91,9 @@ func _physics_process(delta: float) -> void:
 	$rewind_line.width = lerpf($rewind_line.width, 0, delta*8)
 	$rewind_line.set_point_position(0, to_local(pre_rewind_pos))
 	$rewind_line.set_point_position(1, to_local(rewind_pos))
+	
+	if global_position.distance_to(player.global_position) > 192:
+		deactivate()
 		
 	
 func rewind():
@@ -123,7 +134,7 @@ func die():
 		)
 		timeloop.world.add_child(new_pellet)
 		
-	MANA_GIVE = 1
+	MANA_GIVE = round(MANA_GIVE/2)
 	
 	print(name + " died")
 	

@@ -104,6 +104,7 @@ func _physics_process(delta):
 		var parry_direction = (get_global_mouse_position() - global_position).normalized()
 		$parry.rotation = parry_direction.angle()
 		$parry/col.disabled = false
+		
 		$parry/sprite.visible = true
 		can_parry = false
 		$parry_timer.start()
@@ -151,9 +152,10 @@ func take_damage():
 	print("player took 1 damage")
 	$damage_particles.emitting = true
 	if health <= 0:
+		_on_grapple_failsafe_timeout()
 		timeloop.stored_mana = 0
-		timeloop.reset_loop()
 		health = MAX_HEALTH
+		timeloop.reset_timer()
 	$"../canvas/hud/lab_health".text = "Health: " + str(health)
 
 

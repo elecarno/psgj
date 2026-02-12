@@ -35,8 +35,8 @@ func call_camera_shake(strength: float):
 	player.get_node("cam").camera_shake(strength)
 
 func reset_timer():
-	current_loop_time += stored_mana
-	stored_mana = 0
+	current_loop_time += round(stored_mana / 2)
+	stored_mana = round(stored_mana / 2)
 	loop_count += 1
 	loop_timer.wait_time = current_loop_time
 	loop_timer.start()
