@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://rn40pbyg3n6e" path="res://scripts/mana_pellet.gd" id="1_odcxu"]
 [ext_resource type="Texture2D" uid="uid://bcorfdj857iql" path="res://player_sprites.png" id="2_1wvuw"]
+[ext_resource type="AudioStream" uid="uid://dc73an0kj64ps" path="res://sfx/plasma.wav" id="3_gytf1"]
 
 [node name="mana_pellet" type="Node2D" unique_id=1433543092]
 script = ExtResource("1_odcxu")
@@ -10,3 +11,7 @@ script = ExtResource("1_odcxu")
 texture = ExtResource("2_1wvuw")
 region_enabled = true
 region_rect = Rect2(8, 24, 3, 3)
+
+[node name="sfx_spawn" type="AudioStreamPlayer2D" parent="." unique_id=1229749581]
+stream = ExtResource("3_gytf1")
+autoplay = true

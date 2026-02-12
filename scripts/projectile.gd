@@ -8,6 +8,7 @@ var direction: Vector2
 var has_been_parried: bool = false
 var parry_origin: Vector2 = Vector2.ZERO
 
+@onready var mana_pellet: PackedScene = preload("res://prefabs/mana_pellet.tscn")
 @onready var sfx_parry: AudioStream = preload("res://sfx/parry.wav")
 
 func _ready() -> void:
@@ -49,3 +50,17 @@ func _on_area_entered(area: Area2D) -> void:
 		has_been_parried = true
 		parry_origin = global_position
 		$parry_trail.visible = true
+		
+		var new_pellet: ManaPellet = mana_pellet.instantiate()
+		new_pellet.global_position = global_position + Vector2(
+			randi_range(-2, 2),
+			randi_range(-2, 2)
+		)
+		timeloop.world.add_child(new_pellet)
+		
+		var new_pellet_2: ManaPellet = mana_pellet.instantiate()
+		new_pellet_2.global_position = global_position + Vector2(
+			randi_range(-2, 2),
+			randi_range(-2, 2)
+		)
+		timeloop.world.add_child(new_pellet_2)

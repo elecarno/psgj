@@ -34,20 +34,24 @@ func frame_freeze(timescale, duration):
 func call_camera_shake(strength: float):
 	player.get_node("cam").camera_shake(strength)
 
-func reset_timer():
+func reset_timer(is_death: bool = false):
 	current_loop_time += round(stored_mana / 2)
 	stored_mana = round(stored_mana / 2)
 	loop_count += 1
 	loop_timer.wait_time = current_loop_time
 	loop_timer.start()
-	reset_loop()
+	if is_death:
+		reset_loop(true)
+	else:
+		reset_loop(false)
 	
-func reset_loop():
+func reset_loop(is_death: bool = false):
 	player.global_position = Vector2.ZERO
 	player._on_rewind_timer_timeout()
+	player.health = player.MAX_HEALTH
 	
 	for room in rooms:
-		room.loop_reset()
+		room.loop_reset(is_death)
 		
 	hud.update_data()
 	

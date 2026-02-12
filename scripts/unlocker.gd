@@ -25,7 +25,7 @@ func reset():
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		hud.get_node("lab_unlock").visible = true
-		hud.get_node("lab_unlock").text = "use " + str(room.MANA_COST) + " mana to expand reach"
+		hud.get_node("lab_unlock").text = "[F] use " + str(room.MANA_COST) + " energy to expand reach to " + room.ROOM_NAME
 		player_in_unlocker = true
 
 func _on_body_exited(body: Node2D) -> void:

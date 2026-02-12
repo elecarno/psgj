@@ -9,7 +9,7 @@ enum WEAPONS {
 	BEAM_CANNON
 }
 
-const MAX_SPEED = 115
+const MAX_SPEED = 90
 const ACCELERATION = 15
 const DASH_SPEED = 320
 const GRAPPLE_MAX_SPEED = 220
@@ -27,12 +27,8 @@ var can_rewind: bool = true
 
 var is_grappling: bool = false
 var grapple_target: Enemy = null
-var possessed_weapons: Array[WEAPONS] = [
-	WEAPONS.PISTOL,
-	WEAPONS.HAND_CANNON,
-	WEAPONS.BEAM_CANNON,
-]
-var current_weapon: WEAPONS = WEAPONS.PISTOL
+var possessed_weapons: Array[WEAPONS] = []
+var current_weapon: WEAPONS = -1
 var current_weapon_idx: int = 0
 var input: Vector2 = Vector2.ZERO
 var rewind_pos: Vector2 = Vector2.ZERO
@@ -48,6 +44,8 @@ var pre_rewind_pos: Vector2 = Vector2.ZERO
 @onready var sfx_grapple_retract: AudioStream = preload("res://sfx/grapple_retract.wav")
 @onready var sfx_grapple_hit: AudioStream = preload("res://sfx/gunshot4.wav")
 @onready var sfx_rewind: AudioStream = preload("res://sfx/energy2.wav")
+@onready var sfx_mana_pickup: AudioStream = preload("res://sfx/pickup.wav")
+@onready var sfx_rewind_set: AudioStream = preload("res://sfx/rewind_set.wav")
 
 func _ready() -> void:
 	rewind_pos = global_position
@@ -114,12 +112,16 @@ func _physics_process(delta):
 	
 	# weapon switching
 	if Input.is_action_just_pressed("switch"):
-		if current_weapon_idx < len(possessed_weapons)-1:
-			current_weapon_idx += 1
+		if len(possessed_weapons) > 0:
+			$weapon.visible = true
+			if current_weapon_idx < len(possessed_weapons)-1:
+				current_weapon_idx += 1
+			else:
+				current_weapon_idx = 0
+			current_weapon = possessed_weapons[current_weapon_idx]
+			update_weapon()
 		else:
-			current_weapon_idx = 0
-		current_weapon = possessed_weapons[current_weapon_idx]
-		update_weapon()
+			$weapon.visible = false
 		
 		
 	# rewind ability
@@ -132,6 +134,7 @@ func _physics_process(delta):
 		$rewind_cooldown.start()
 		sfx.play_sound(sfx_rewind)
 		$rewind_particles.emitting = true
+		timeloop.hud.set_rewind_overlay()
 		
 	$rewind_line.width = lerpf($rewind_line.width, 0, delta*8)
 	$rewind_line.set_point_position(0, to_local(pre_rewind_pos))
@@ -155,7 +158,7 @@ func take_damage():
 		_on_grapple_failsafe_timeout()
 		timeloop.stored_mana = 0
 		health = MAX_HEALTH
-		timeloop.reset_timer()
+		timeloop.reset_timer(true)
 	$"../canvas/hud/lab_health".text = "Health: " + str(health)
 
 
@@ -193,6 +196,7 @@ func _on_rewind_timer_timeout() -> void:
 	rewind_pos = global_position
 	$"../rewind_indicator".global_position = rewind_pos
 	$"../rewind_indicator/rewind_particles".emitting = true
+	sfx.play_sound(sfx_rewind_set)
 
 
 func _on_rewind_cooldown_timeout() -> void:

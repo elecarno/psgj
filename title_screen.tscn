@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://c7ghv2w3bdco4"]
+
+[ext_resource type="Theme" uid="uid://bfwyjs3f4i28h" path="res://theme_main.tres" id="1_ak2if"]
+[ext_resource type="Shader" uid="uid://dsyjfe3orsxyl" path="res://shaders/crt.gdshader" id="2_ig5kc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_05l2w"]
+shader = ExtResource("2_ig5kc")
+shader_parameter/brightness = 1.1600000551
+shader_parameter/contrast = 1.0000000475
+shader_parameter/saturation = 1.1
+shader_parameter/gamma = 1.10000004573023
+shader_parameter/curvature = 0.0250000011875
+shader_parameter/corner_soften = 0.06000000285
+shader_parameter/vignette = 0.150000007125
+shader_parameter/scanline_strength = 0.30000001425
+shader_parameter/scanline_density = 1.450000045125
+shader_parameter/interlace_strength = 0.2
+shader_parameter/mask_strength = 0.22
+shader_parameter/mask_scale = 1.0
+shader_parameter/chroma_offset_px = 1.6
+shader_parameter/luma_smear_px = 2.2
+shader_parameter/jitter_px = 0.0
+shader_parameter/wobble_px = 0.50000002375
+shader_parameter/tape_noise = 0.0
+shader_parameter/tape_lines = 0.0
+shader_parameter/roll_speed = 0.10000000475
+shader_parameter/roll_strength = 0.15
+shader_parameter/glow_strength = 0.25
+shader_parameter/glow_threshold = 0.65
+
+[node name="control" type="Control" unique_id=1876565793]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="lab_timer" type="Label" parent="." unique_id=322268315]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -79.0
+offset_right = 37.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_ak2if")
+text = "300/ 300"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="crt" type="ColorRect" parent="." unique_id=101128911]
+material = SubResource("ShaderMaterial_05l2w")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
