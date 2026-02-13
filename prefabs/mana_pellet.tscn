@@ -8,6 +8,7 @@
 script = ExtResource("1_odcxu")
 
 [node name="sprite" type="Sprite2D" parent="." unique_id=1285672741]
+z_index = 4
 texture = ExtResource("2_1wvuw")
 region_enabled = true
 region_rect = Rect2(8, 24, 3, 3)

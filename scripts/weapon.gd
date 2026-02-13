@@ -19,6 +19,9 @@ var beam_end: Vector2 = Vector2.ZERO
 @onready var sfx_beam_cannon: AudioStream = preload("res://sfx/beam_cannon.wav")
 
 func _physics_process(delta: float) -> void:
+	if not player.player_is_active:
+		return
+	
 	shoot_pivot = $sprite/shoot_pivot.global_position
 	
 	var rotate_direction = global_position.direction_to(get_global_mouse_position())

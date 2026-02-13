@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+var player_is_active: bool = true
+
 enum WEAPONS {
 	KNIFE,
 	SWORD,
@@ -20,15 +22,17 @@ const GRAPPLE_DAMAGE = 10
 const MAX_HEALTH: int = 3
 var health: int = 3
 
-var can_dash: bool = true
+var can_dash: bool = false
 var can_grapple: bool = true
 var can_parry: bool = true
 var can_rewind: bool = true
 
 var is_grappling: bool = false
 var grapple_target: Enemy = null
-var possessed_weapons: Array[WEAPONS] = []
-var current_weapon: WEAPONS = -1
+var possessed_weapons: Array[WEAPONS] = [
+	WEAPONS.PISTOL
+]
+var current_weapon: WEAPONS = WEAPONS.PISTOL # -1 for no weapons
 var current_weapon_idx: int = 0
 var input: Vector2 = Vector2.ZERO
 var rewind_pos: Vector2 = Vector2.ZERO
@@ -53,6 +57,9 @@ func _ready() -> void:
 	$"../rewind_indicator/rewind_particles".emitting = true
 
 func _physics_process(delta):
+	if not player_is_active:
+		return
+	
 	# main movement
 	input = Input.get_vector("left", "right", "up", "down").normalized()
 	if not is_grappling:
@@ -144,10 +151,16 @@ func _physics_process(delta):
 	
 
 func update_weapon():
+	if not player_is_active:
+		return
+	
 	$weapon/sprite.frame_coords = Vector2(current_weapon, 2)
 
 
 func take_damage():
+	if not player_is_active:
+		return
+	
 	health -= 1
 	$cam.camera_shake(2.5)
 	timeloop.frame_freeze(0.05, 0.5)
@@ -158,7 +171,7 @@ func take_damage():
 		_on_grapple_failsafe_timeout()
 		timeloop.stored_mana = 0
 		health = MAX_HEALTH
-		timeloop.reset_timer(true)
+		timeloop.new_loop(true)
 	$"../canvas/hud/lab_health".text = "Health: " + str(health)
 
 

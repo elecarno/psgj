@@ -17,12 +17,15 @@
 [ext_resource type="PackedScene" uid="uid://c6jatjqfvu7j0" path="res://prefabs/projectile.tscn" id="15_hjo6w"]
 [ext_resource type="Texture2D" uid="uid://s60g356jmc5s" path="res://2d_light.webp" id="16_7weo5"]
 [ext_resource type="Script" uid="uid://2i62rtqxayqf" path="res://scripts/sfx_player.gd" id="17_f8pv8"]
+[ext_resource type="PackedScene" uid="uid://bixrjsrl6vjkk" path="res://prefabs/s1_cmdr.tscn" id="18_oupyo"]
 [ext_resource type="Shader" uid="uid://dsyjfe3orsxyl" path="res://shaders/crt.gdshader" id="18_qv6kk"]
+[ext_resource type="PackedScene" uid="uid://dypveqqsad1m3" path="res://prefabs/s1_spec.tscn" id="19_rpob3"]
 [ext_resource type="Script" uid="uid://dsft3s77jgkv3" path="res://scripts/hud.gd" id="19_rukwi"]
 [ext_resource type="Texture2D" uid="uid://bgdydt8jt17ra" path="res://tex/ui_health.png" id="20_3g7jt"]
 [ext_resource type="Texture2D" uid="uid://co0nrwwesjns8" path="res://tex/hud_overlay.png" id="20_dy57b"]
 [ext_resource type="Theme" uid="uid://bfwyjs3f4i28h" path="res://theme_main.tres" id="20_pdejd"]
 [ext_resource type="Texture2D" uid="uid://cloe8vlweb8o4" path="res://tex/ui_rewind.png" id="21_j68ct"]
+[ext_resource type="Texture2D" uid="uid://b5pq2rx40ku7v" path="res://tex/ui_mana.png" id="22_lsqxw"]
 [ext_resource type="Script" uid="uid://dptudc2ctw7q5" path="res://scripts/crt.gd" id="23_3dqqq"]
 [ext_resource type="Texture2D" uid="uid://dixqn2gt433k4" path="res://tex/logo.png" id="23_oqswq"]
 
@@ -52,7 +55,7 @@ content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.20737204, 0.59617496, 1, 1)
+bg_color = Color(0.63529414, 0.8627451, 0.78039217, 1)
 corner_detail = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqswq"]
@@ -72,7 +75,7 @@ content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.032874554, 0.1905427, 0.34605154, 1)
+bg_color = Color(0.2627451, 0.2627451, 0.41568628, 1)
 corner_detail = 1
 
 [sub_resource type="Theme" id="Theme_ic0uy"]
@@ -131,7 +134,7 @@ tile_set = ExtResource("3_n64y2")
 
 [node name="floor_details" type="TileMapLayer" parent="." unique_id=81329753]
 texture_filter = 1
-tile_map_data = PackedByteArray("AAAWAPf/AAAHAAQAAAAWAPj/AAAHAAQAAAAWAPn/AAAHAAQAAAAWAPr/AAAHAAQAAAAWAPv/AAAHAAQAAAAWAPz/AAAHAAQAAAAWAP3/AAAHAAQAAAAWAP7/AAAHAAQAAAAWAAEAAAAHAAQAAAAWAAIAAAAHAAQAAAAWAAMAAAAHAAQAAAAWAAQAAAAHAAQAAAAWAAUAAAAHAAQAAAAWAAYAAAAHAAQAAAAWAAcAAAAHAAQAAAAWAAgAAAAHAAQAAAAWAAkAAAAHAAQAAAAWAAoAAAAHAAQAAAAWAAsAAAAHAAQAAAAWAAwAAAAHAAQAAAAWAA0AAAAHAAQAAAAWAA4AAAAHAAQAAAAWAA8AAAAHAAQAAAAWABAAAAAHAAQAAAAWABMAAAAHAAQAAAAWABQAAAAHAAQAAAAWABUAAAAHAAQAAAAWABYAAAAHAAQAAAAWABcAAAAHAAQAAAAWABgAAAAHAAQAAAAWABkAAAAHAAQAAAAWABoAAAAHAAQAAAAWABsAAAAHAAQAAAAWABwAAAAHAAQAAAAWAB0AAAAHAAQAAAAWAB4AAAAHAAQAAAAWAB8AAAAHAAQAAAAZABgAAAAIAAQAAAAZABkAAAAIAAQAAAAZABoAAAAIAAQAAAAZABsAAAAIAAQAAAAZABwAAAAIAAQAAAAZAB0AAAAIAAQAAAAZAB4AAAAIAAQAAAAZAB8AAAAIAAQAAAAZABEAAAAIAAQAAAAZABIAAAAIAAQAAAAZABMAAAAIAAQAAAAZABQAAAAIAAQAAAAZABUAAAAIAAQAAAAZABYAAAAIAAQAAAAZABcAAAAIAAQAAAAZAAwAAAAIAAQAAAAZAA0AAAAIAAQAAAAZAA4AAAAIAAQAAAAZAA8AAAAIAAQAAAAZABAAAAAIAAQAAAAZAAYAAAAIAAQAAAAZAAcAAAAIAAQAAAAZAAgAAAAIAAQAAAAZAAkAAAAIAAQAAAAZAAoAAAAIAAQAAAAZAAsAAAAIAAQAAAAZAAUAAAAIAAQAAAAZAP7/AAAIAAQAAAAZAP//AAAIAAQAAAAZAAAAAAAIAAQAAAAZAAEAAAAIAAQAAAAZAAIAAAAIAAQAAAAZAPr/AAAIAAQAAAAZAPv/AAAIAAQAAAAZAPz/AAAIAAQAAAAZAP3/AAAIAAQAAAAZAPf/AAAIAAQAAAAbAAIAAAAJAAQAAAAcAAIAAAAJAAQAAAAdAAIAAAAJAAQAAAAeAAIAAAAJAAQAAAAfAAIAAAAJAAQAAAAgAAIAAAAJAAQAAAAhAAIAAAAJAAQAAAAiAAIAAAAJAAQAAAAjAAIAAAAJAAQAAAAkAAIAAAAJAAQAAAAlAAIAAAAJAAQAAAAmAAIAAAAJAAQAAAAnAAIAAAAJAAQAAAAoAAIAAAAJAAQAAAApAAIAAAAJAAQAAAAqAAIAAAAJAAQAAAArAAIAAAAJAAQAAAAsAAIAAAAJAAQAAAAtAAIAAAAJAAQAAAAuAAIAAAAJAAQAAAArAAUAAAAKAAQAAAAsAAUAAAAKAAQAAAAtAAUAAAAKAAQAAAAuAAUAAAAKAAQAAAAbAAUAAAAKAAQAAAAcAAUAAAAKAAQAAAAdAAUAAAAKAAQAAAAeAAUAAAAKAAQAAAAfAAUAAAAKAAQAAAAgAAUAAAAKAAQAAAAhAAUAAAAKAAQAAAAiAAUAAAAKAAQAAAAjAAUAAAAKAAQAAAAkAAUAAAAKAAQAAAAlAAUAAAAKAAQAAAAmAAUAAAAKAAQAAAAnAAUAAAAKAAQAAAAoAAUAAAAKAAQAAABGABAAAAAIAAQAAABGABEAAAAIAAQAAABGABQAAAAIAAQAAABGABUAAAAIAAQAAABGABYAAAAIAAQAAABGABcAAAAIAAQAAABGABgAAAAIAAQAAABGABkAAAAIAAQAAABGABoAAAAIAAQAAABGABsAAAAIAAQAAABGABwAAAAIAAQAAABGAB0AAAAIAAQAAABGAB4AAAAIAAQAAABGAB8AAAAIAAQAAABGACAAAAAIAAQAAABGACEAAAAIAAQAAABGACIAAAAIAAQAAABGACMAAAAIAAQAAABGACQAAAAIAAQAAABGACUAAAAIAAQAAABGACYAAAAIAAQAAABDAB0AAAAHAAQAAABDAB4AAAAHAAQAAABDAB8AAAAHAAQAAABDACAAAAAHAAQAAABDACEAAAAHAAQAAABDACIAAAAHAAQAAABDACMAAAAHAAQAAABDACQAAAAHAAQAAABDACUAAAAHAAQAAABDACYAAAAHAAQAAABDABwAAAAHAAQAAABDABAAAAAHAAQAAABDABEAAAAHAAQAAABDABIAAAAHAAQAAABDABMAAAAHAAQAAABDABQAAAAHAAQAAABDABUAAAAHAAQAAABDABYAAAAHAAQAAABDABcAAAAHAAQAAABDABgAAAAHAAQAAABDABkAAAAHAAQAAAArAC0AAAAJAAQAAAAsAC0AAAAJAAQAAAAtAC0AAAAJAAQAAAAuAC0AAAAJAAQAAAAvAC0AAAAJAAQAAAAwAC0AAAAJAAQAAAAxAC0AAAAJAAQAAAAyAC0AAAAJAAQAAAAzAC0AAAAJAAQAAAA0AC0AAAAJAAQAAAA1AC0AAAAJAAQAAAA2AC0AAAAJAAQAAAA3AC0AAAAJAAQAAAA4AC0AAAAJAAQAAAA5AC0AAAAJAAQAAAA6AC0AAAAJAAQAAAA7AC0AAAAJAAQAAAA8AC0AAAAJAAQAAAA9AC0AAAAJAAQAAAArADAAAAAKAAQAAAAsADAAAAAKAAQAAAAtADAAAAAKAAQAAAAuADAAAAAKAAQAAAAvADAAAAAKAAQAAAAwADAAAAAKAAQAAAAxADAAAAAKAAQAAAAyADAAAAAKAAQAAAAzADAAAAAKAAQAAAA0ADAAAAAKAAQAAAA1ADAAAAAKAAQAAAA2ADAAAAAKAAQAAAA3ADAAAAAKAAQAAAA4ADAAAAAKAAQAAAA7ADAAAAAKAAQAAAA8ADAAAAAKAAQAAAA9ADAAAAAKAAQAAAAAACgAAAAKAAQAAAABACgAAAAKAAQAAAACACgAAAAKAAQAAAADACgAAAAKAAQAAAAEACgAAAAKAAQAAAAFACgAAAAKAAQAAAAGACgAAAAKAAQAAAAHACgAAAAKAAQAAAAIACgAAAAKAAQAAAAJACgAAAAKAAQAAAAKACgAAAAKAAQAAAALACgAAAAKAAQAAAAMACgAAAAKAAQAAAANACgAAAAKAAQAAAAOACgAAAAKAAQAAAAPACgAAAAKAAQAAAAQACgAAAAKAAQAAAAAACUAAAAJAAQAAAABACUAAAAJAAQAAAACACUAAAAJAAQAAAADACUAAAAJAAQAAAAEACUAAAAJAAQAAAAFACUAAAAJAAQAAAAGACUAAAAJAAQAAAAHACUAAAAJAAQAAAAIACUAAAAJAAQAAAAJACUAAAAJAAQAAAAKACUAAAAJAAQAAAALACUAAAAJAAQAAAAMACUAAAAJAAQAAAANACUAAAAJAAQAAAAOACUAAAAJAAQAAAAPACUAAAAJAAQAAAAQACUAAAAJAAQAAAAUADcAAAALAAQAAAATADcAAAAMAAMAAAAnADcAAAALAAQAAAAmADcAAAAMAAMAAAAUACwAAAANAAQAAAATACwAAAALAAQAAAAkACwAAAAMAAQAAAAlACwAAAALAAQAAAA2AC4AAAALAAQAAAAwAC8AAAALAAQAAAAYABwAAAALAAQAAAAXABUAAAALAAQAAAAYAAoAAAALAAQAAAAXAPr/AAALAAQAAAALAAQAAAALAAQAAAAMAAQAAAANAAMAAAA=")
+tile_map_data = PackedByteArray("AAAWAPf/AAAHAAQAAAAWAPj/AAAHAAQAAAAWAPn/AAAHAAQAAAAWAPr/AAAHAAQAAAAWAPv/AAAHAAQAAAAWAPz/AAAHAAQAAAAWAP3/AAAHAAQAAAAWAP7/AAAHAAQAAAAWAAEAAAAHAAQAAAAWAAIAAAAHAAQAAAAWAAMAAAAHAAQAAAAWAAQAAAAHAAQAAAAWAAUAAAAHAAQAAAAWAAYAAAAHAAQAAAAWAAcAAAAHAAQAAAAWAAgAAAAHAAQAAAAWAAkAAAAHAAQAAAAWAAoAAAAHAAQAAAAWAAsAAAAHAAQAAAAWAAwAAAAHAAQAAAAWAA0AAAAHAAQAAAAWAA4AAAAHAAQAAAAWAA8AAAAHAAQAAAAWABAAAAAHAAQAAAAWABMAAAAHAAQAAAAWABQAAAAHAAQAAAAWABUAAAAHAAQAAAAWABYAAAAHAAQAAAAWABcAAAAHAAQAAAAWABgAAAAHAAQAAAAWABkAAAAHAAQAAAAWABoAAAAHAAQAAAAWABsAAAAHAAQAAAAWABwAAAAHAAQAAAAWAB0AAAAHAAQAAAAWAB4AAAAHAAQAAAAWAB8AAAAHAAQAAAAZABgAAAAIAAQAAAAZABkAAAAIAAQAAAAZABoAAAAIAAQAAAAZABsAAAAIAAQAAAAZABwAAAAIAAQAAAAZAB0AAAAIAAQAAAAZAB4AAAAIAAQAAAAZAB8AAAAIAAQAAAAZABEAAAAIAAQAAAAZABIAAAAIAAQAAAAZABMAAAAIAAQAAAAZABQAAAAIAAQAAAAZABUAAAAIAAQAAAAZABYAAAAIAAQAAAAZABcAAAAIAAQAAAAZAAwAAAAIAAQAAAAZAA0AAAAIAAQAAAAZAA4AAAAIAAQAAAAZAA8AAAAIAAQAAAAZABAAAAAIAAQAAAAZAAYAAAAIAAQAAAAZAAcAAAAIAAQAAAAZAAgAAAAIAAQAAAAZAAkAAAAIAAQAAAAZAAoAAAAIAAQAAAAZAAsAAAAIAAQAAAAZAAUAAAAIAAQAAAAZAP7/AAAIAAQAAAAZAP//AAAIAAQAAAAZAAAAAAAIAAQAAAAZAAEAAAAIAAQAAAAZAAIAAAAIAAQAAAAZAPr/AAAIAAQAAAAZAPv/AAAIAAQAAAAZAPz/AAAIAAQAAAAZAP3/AAAIAAQAAAAZAPf/AAAIAAQAAAAbAAIAAAAJAAQAAAAcAAIAAAAJAAQAAAAdAAIAAAAJAAQAAAAeAAIAAAAJAAQAAAAfAAIAAAAJAAQAAAAgAAIAAAAJAAQAAAAhAAIAAAAJAAQAAAAiAAIAAAAJAAQAAAAjAAIAAAAJAAQAAAAkAAIAAAAJAAQAAAAlAAIAAAAJAAQAAAAmAAIAAAAJAAQAAAAnAAIAAAAJAAQAAAAoAAIAAAAJAAQAAAApAAIAAAAJAAQAAAAqAAIAAAAJAAQAAAArAAIAAAAJAAQAAAAsAAIAAAAJAAQAAAAtAAIAAAAJAAQAAAAuAAIAAAAJAAQAAAArAAUAAAAKAAQAAAAsAAUAAAAKAAQAAAAtAAUAAAAKAAQAAAAuAAUAAAAKAAQAAAAbAAUAAAAKAAQAAAAcAAUAAAAKAAQAAAAdAAUAAAAKAAQAAAAeAAUAAAAKAAQAAAAfAAUAAAAKAAQAAAAgAAUAAAAKAAQAAAAhAAUAAAAKAAQAAAAiAAUAAAAKAAQAAAAjAAUAAAAKAAQAAAAkAAUAAAAKAAQAAAAlAAUAAAAKAAQAAAAmAAUAAAAKAAQAAAAnAAUAAAAKAAQAAAAoAAUAAAAKAAQAAABGABAAAAAIAAQAAABGABEAAAAIAAQAAABGABQAAAAIAAQAAABGABUAAAAIAAQAAABGABYAAAAIAAQAAABGABcAAAAIAAQAAABGABgAAAAIAAQAAABGABkAAAAIAAQAAABGABoAAAAIAAQAAABGABsAAAAIAAQAAABGABwAAAAIAAQAAABGAB0AAAAIAAQAAABGAB4AAAAIAAQAAABGAB8AAAAIAAQAAABGACAAAAAIAAQAAABGACEAAAAIAAQAAABGACIAAAAIAAQAAABGACMAAAAIAAQAAABGACQAAAAIAAQAAABGACUAAAAIAAQAAABGACYAAAAIAAQAAABDAB0AAAAHAAQAAABDAB4AAAAHAAQAAABDAB8AAAAHAAQAAABDACAAAAAHAAQAAABDACEAAAAHAAQAAABDACIAAAAHAAQAAABDACMAAAAHAAQAAABDACQAAAAHAAQAAABDACUAAAAHAAQAAABDACYAAAAHAAQAAABDABwAAAAHAAQAAABDABAAAAAHAAQAAABDABEAAAAHAAQAAABDABIAAAAHAAQAAABDABMAAAAHAAQAAABDABQAAAAHAAQAAABDABUAAAAHAAQAAABDABYAAAAHAAQAAABDABcAAAAHAAQAAABDABgAAAAHAAQAAABDABkAAAAHAAQAAAArAC0AAAAJAAQAAAAsAC0AAAAJAAQAAAAtAC0AAAAJAAQAAAAuAC0AAAAJAAQAAAAvAC0AAAAJAAQAAAAwAC0AAAAJAAQAAAAxAC0AAAAJAAQAAAAyAC0AAAAJAAQAAAAzAC0AAAAJAAQAAAA0AC0AAAAJAAQAAAA1AC0AAAAJAAQAAAA2AC0AAAAJAAQAAAA3AC0AAAAJAAQAAAA4AC0AAAAJAAQAAAA5AC0AAAAJAAQAAAA6AC0AAAAJAAQAAAA7AC0AAAAJAAQAAAA8AC0AAAAJAAQAAAA9AC0AAAAJAAQAAAArADAAAAAKAAQAAAAsADAAAAAKAAQAAAAtADAAAAAKAAQAAAAuADAAAAAKAAQAAAAvADAAAAAKAAQAAAAwADAAAAAKAAQAAAAxADAAAAAKAAQAAAAyADAAAAAKAAQAAAAzADAAAAAKAAQAAAA0ADAAAAAKAAQAAAA1ADAAAAAKAAQAAAA2ADAAAAAKAAQAAAA3ADAAAAAKAAQAAAA4ADAAAAAKAAQAAAA7ADAAAAAKAAQAAAA8ADAAAAAKAAQAAAA9ADAAAAAKAAQAAAAAACgAAAAKAAQAAAABACgAAAAKAAQAAAACACgAAAAKAAQAAAADACgAAAAKAAQAAAAEACgAAAAKAAQAAAAFACgAAAAKAAQAAAAGACgAAAAKAAQAAAAHACgAAAAKAAQAAAAIACgAAAAKAAQAAAAJACgAAAAKAAQAAAAKACgAAAAKAAQAAAALACgAAAAKAAQAAAAMACgAAAAKAAQAAAANACgAAAAKAAQAAAAOACgAAAAKAAQAAAAPACgAAAAKAAQAAAAQACgAAAAKAAQAAAAAACUAAAAJAAQAAAABACUAAAAJAAQAAAACACUAAAAJAAQAAAADACUAAAAJAAQAAAAEACUAAAAJAAQAAAAFACUAAAAJAAQAAAAGACUAAAAJAAQAAAAHACUAAAAJAAQAAAAIACUAAAAJAAQAAAAJACUAAAAJAAQAAAAKACUAAAAJAAQAAAALACUAAAAJAAQAAAAMACUAAAAJAAQAAAANACUAAAAJAAQAAAAOACUAAAAJAAQAAAAPACUAAAAJAAQAAAAQACUAAAAJAAQAAAAUADcAAAALAAQAAAATADcAAAAMAAMAAAAnADcAAAALAAQAAAAmADcAAAAMAAMAAAAUACwAAAANAAQAAAATACwAAAALAAQAAAAkACwAAAAMAAQAAAAlACwAAAALAAQAAAA2AC4AAAALAAQAAAAwAC8AAAALAAQAAAAYABwAAAALAAQAAAAXABUAAAALAAQAAAAYAAoAAAALAAQAAAAXAPr/AAALAAQAAAALAAQAAAALAAQAAAAMAAQAAAANAAMAAAApACIAAAADAAcAAAApACMAAAADAAgAAAAqACIAAAAEAAcAAAAqACMAAAAEAAgAAAArACIAAAAFAAcAAAArACMAAAAFAAgAAAA=")
 tile_set = ExtResource("3_n64y2")
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=2144539989 groups=["player"]]
@@ -407,616 +410,620 @@ radial_accel_min = 1.0
 radial_accel_max = 1.0
 color = Color(0.3436738, 0.77071136, 0.8341967, 1)
 
-[node name="rooms" type="Node2D" parent="." unique_id=184733563]
+[node name="sector_one" type="Node2D" parent="." unique_id=184733563]
 
-[node name="sfx_unlock" type="AudioStreamPlayer2D" parent="rooms" unique_id=1753254977]
+[node name="sfx_unlock" type="AudioStreamPlayer2D" parent="sector_one" unique_id=1753254977]
 stream = ExtResource("5_3dqqq")
 
-[node name="s1-2" type="Node2D" parent="rooms" unique_id=1694251999]
+[node name="s1-2" type="Node2D" parent="sector_one" unique_id=1694251999]
 position = Vector2(127, -12)
 script = ExtResource("6_j68ct")
 MANA_COST = 0
 ROOM_NAME = "Games Room"
 
-[node name="autodoor_v" parent="rooms/s1-2" unique_id=93097630 instance=ExtResource("4_3g7jt")]
+[node name="autodoor_v" parent="sector_one/s1-2" unique_id=93097630 instance=ExtResource("4_3g7jt")]
 position = Vector2(-91, 12)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-2" unique_id=1411046070]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-2" unique_id=1411046070]
 position = Vector2(-87, 32)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-2/entry_trigger" unique_id=753372078]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-2/entry_trigger" unique_id=753372078]
 position = Vector2(4, -20)
 shape = SubResource("RectangleShape2D_036b0")
 
-[node name="s1_guard" parent="rooms/s1-2" unique_id=1139509445 instance=ExtResource("7_oqswq")]
+[node name="s1_guard" parent="sector_one/s1-2" unique_id=1139509445 instance=ExtResource("7_oqswq")]
 position = Vector2(-39, -15)
 
-[node name="s1_guard2" parent="rooms/s1-2" unique_id=1681550777 instance=ExtResource("7_oqswq")]
+[node name="s1_guard2" parent="sector_one/s1-2" unique_id=1681550777 instance=ExtResource("7_oqswq")]
 position = Vector2(-39, 10)
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-2" unique_id=1108887262]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-2" unique_id=1108887262]
 visible = false
 z_index = 64
 position = Vector2(-22.999998, 8.500002)
 scale = Vector2(8.5, 6.0625)
 texture = ExtResource("10_rpob3")
 
-[node name="s1-3" type="Node2D" parent="rooms" unique_id=1348498446]
+[node name="s1-3" type="Node2D" parent="sector_one" unique_id=1348498446]
 position = Vector2(193, -18)
 script = ExtResource("6_j68ct")
 ROOM_NAME = "Hallway"
 
-[node name="autodoor_v" parent="rooms/s1-3" unique_id=1774402001 instance=ExtResource("4_3g7jt")]
+[node name="autodoor_v" parent="sector_one/s1-3" unique_id=1774402001 instance=ExtResource("4_3g7jt")]
 position = Vector2(-21, 18)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-3" unique_id=1941658121]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-3" unique_id=1941658121]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-3/entry_trigger" unique_id=1550173018]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-3/entry_trigger" unique_id=1550173018]
 position = Vector2(4, -20)
 shape = SubResource("RectangleShape2D_036b0")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-3" unique_id=453437301]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-3" unique_id=453437301]
 visible = false
 z_index = 64
 position = Vector2(-0.9999944, 106.000015)
 scale = Vector2(2.5000005, 21.5)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-3" unique_id=1466248864 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-3" unique_id=1466248864 instance=ExtResource("9_n64y2")]
 position = Vector2(-29, 6)
 
-[node name="s1-4" type="Node2D" parent="rooms" unique_id=2034326683]
+[node name="s1-4" type="Node2D" parent="sector_one" unique_id=2034326683]
 position = Vector2(131, 128)
 script = ExtResource("6_j68ct")
 MANA_COST = 6
 ROOM_NAME = "Barracks"
 
-[node name="autodoor_v" parent="rooms/s1-4" unique_id=1182985398 instance=ExtResource("4_3g7jt")]
+[node name="autodoor_v" parent="sector_one/s1-4" unique_id=1182985398 instance=ExtResource("4_3g7jt")]
 position = Vector2(41, 16)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-4" unique_id=1242634204]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-4" unique_id=1242634204]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-4/entry_trigger" unique_id=1782387484]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-4/entry_trigger" unique_id=1782387484]
 position = Vector2(50, -22)
 shape = SubResource("RectangleShape2D_036b0")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-4" unique_id=1791939057]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-4" unique_id=1791939057]
 visible = false
 z_index = 64
 position = Vector2(-6.9999914, 24.500008)
 scale = Vector2(6.0000005, 8.5625)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-4" unique_id=870006232 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-4" unique_id=870006232 instance=ExtResource("9_n64y2")]
 position = Vector2(49, 28)
 
-[node name="s1_guard" parent="rooms/s1-4" unique_id=1551866044 instance=ExtResource("7_oqswq")]
+[node name="s1_guard" parent="sector_one/s1-4" unique_id=1551866044 instance=ExtResource("7_oqswq")]
 position = Vector2(-20, -2)
 
-[node name="s1_guard2" parent="rooms/s1-4" unique_id=252733693 instance=ExtResource("7_oqswq")]
+[node name="s1_guard2" parent="sector_one/s1-4" unique_id=252733693 instance=ExtResource("7_oqswq")]
 position = Vector2(-20, 45)
 
-[node name="s1_guard3" parent="rooms/s1-4" unique_id=421775994 instance=ExtResource("7_oqswq")]
+[node name="s1_guard3" parent="sector_one/s1-4" unique_id=421775994 instance=ExtResource("7_oqswq")]
 position = Vector2(17, 51)
 
-[node name="s1-5" type="Node2D" parent="rooms" unique_id=1004655491]
+[node name="s1-5" type="Node2D" parent="sector_one" unique_id=1004655491]
 position = Vector2(233, 158)
 script = ExtResource("6_j68ct")
 MANA_COST = 4
 ROOM_NAME = "Barracks"
 
-[node name="autodoor_v" parent="rooms/s1-5" unique_id=594142647 instance=ExtResource("4_3g7jt")]
+[node name="autodoor_v" parent="sector_one/s1-5" unique_id=594142647 instance=ExtResource("4_3g7jt")]
 position = Vector2(-21, 18)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-5" unique_id=1563865220]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-5" unique_id=1563865220]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-5/entry_trigger" unique_id=232782059]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-5/entry_trigger" unique_id=232782059]
 position = Vector2(4, -20)
 shape = SubResource("RectangleShape2D_036b0")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-5" unique_id=493424100]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-5" unique_id=493424100]
 visible = false
 z_index = 64
 position = Vector2(39.50001, 34.500008)
 scale = Vector2(7.5625005, 6.5625)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-5" unique_id=630399529 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-5" unique_id=630399529 instance=ExtResource("9_n64y2")]
 position = Vector2(-29, 30)
 
-[node name="s1_guard" parent="rooms/s1-5" unique_id=442030605 instance=ExtResource("7_oqswq")]
+[node name="s1_guard" parent="sector_one/s1-5" unique_id=442030605 instance=ExtResource("7_oqswq")]
 position = Vector2(71, 7)
 
-[node name="s1_guard2" parent="rooms/s1-5" unique_id=1706167088 instance=ExtResource("7_oqswq")]
+[node name="s1_guard2" parent="sector_one/s1-5" unique_id=1706167088 instance=ExtResource("7_oqswq")]
 position = Vector2(12, 70)
 
-[node name="s1-6" type="Node2D" parent="rooms" unique_id=1353819781]
+[node name="s1-6" type="Node2D" parent="sector_one" unique_id=1353819781]
 position = Vector2(191, 288)
 script = ExtResource("6_j68ct")
 ROOM_NAME = "Checkpoint A"
 
-[node name="autodoor_h" parent="rooms/s1-6" unique_id=31554682 instance=ExtResource("9_lsqxw")]
+[node name="autodoor_h" parent="sector_one/s1-6" unique_id=31554682 instance=ExtResource("9_lsqxw")]
 position = Vector2(1, -24)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-6" unique_id=1991043421]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-6" unique_id=1991043421]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-6/entry_trigger" unique_id=291069885]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-6/entry_trigger" unique_id=291069885]
 position = Vector2(18, -50)
 shape = SubResource("RectangleShape2D_qbr32")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-6" unique_id=434045276]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-6" unique_id=434045276]
 visible = false
 z_index = 64
 position = Vector2(0.99998856, 12)
 scale = Vector2(6.5000005, 5.000003)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-6" unique_id=1929588497 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-6" unique_id=1929588497 instance=ExtResource("9_n64y2")]
 position = Vector2(13, -36)
 
-[node name="s1_guard" parent="rooms/s1-6" unique_id=269940907 instance=ExtResource("7_oqswq")]
+[node name="s1_guard" parent="sector_one/s1-6" unique_id=269940907 instance=ExtResource("7_oqswq")]
 position = Vector2(-23, 3)
 
-[node name="s1_guard2" parent="rooms/s1-6" unique_id=2140579899 instance=ExtResource("7_oqswq")]
+[node name="s1_guard2" parent="sector_one/s1-6" unique_id=2140579899 instance=ExtResource("7_oqswq")]
 position = Vector2(25, 3)
 
-[node name="s1_guard3" parent="rooms/s1-6" unique_id=498793247 instance=ExtResource("7_oqswq")]
-position = Vector2(1, 29)
+[node name="s1_cmdr" parent="sector_one/s1-6" unique_id=350896296 instance=ExtResource("18_oupyo")]
+position = Vector2(0, 28)
 
-[node name="s1-7" type="Node2D" parent="rooms" unique_id=1957529746]
+[node name="s1-7" type="Node2D" parent="sector_one" unique_id=1957529746]
 position = Vector2(233, -74)
 script = ExtResource("6_j68ct")
 ROOM_NAME = "Showers"
 
-[node name="autodoor_v" parent="rooms/s1-7" unique_id=1816814457 instance=ExtResource("4_3g7jt")]
+[node name="autodoor_v" parent="sector_one/s1-7" unique_id=1816814457 instance=ExtResource("4_3g7jt")]
 position = Vector2(-21, 18)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-7" unique_id=1389804938]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-7" unique_id=1389804938]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-7/entry_trigger" unique_id=908525929]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-7/entry_trigger" unique_id=908525929]
 position = Vector2(4, -20)
 shape = SubResource("RectangleShape2D_036b0")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-7" unique_id=363568082]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-7" unique_id=363568082]
 visible = false
 z_index = 64
 position = Vector2(15.000005, -5.4999976)
 scale = Vector2(4.500001, 5.5625005)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-7" unique_id=257725635 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-7" unique_id=257725635 instance=ExtResource("9_n64y2")]
 position = Vector2(-29, 6)
 
-[node name="s1-8" type="Node2D" parent="rooms" unique_id=2095842547]
+[node name="s1-8" type="Node2D" parent="sector_one" unique_id=2095842547]
 position = Vector2(233, 14)
 script = ExtResource("6_j68ct")
 ROOM_NAME = "Hallway"
 
-[node name="autodoor_v" parent="rooms/s1-8" unique_id=232526147 instance=ExtResource("4_3g7jt")]
+[node name="autodoor_v" parent="sector_one/s1-8" unique_id=232526147 instance=ExtResource("4_3g7jt")]
 position = Vector2(-21, 18)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-8" unique_id=1936011115]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-8" unique_id=1936011115]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-8/entry_trigger" unique_id=852880625]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-8/entry_trigger" unique_id=852880625]
 position = Vector2(4, -20)
 shape = SubResource("RectangleShape2D_036b0")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-8" unique_id=460129452]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-8" unique_id=460129452]
 visible = false
 z_index = 64
 position = Vector2(63, 14.499999)
 scale = Vector2(10.500001, 3.0624998)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-8" unique_id=1107930135 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-8" unique_id=1107930135 instance=ExtResource("9_n64y2")]
 position = Vector2(-29, 30)
 
-[node name="s1-9" type="Node2D" parent="rooms" unique_id=1669328930]
+[node name="s1-9" type="Node2D" parent="sector_one" unique_id=1669328930]
 position = Vector2(401, 14)
 script = ExtResource("6_j68ct")
 ROOM_NAME = "Checkpoint C"
 
-[node name="autodoor_v" parent="rooms/s1-9" unique_id=2120168101 instance=ExtResource("4_3g7jt")]
+[node name="autodoor_v" parent="sector_one/s1-9" unique_id=2120168101 instance=ExtResource("4_3g7jt")]
 position = Vector2(-21, 18)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-9" unique_id=1765919397]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-9" unique_id=1765919397]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-9/entry_trigger" unique_id=1543655103]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-9/entry_trigger" unique_id=1543655103]
 position = Vector2(4, -20)
 shape = SubResource("RectangleShape2D_036b0")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-9" unique_id=467320539]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-9" unique_id=467320539]
 visible = false
 z_index = 64
 position = Vector2(26.999992, 22.500006)
 scale = Vector2(6, 6.0625005)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-9" unique_id=15192715 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-9" unique_id=15192715 instance=ExtResource("9_n64y2")]
 position = Vector2(-29, 6)
 
-[node name="s1-10" type="Node2D" parent="rooms" unique_id=2120383772]
+[node name="s1_spec" parent="sector_one/s1-9" unique_id=1320232260 instance=ExtResource("19_rpob3")]
+position = Vector2(53, 28)
+PROJECTILE_SPEED = 135.0
+
+[node name="s1-10" type="Node2D" parent="sector_one" unique_id=2120383772]
 position = Vector2(335, 80)
 script = ExtResource("6_j68ct")
 ROOM_NAME = "Storage Room"
 
-[node name="autodoor_h" parent="rooms/s1-10" unique_id=1247910490 instance=ExtResource("9_lsqxw")]
+[node name="autodoor_h" parent="sector_one/s1-10" unique_id=1247910490 instance=ExtResource("9_lsqxw")]
 position = Vector2(1, -24)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-10" unique_id=953455126]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-10" unique_id=953455126]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-10/entry_trigger" unique_id=215730090]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-10/entry_trigger" unique_id=215730090]
 position = Vector2(18, -50)
 shape = SubResource("RectangleShape2D_qbr32")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-10" unique_id=217411790]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-10" unique_id=217411790]
 visible = false
 z_index = 64
 position = Vector2(-23.00002, 4.5000057)
 scale = Vector2(5.500001, 4.0625)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-10" unique_id=345096603 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-10" unique_id=345096603 instance=ExtResource("9_n64y2")]
 position = Vector2(-11, -36)
 
-[node name="s1-11" type="Node2D" parent="rooms" unique_id=407322490]
+[node name="s1-11" type="Node2D" parent="sector_one" unique_id=407322490]
 position = Vector2(191, 368)
 script = ExtResource("6_j68ct")
 ROOM_NAME = "Canteen"
 
-[node name="autodoor_h" parent="rooms/s1-11" unique_id=382347947 instance=ExtResource("9_lsqxw")]
+[node name="autodoor_h" parent="sector_one/s1-11" unique_id=382347947 instance=ExtResource("9_lsqxw")]
 position = Vector2(1, -24)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-11" unique_id=799920051]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-11" unique_id=799920051]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-11/entry_trigger" unique_id=572400483]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-11/entry_trigger" unique_id=572400483]
 position = Vector2(18, -50)
 shape = SubResource("RectangleShape2D_qbr32")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-11" unique_id=1352298956]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-11" unique_id=1352298956]
 visible = false
 z_index = 64
 position = Vector2(40.99998, 28.50003)
 scale = Vector2(13.500001, 7.062499)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-11" unique_id=1142432367 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-11" unique_id=1142432367 instance=ExtResource("9_n64y2")]
 position = Vector2(-11, -36)
 
-[node name="s1-12" type="Node2D" parent="rooms" unique_id=1203359460]
+[node name="s1-12" type="Node2D" parent="sector_one" unique_id=1203359460]
 position = Vector2(83, 408)
 script = ExtResource("6_j68ct")
 MANA_COST = 4
 ROOM_NAME = "Kitchen"
 
-[node name="autodoor_v" parent="rooms/s1-12" unique_id=1414274280 instance=ExtResource("4_3g7jt")]
+[node name="autodoor_v" parent="sector_one/s1-12" unique_id=1414274280 instance=ExtResource("4_3g7jt")]
 position = Vector2(41, 16)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-12" unique_id=653438233]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-12" unique_id=653438233]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-12/entry_trigger" unique_id=272229477]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-12/entry_trigger" unique_id=272229477]
 position = Vector2(50, -22)
 shape = SubResource("RectangleShape2D_036b0")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-12" unique_id=1078574516]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-12" unique_id=1078574516]
 visible = false
 z_index = 64
 position = Vector2(9.000006, -7.4999943)
 scale = Vector2(3.9999998, 5.5625005)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-12" unique_id=651851436 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-12" unique_id=651851436 instance=ExtResource("9_n64y2")]
 position = Vector2(49, 28)
 
-[node name="s1-13" type="Node2D" parent="rooms" unique_id=909979224]
+[node name="s1-13" type="Node2D" parent="sector_one" unique_id=909979224]
 position = Vector2(265, 294)
 script = ExtResource("6_j68ct")
 ROOM_NAME = "Commander's Office"
 
-[node name="autodoor_v" parent="rooms/s1-13" unique_id=595619235 instance=ExtResource("4_3g7jt")]
+[node name="autodoor_v" parent="sector_one/s1-13" unique_id=595619235 instance=ExtResource("4_3g7jt")]
 position = Vector2(-21, 18)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-13" unique_id=338367879]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-13" unique_id=338367879]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-13/entry_trigger" unique_id=2027968522]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-13/entry_trigger" unique_id=2027968522]
 position = Vector2(4, -20)
 shape = SubResource("RectangleShape2D_036b0")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-13" unique_id=209610130]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-13" unique_id=209610130]
 visible = false
 z_index = 64
 position = Vector2(7.0000095, 14.000006)
 scale = Vector2(3.5000002, 3.9999998)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-13" unique_id=1305257892 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-13" unique_id=1305257892 instance=ExtResource("9_n64y2")]
 position = Vector2(-29, 30)
 
-[node name="s1-14" type="Node2D" parent="rooms" unique_id=92731285]
+[node name="s1-14" type="Node2D" parent="sector_one" unique_id=92731285]
 position = Vector2(321, 286)
 script = ExtResource("6_j68ct")
 ROOM_NAME = "Commander's Quarters"
 
-[node name="autodoor_v" parent="rooms/s1-14" unique_id=604089893 instance=ExtResource("4_3g7jt")]
+[node name="autodoor_v" parent="sector_one/s1-14" unique_id=604089893 instance=ExtResource("4_3g7jt")]
 position = Vector2(-21, 18)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-14" unique_id=1617551211]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-14" unique_id=1617551211]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-14/entry_trigger" unique_id=590832425]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-14/entry_trigger" unique_id=590832425]
 position = Vector2(4, -20)
 shape = SubResource("RectangleShape2D_036b0")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-14" unique_id=1208369350]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-14" unique_id=1208369350]
 visible = false
 z_index = 64
 position = Vector2(11.000008, 2.5000103)
 scale = Vector2(4, 4.5625)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-14" unique_id=1218140565 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-14" unique_id=1218140565 instance=ExtResource("9_n64y2")]
 position = Vector2(-29, 30)
 
-[node name="s1-15" type="Node2D" parent="rooms" unique_id=130074307]
+[node name="s1-15" type="Node2D" parent="sector_one" unique_id=130074307]
 position = Vector2(99, 296)
 script = ExtResource("6_j68ct")
 MANA_COST = 4
 ROOM_NAME = "Hallway"
 
-[node name="autodoor_v" parent="rooms/s1-15" unique_id=484704540 instance=ExtResource("4_3g7jt")]
+[node name="autodoor_v" parent="sector_one/s1-15" unique_id=484704540 instance=ExtResource("4_3g7jt")]
 position = Vector2(41, 16)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-15" unique_id=945260537]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-15" unique_id=945260537]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-15/entry_trigger" unique_id=63902118]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-15/entry_trigger" unique_id=63902118]
 position = Vector2(50, -22)
 shape = SubResource("RectangleShape2D_036b0")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-15" unique_id=1387754000]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-15" unique_id=1387754000]
 visible = false
 z_index = 64
 position = Vector2(-30.999998, 12.500002)
 scale = Vector2(9.000001, 3.062501)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-15" unique_id=1014241658 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-15" unique_id=1014241658 instance=ExtResource("9_n64y2")]
 position = Vector2(49, 28)
 
-[node name="s1-16" type="Node2D" parent="rooms" unique_id=470899992]
+[node name="s1-16" type="Node2D" parent="sector_one" unique_id=470899992]
 position = Vector2(361, 358)
 script = ExtResource("6_j68ct")
 ROOM_NAME = "Hallway"
 
-[node name="autodoor_v" parent="rooms/s1-16" unique_id=1810512399 instance=ExtResource("4_3g7jt")]
+[node name="autodoor_v" parent="sector_one/s1-16" unique_id=1810512399 instance=ExtResource("4_3g7jt")]
 position = Vector2(-21, 18)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-16" unique_id=104217996]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-16" unique_id=104217996]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-16/entry_trigger" unique_id=329459711]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-16/entry_trigger" unique_id=329459711]
 position = Vector2(4, -20)
 shape = SubResource("RectangleShape2D_036b0")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-16" unique_id=228222771]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-16" unique_id=228222771]
 visible = false
 z_index = 64
 position = Vector2(58.999996, 14.499999)
 scale = Vector2(10, 3.0624998)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-16" unique_id=2079382520 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-16" unique_id=2079382520 instance=ExtResource("9_n64y2")]
 position = Vector2(-29, 30)
 
-[node name="s1-17" type="Node2D" parent="rooms" unique_id=1486464610]
+[node name="s1-17" type="Node2D" parent="sector_one" unique_id=1486464610]
 position = Vector2(463, 424)
 script = ExtResource("6_j68ct")
 ROOM_NAME = "Infirmary"
 
-[node name="autodoor_h" parent="rooms/s1-17" unique_id=1928004989 instance=ExtResource("9_lsqxw")]
+[node name="autodoor_h" parent="sector_one/s1-17" unique_id=1928004989 instance=ExtResource("9_lsqxw")]
 position = Vector2(1, -24)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-17" unique_id=766417106]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-17" unique_id=766417106]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-17/entry_trigger" unique_id=1994616644]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-17/entry_trigger" unique_id=1994616644]
 position = Vector2(18, -50)
 shape = SubResource("RectangleShape2D_qbr32")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-17" unique_id=743874391]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-17" unique_id=743874391]
 visible = false
 z_index = 64
 position = Vector2(-23.000006, 0.49997807)
 scale = Vector2(5.500003, 3.5625002)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-17" unique_id=111550740 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-17" unique_id=111550740 instance=ExtResource("9_n64y2")]
 position = Vector2(-11, -36)
 
-[node name="s1-18" type="Node2D" parent="rooms" unique_id=1144628028]
+[node name="s1-18" type="Node2D" parent="sector_one" unique_id=1144628028]
 position = Vector2(521, 358)
 script = ExtResource("6_j68ct")
 ROOM_NAME = "Checkpoint B"
 
-[node name="autodoor_v" parent="rooms/s1-18" unique_id=1913311695 instance=ExtResource("4_3g7jt")]
+[node name="autodoor_v" parent="sector_one/s1-18" unique_id=1913311695 instance=ExtResource("4_3g7jt")]
 position = Vector2(-21, 18)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-18" unique_id=501724837]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-18" unique_id=501724837]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-18/entry_trigger" unique_id=1793681620]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-18/entry_trigger" unique_id=1793681620]
 position = Vector2(4, -20)
 shape = SubResource("RectangleShape2D_036b0")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-18" unique_id=1717312892]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-18" unique_id=1717312892]
 visible = false
 z_index = 64
 position = Vector2(15, 14.50003)
 scale = Vector2(4.5000005, 7.0624995)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-18" unique_id=681273962 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-18" unique_id=681273962 instance=ExtResource("9_n64y2")]
 position = Vector2(-29, 6)
 
-[node name="s1-19" type="Node2D" parent="rooms" unique_id=1428136970]
+[node name="s1-19" type="Node2D" parent="sector_one" unique_id=1428136970]
 position = Vector2(551, 344)
 script = ExtResource("6_j68ct")
 ROOM_NAME = "Hallway"
 
-[node name="autodoor_h" parent="rooms/s1-19" unique_id=1426418413 instance=ExtResource("9_lsqxw")]
+[node name="autodoor_h" parent="sector_one/s1-19" unique_id=1426418413 instance=ExtResource("9_lsqxw")]
 position = Vector2(1, -24)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-19" unique_id=65738644]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-19" unique_id=65738644]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-19/entry_trigger" unique_id=1277943157]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-19/entry_trigger" unique_id=1277943157]
 position = Vector2(18, -74)
 shape = SubResource("RectangleShape2D_qbr32")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-19" unique_id=687952084]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-19" unique_id=687952084]
 visible = false
 z_index = 64
 position = Vector2(1.0000057, -127.99999)
 scale = Vector2(2.5000014, 12.499999)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-19" unique_id=2111500128 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-19" unique_id=2111500128 instance=ExtResource("9_n64y2")]
 position = Vector2(-11, -12)
 
-[node name="s1-20" type="Node2D" parent="rooms" unique_id=2104127258]
+[node name="s1-20" type="Node2D" parent="sector_one" unique_id=2104127258]
 position = Vector2(491, 200)
 script = ExtResource("6_j68ct")
 MANA_COST = 4
 ROOM_NAME = "Security Office"
 
-[node name="autodoor_v" parent="rooms/s1-20" unique_id=1003175955 instance=ExtResource("4_3g7jt")]
+[node name="autodoor_v" parent="sector_one/s1-20" unique_id=1003175955 instance=ExtResource("4_3g7jt")]
 position = Vector2(41, 16)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-20" unique_id=1457535737]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-20" unique_id=1457535737]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-20/entry_trigger" unique_id=1571027914]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-20/entry_trigger" unique_id=1571027914]
 position = Vector2(50, -22)
 shape = SubResource("RectangleShape2D_036b0")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-20" unique_id=1841361467]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-20" unique_id=1841361467]
 visible = false
 z_index = 64
 position = Vector2(13.000003, 12.500021)
 scale = Vector2(3.5000012, 4.0624995)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-20" unique_id=50716724 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-20" unique_id=50716724 instance=ExtResource("9_n64y2")]
 position = Vector2(49, 28)
 
-[node name="s1-21" type="Node2D" parent="rooms" unique_id=1041649762]
+[node name="s1-21" type="Node2D" parent="sector_one" unique_id=1041649762]
 position = Vector2(593, 134)
 script = ExtResource("6_j68ct")
 ROOM_NAME = "Blast Door Room"
 
-[node name="autodoor_v" parent="rooms/s1-21" unique_id=78126938 instance=ExtResource("4_3g7jt")]
+[node name="autodoor_v" parent="sector_one/s1-21" unique_id=78126938 instance=ExtResource("4_3g7jt")]
 position = Vector2(-21, 18)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-21" unique_id=402634630]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-21" unique_id=402634630]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-21/entry_trigger" unique_id=1765618324]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-21/entry_trigger" unique_id=1765618324]
 position = Vector2(4, -20)
 shape = SubResource("RectangleShape2D_036b0")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-21" unique_id=1280235776]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-21" unique_id=1280235776]
 visible = false
 z_index = 64
 position = Vector2(137.00002, 6.5000076)
 scale = Vector2(19.750002, 11.0625)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-21" unique_id=455453736 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-21" unique_id=455453736 instance=ExtResource("9_n64y2")]
 position = Vector2(-29, 30)
 
-[node name="s1-22" type="Node2D" parent="rooms" unique_id=1541680544]
+[node name="s1-22" type="Node2D" parent="sector_one" unique_id=1541680544]
 position = Vector2(455, 112)
 script = ExtResource("6_j68ct")
 ROOM_NAME = "Archives"
 
-[node name="autodoor_h" parent="rooms/s1-22" unique_id=1364920065 instance=ExtResource("9_lsqxw")]
+[node name="autodoor_h" parent="sector_one/s1-22" unique_id=1364920065 instance=ExtResource("9_lsqxw")]
 position = Vector2(1, -24)
 
-[node name="entry_trigger" type="Area2D" parent="rooms/s1-22" unique_id=1706827197]
+[node name="entry_trigger" type="Area2D" parent="sector_one/s1-22" unique_id=1706827197]
 position = Vector2(-17, 38)
 collision_layer = 0
 collision_mask = 2
 
-[node name="col" type="CollisionShape2D" parent="rooms/s1-22/entry_trigger" unique_id=1366731518]
+[node name="col" type="CollisionShape2D" parent="sector_one/s1-22/entry_trigger" unique_id=1366731518]
 position = Vector2(18, -50)
 shape = SubResource("RectangleShape2D_qbr32")
 
-[node name="cover" type="Sprite2D" parent="rooms/s1-22" unique_id=60370689]
+[node name="cover" type="Sprite2D" parent="sector_one/s1-22" unique_id=60370689]
 visible = false
 z_index = 64
 position = Vector2(1.0000086, 8.4999895)
 scale = Vector2(3.4999974, 4.5625014)
 texture = ExtResource("10_rpob3")
 
-[node name="unlocker" parent="rooms/s1-22" unique_id=391623889 instance=ExtResource("9_n64y2")]
+[node name="unlocker" parent="sector_one/s1-22" unique_id=391623889 instance=ExtResource("9_n64y2")]
 position = Vector2(-11, -36)
 
 [node name="decor" type="TileMapLayer" parent="." unique_id=837051003]
 z_index = 2
 y_sort_enabled = true
 texture_filter = 1
-tile_map_data = PackedByteArray("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AAAfAB0AAAAGAAQAAAAhABwAAAAFAAMAAAAhAB0AAAAFAAQAAAAiABwAAAAGAAMAAAAiAB0AAAAGAAQAAAAkABwAAAAFAAMAAAAkAB0AAAAFAAQAAAAlABwAAAAGAAMAAAAlAB0AAAAGAAQAAAAnABIAAAAAAAQAAAAnABMAAAAAAAUAAAAoABkAAAABAAUAAAAnABgAAAAIAAUAAAAnABkAAAAIAAYAAAAhACsAAAAAAAQAAAAhACwAAAAAAAUAAAAgACsAAAAAAAQAAAAgACwAAAAAAAUAAAAeACsAAAAAAAQAAAAeACwAAAAAAAUAAAAfACsAAAAEAAMAAAAfACwAAAAEAAQAAAAoACsAAAAEAAMAAAAoACwAAAAEAAQAAAAnACsAAAAEAAMAAAAnACwAAAAEAAQAAAAYAC4AAAAFAAUAAAAYAC8AAAAFAAYAAAAYADAAAAAFAAUAAAAYADEAAAAFAAYAAAAYADIAAAAFAAUAAAAYADMAAAAFAAYAAAAYADQAAAAFAAUAAAAYADUAAAAFAAYAAAAXADQAAAAIAAUAAAAXADUAAAAIAAYAAAAXADIAAAAIAAUAAAAXADMAAAAIAAYAAAAXADAAAAAIAAUAAAAXADEAAAAIAAYAAAAXAC4AAAAIAAUAAAAXAC8AAAAIAAYAAAAZADQAAAAJAAUAAAAZADUAAAAJAAYAAAAZADIAAAAJAAUAAAAZADMAAAAJAAYAAAAZADAAAAAJAAUAAAAZADEAAAAJAAYAAAAZAC4AAAAJAAUAAAAZAC8AAAAJAAYAAAAeAC4AAAAIAAUAAAAeAC8AAAAIAAYAAAAeADAAAAAIAAUAAAAeADEAAAAIAAYAAAAeADIAAAAIAAUAAAAeADMAAAAIAAYAAAAeADQAAAAIAAUAAAAeADUAAAAIAAYAAAAfAC4AAAAGAAUAAAAfAC8AAAAGAAYAAAAfADAAAAAGAAUAAAAfADEAAAAGAAYAAAAfADIAAAAGAAUAAAAfADMAAAAGAAYAAAAfADQAAAAGAAUAAAAfADUAAAAGAAYAAAAgAC4AAAAHAAUAAAAgAC8AAAAHAAYAAAAgADAAAAAHAAUAAAAgADEAAAAHAAYAAAAgADIAAAAHAAUAAAAgADMAAAAHAAYAAAAgADQAAAAHAAUAAAAgADUAAAAHAAYAAAAhAC4AAAAJAAUA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AAAvACwAAAALAAMAAAA3ADIAAAAAAAYAAAA7ADQAAAAEAAMAAAA7ADUAAAAEAAQAAAA4ADMAAAAHAAcAAAA4ADQAAAAHAAgAAAA4ADUAAAAHAAkAAAAyADMAAAAOAAQAAAAzADMAAAAPAAQAAAAyADUAAAAOAAQAAAAzADUAAAAPAAQAAAAzAAEAAAAHAAcAAAAzAAIAAAAHAAgAAAAzAAMAAAAHAAkAAAA1AAUAAAAHAAcAAAA1AAYAAAAHAAgAAAA1AAcAAAAHAAkAAAA8ABcAAAAEAAMAAAA8ABgAAAAEAAQAAAA9ABcAAAAEAAMAAAA9ABgAAAAEAAQAAAA+ABgAAAABAAQAAAA/ABgAAAACAAQAAABAABcAAAABAAcAAABAABgAAAABAAgAAABBABcAAAACAAcAAABBABgAAAACAAgAAAA/ABoAAAAHAAcAAAA/ABsAAAAHAAgAAAA/ABwAAAAHAAkAAAA+ABoAAAAIAAUAAAA+ABsAAAAIAAYAAAA8AB0AAAAOAAQAAAA9AB0AAAAPAAQAAABCADAAAAAHAAcAAABCADEAAAAHAAgAAABCADIAAAAHAAkAAABCACsAAAAHAAcAAABCACwAAAAHAAgAAABCAC0AAAAHAAkAAAA=")
+tile_map_data = PackedByteArray("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AAAfAB0AAAAGAAQAAAAhABwAAAAFAAMAAAAhAB0AAAAFAAQAAAAiABwAAAAGAAMAAAAiAB0AAAAGAAQAAAAkABwAAAAFAAMAAAAkAB0AAAAFAAQAAAAlABwAAAAGAAMAAAAlAB0AAAAGAAQAAAAnABIAAAAAAAQAAAAnABMAAAAAAAUAAAAoABkAAAABAAUAAAAnABgAAAAIAAUAAAAnABkAAAAIAAYAAAAhACsAAAAAAAQAAAAhACwAAAAAAAUAAAAgACsAAAAAAAQAAAAgACwAAAAAAAUAAAAeACsAAAAAAAQAAAAeACwAAAAAAAUAAAAfACsAAAAEAAMAAAAfACwAAAAEAAQAAAAoACsAAAAEAAMAAAAoACwAAAAEAAQAAAAnACsAAAAEAAMAAAAnACwAAAAEAAQAAAAYAC4AAAAFAAUAAAAYAC8AAAAFAAYAAAAYADAAAAAFAAUAAAAYADEAAAAFAAYAAAAYADIAAAAFAAUAAAAYADMAAAAFAAYAAAAYADQAAAAFAAUAAAAYADUAAAAFAAYAAAAXADQAAAAIAAUAAAAXADUAAAAIAAYAAAAXADIAAAAIAAUAAAAXADMAAAAIAAYAAAAXADAAAAAIAAUAAAAXADEAAAAIAAYAAAAXAC4AAAAIAAUAAAAXAC8AAAAIAAYAAAAZADQAAAAJAAUAAAAZADUAAAAJAAYAAAAZADIAAAAJAAUAAAAZADMAAAAJAAYAAAAZADAAAAAJAAUAAAAZADEAAAAJAAYAAAAZAC4AAAAJAAUAAAAZAC8AAAAJAAYAAAAeAC4AAAAIAAUAAAAeAC8AAAAIAAYAAAAeADAAAAAIAAUAAAAeADEAAAAIAAYAAAAeADIAAAAIAAUAAAAeADMAAAAIAAYAAAAeADQAAAAIAAUAAAAeADUAAAAIAAYAAAAfAC4AAAAGAAUAAAAfAC8AAAAGAAYAAAAfADAAAAAGAAUAAAAfADEAAAAGAAYAAAAfADIAAAAGAAUAAAAfADMAAAAGAAYAAAAfADQAAAAGAAUAAAAfADUAAAAGAAYAAAAgAC4AAAAHAAUAAAAgAC8AAAAHAAYAAAAgADAAAAAHAAUAAAAgADEAAAAHAAYAAAAgADIAAAAHAAUAAAAgADMAAAAHAAYAAAAgADQAAAAHAAUAAAAgADUAAAAHAAYAAAAhAC4AAAAJAAUA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")
 tile_set = ExtResource("3_n64y2")
 
 [node name="canvas" type="CanvasLayer" parent="." unique_id=1948678491]
@@ -1101,6 +1108,15 @@ offset_top = 48.0
 offset_right = 220.0
 offset_bottom = 72.0
 texture = ExtResource("20_3g7jt")
+
+[node name="mana_notif" type="TextureRect" parent="canvas/hud" unique_id=2023577954]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 408.0
+offset_top = 452.0
+offset_right = 448.0
+offset_bottom = 492.0
+texture = ExtResource("22_lsqxw")
 
 [node name="rewind_overlay" type="TextureRect" parent="canvas/hud" unique_id=1091859984]
 modulate = Color(1, 1, 1, 0)
@@ -1298,45 +1314,45 @@ color = Color(0, 0, 0, 1)
 [connection signal="timeout" from="player/rewind_timer" to="player" method="_on_rewind_timer_timeout"]
 [connection signal="timeout" from="player/rewind_cooldown" to="player" method="_on_rewind_cooldown_timeout"]
 [connection signal="timeout" from="player/grapple_failsafe" to="player" method="_on_grapple_failsafe_timeout"]
-[connection signal="body_entered" from="rooms/s1-2/entry_trigger" to="rooms/s1-2" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-2/entry_trigger" to="rooms/s1-2" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-3/entry_trigger" to="rooms/s1-3" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-3/entry_trigger" to="rooms/s1-3" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-4/entry_trigger" to="rooms/s1-4" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-4/entry_trigger" to="rooms/s1-4" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-5/entry_trigger" to="rooms/s1-5" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-5/entry_trigger" to="rooms/s1-5" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-6/entry_trigger" to="rooms/s1-6" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-6/entry_trigger" to="rooms/s1-6" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-7/entry_trigger" to="rooms/s1-7" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-7/entry_trigger" to="rooms/s1-7" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-8/entry_trigger" to="rooms/s1-8" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-8/entry_trigger" to="rooms/s1-8" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-9/entry_trigger" to="rooms/s1-9" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-9/entry_trigger" to="rooms/s1-9" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-10/entry_trigger" to="rooms/s1-10" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-10/entry_trigger" to="rooms/s1-10" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-11/entry_trigger" to="rooms/s1-11" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-11/entry_trigger" to="rooms/s1-11" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-12/entry_trigger" to="rooms/s1-12" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-12/entry_trigger" to="rooms/s1-12" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-13/entry_trigger" to="rooms/s1-13" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-13/entry_trigger" to="rooms/s1-13" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-14/entry_trigger" to="rooms/s1-14" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-14/entry_trigger" to="rooms/s1-14" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-15/entry_trigger" to="rooms/s1-15" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-15/entry_trigger" to="rooms/s1-15" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-16/entry_trigger" to="rooms/s1-16" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-16/entry_trigger" to="rooms/s1-16" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-17/entry_trigger" to="rooms/s1-17" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-17/entry_trigger" to="rooms/s1-17" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-18/entry_trigger" to="rooms/s1-18" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-18/entry_trigger" to="rooms/s1-18" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-19/entry_trigger" to="rooms/s1-19" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-19/entry_trigger" to="rooms/s1-19" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-20/entry_trigger" to="rooms/s1-20" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-20/entry_trigger" to="rooms/s1-20" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-21/entry_trigger" to="rooms/s1-21" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-21/entry_trigger" to="rooms/s1-21" method="_on_room_body_exited"]
-[connection signal="body_entered" from="rooms/s1-22/entry_trigger" to="rooms/s1-22" method="_on_room_body_entered"]
-[connection signal="body_exited" from="rooms/s1-22/entry_trigger" to="rooms/s1-22" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-2/entry_trigger" to="sector_one/s1-2" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-2/entry_trigger" to="sector_one/s1-2" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-3/entry_trigger" to="sector_one/s1-3" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-3/entry_trigger" to="sector_one/s1-3" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-4/entry_trigger" to="sector_one/s1-4" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-4/entry_trigger" to="sector_one/s1-4" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-5/entry_trigger" to="sector_one/s1-5" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-5/entry_trigger" to="sector_one/s1-5" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-6/entry_trigger" to="sector_one/s1-6" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-6/entry_trigger" to="sector_one/s1-6" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-7/entry_trigger" to="sector_one/s1-7" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-7/entry_trigger" to="sector_one/s1-7" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-8/entry_trigger" to="sector_one/s1-8" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-8/entry_trigger" to="sector_one/s1-8" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-9/entry_trigger" to="sector_one/s1-9" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-9/entry_trigger" to="sector_one/s1-9" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-10/entry_trigger" to="sector_one/s1-10" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-10/entry_trigger" to="sector_one/s1-10" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-11/entry_trigger" to="sector_one/s1-11" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-11/entry_trigger" to="sector_one/s1-11" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-12/entry_trigger" to="sector_one/s1-12" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-12/entry_trigger" to="sector_one/s1-12" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-13/entry_trigger" to="sector_one/s1-13" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-13/entry_trigger" to="sector_one/s1-13" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-14/entry_trigger" to="sector_one/s1-14" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-14/entry_trigger" to="sector_one/s1-14" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-15/entry_trigger" to="sector_one/s1-15" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-15/entry_trigger" to="sector_one/s1-15" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-16/entry_trigger" to="sector_one/s1-16" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-16/entry_trigger" to="sector_one/s1-16" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-17/entry_trigger" to="sector_one/s1-17" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-17/entry_trigger" to="sector_one/s1-17" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-18/entry_trigger" to="sector_one/s1-18" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-18/entry_trigger" to="sector_one/s1-18" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-19/entry_trigger" to="sector_one/s1-19" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-19/entry_trigger" to="sector_one/s1-19" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-20/entry_trigger" to="sector_one/s1-20" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-20/entry_trigger" to="sector_one/s1-20" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-21/entry_trigger" to="sector_one/s1-21" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-21/entry_trigger" to="sector_one/s1-21" method="_on_room_body_exited"]
+[connection signal="body_entered" from="sector_one/s1-22/entry_trigger" to="sector_one/s1-22" method="_on_room_body_entered"]
+[connection signal="body_exited" from="sector_one/s1-22/entry_trigger" to="sector_one/s1-22" method="_on_room_body_exited"]

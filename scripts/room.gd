@@ -4,6 +4,7 @@ extends Node2D
 @export var UNLOCKED: bool = false
 @export var MANA_COST: int = 2
 @export var ROOM_NAME: String = "Unknown Room"
+@export var ROOM_RADIUS: int = 64
 var is_unlocked_this_run: bool = true
 var HAS_ENEMIES: bool = false
 var enemies: Array[Enemy]
@@ -26,9 +27,9 @@ func _ready() -> void:
 			door = child
 	
 	if MANA_COST == 0:
-		door.enabled = true
+		door.unlock_door()
 	else:
-		door.enabled = false
+		door.lock_door(true)
 	
 	if HAS_ENEMIES:
 		set_enemies()
@@ -37,24 +38,31 @@ func _ready() -> void:
 
 func unlock():
 	UNLOCKED = true
-	door.enabled = true
+	door.unlock_door()
 	
 func relock():
 	UNLOCKED = false
-	door.enabled = false
+	door.lock_door(true)
 	$unlocker.reset()
 
 func update_door():
 	if remaining_enemies <= 0:
 		print("all enemies in " + name + " killed, opening door")
-		door.enabled = true
+		door.unlock_door()
 		door.open_door()
 		
 func set_enemies():
 	remaining_enemies = 0
 	for enemy in enemies:
 		enemy.room = self
+		enemy.ignore_radius = ROOM_RADIUS
 		remaining_enemies += 1
+		
+
+func deactivate_enemies():
+	for enemy in enemies:
+		if enemy.activated and not enemy.dead:
+			enemy.deactivate()
 		
 		
 func loop_reset(is_death: bool = false):
@@ -69,15 +77,16 @@ func loop_reset(is_death: bool = false):
 		if is_death:
 			if is_unlocked_this_run:
 				$cover.visible = true
-				door.enabled = false
+				door.lock_door(true)
 				door.close_door()
 				$unlocker.reset()
 			else:
 				is_unlocked_this_run = false
-				door.enabled = true
+				door.unlock_door()
 				door.close_door()
 		else:
-			door.enabled = true
+			is_unlocked_this_run = false
+			door.unlock_door()
 			door.close_door()
 	else:
 		$cover.visible = true
@@ -100,7 +109,7 @@ func _on_room_body_entered(body: Node2D) -> void:
 					enemy.activate(body)
 		
 			if remaining_enemies > 0:
-				door.enabled = false
+				door.lock_door()
 				door.close_door()
 
 func _on_room_body_exited(body: Node2D) -> void:
@@ -108,7 +117,5 @@ func _on_room_body_exited(body: Node2D) -> void:
 		return
 	
 	if body.is_in_group("player"):
-		door.enabled = true
-		#for enemy in enemies: # doesn't work as intended lol
-			#if enemy.activated and not enemy.dead:
-				#enemy.deactivate()
+		if remaining_enemies <= 0:
+			door.unlock_door()

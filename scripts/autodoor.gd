@@ -11,6 +11,17 @@ func _on_detect_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player") and enabled:
 		close_door()
 
+func lock_door(silent: bool = false):
+	enabled = false
+	$lock.visible = true
+	close_door()
+	if not silent:
+		$sfx_lock.play()
+	
+func unlock_door():
+	enabled = true
+	$lock.visible = false
+	
 func open_door():
 	$sprite.visible = false
 	$door/col.set_deferred("disabled", true)

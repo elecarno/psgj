@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://m23suyt23yot" path="res://scripts/autodoor.gd" id="1_wbrlg"]
 [ext_resource type="Texture2D" uid="uid://bdfewhe3c8asq" path="res://tilemap.png" id="2_nxlrg"]
 [ext_resource type="AudioStream" uid="uid://bn5bgqg0il11k" path="res://sfx/door_open.mp3" id="3_nvtpc"]
+[ext_resource type="Texture2D" uid="uid://58ojye0orf0c" path="res://tex/door_lock_h.png" id="3_nxlrg"]
+[ext_resource type="AudioStream" uid="uid://n8wptws4crhb" path="res://sfx/door_lock.wav" id="5_nvtpc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3n1d"]
 size = Vector2(16, 32)
@@ -16,6 +18,10 @@ script = ExtResource("1_wbrlg")
 [node name="sprite" type="Sprite2D" parent="." unique_id=1001197003]
 texture = ExtResource("2_nxlrg")
 region_enabled = true
+region_rect = Rect2(56, 8, 16, 16)
+
+[node name="lock" type="Sprite2D" parent="." unique_id=515703380]
+texture = ExtResource("3_nxlrg")
 region_rect = Rect2(56, 8, 16, 16)
 
 [node name="detect" type="Area2D" parent="." unique_id=1966726588]
@@ -35,6 +41,9 @@ stream = ExtResource("3_nvtpc")
 [node name="sfx_close" type="AudioStreamPlayer2D" parent="." unique_id=909391023]
 stream = ExtResource("3_nvtpc")
 pitch_scale = 0.9
+
+[node name="sfx_lock" type="AudioStreamPlayer2D" parent="." unique_id=2103172041]
+stream = ExtResource("5_nvtpc")
 
 [connection signal="body_entered" from="detect" to="." method="_on_detect_body_entered"]
 [connection signal="body_exited" from="detect" to="." method="_on_detect_body_exited"]

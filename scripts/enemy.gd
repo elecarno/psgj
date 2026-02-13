@@ -21,6 +21,7 @@ var show_shoot_line: bool = false
 var shoot_direction: Vector2 = Vector2.ZERO
 var rewind_pos: Vector2 = Vector2.ZERO
 var pre_rewind_pos: Vector2 = Vector2.ZERO
+var ignore_radius: int = 0
 var dead: bool = false
 
 @onready var nav_agent: NavigationAgent2D = $nav_agent
@@ -33,8 +34,10 @@ var dead: bool = false
 # behaviour variables
 @export var beh_hold_distance: bool = true
 @export var beh_burstfire: bool = false
+@export var beh_shotgun: bool = false
 @export var HOLD_DISTANCE: int = 48
 @export var SHOOT_INTERVAL: float = 1
+@export var SHOTGUN_ANGLE: float = 30
 
 func _ready() -> void:
 	$shoot_timer.wait_time = SHOOT_INTERVAL + randf_range(-0.1, 0.1)
@@ -92,8 +95,8 @@ func _physics_process(delta: float) -> void:
 	$rewind_line.set_point_position(0, to_local(pre_rewind_pos))
 	$rewind_line.set_point_position(1, to_local(rewind_pos))
 	
-	if global_position.distance_to(player.global_position) > 192:
-		deactivate()
+	#if global_position.distance_to(player.global_position) > ignore_radius:
+		#deactivate()
 		
 	
 func rewind():
@@ -135,6 +138,8 @@ func die():
 		timeloop.world.add_child(new_pellet)
 		
 	MANA_GIVE = round(MANA_GIVE/2)
+	if MANA_GIVE < 1:
+		MANA_GIVE = 1
 	
 	print(name + " died")
 	
@@ -143,8 +148,24 @@ func shoot_projectile():
 		var new_projectile: Projectile = PROJECTILE.instantiate()
 		new_projectile.global_position = global_position
 		new_projectile.direction = shoot_direction
-		new_projectile.MAX_SPEED = 150
+		new_projectile.MAX_SPEED = PROJECTILE_SPEED
 		timeloop.world.add_child(new_projectile)
+		
+		if beh_shotgun:
+			var new_projectile_2: Projectile = PROJECTILE.instantiate()
+			new_projectile_2.global_position = global_position
+			var new_angle_2 = shoot_direction.angle() + deg_to_rad(SHOTGUN_ANGLE)/2
+			new_projectile_2.direction = Vector2.ONE.from_angle(new_angle_2).normalized()
+			new_projectile_2.MAX_SPEED = PROJECTILE_SPEED
+			timeloop.world.add_child(new_projectile_2)
+			
+			var new_projectile_3: Projectile = PROJECTILE.instantiate()
+			new_projectile_3.global_position = global_position
+			var new_angle_3 = shoot_direction.angle() - deg_to_rad(SHOTGUN_ANGLE)/2
+			new_projectile_3.direction = Vector2.ONE.from_angle(new_angle_3).normalized()
+			new_projectile_3.MAX_SPEED = PROJECTILE_SPEED
+			timeloop.world.add_child(new_projectile_3)
+		
 		sfx.play_sound(sfx_shoot)
 		$shoot_timer.start()
 

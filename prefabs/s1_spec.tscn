@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://dypveqqsad1m3"]
+
+[ext_resource type="Script" uid="uid://c33w352oy8gnb" path="res://scripts/enemy.gd" id="1_uo8h8"]
+[ext_resource type="PackedScene" uid="uid://c6jatjqfvu7j0" path="res://prefabs/projectile.tscn" id="2_2kfsu"]
+[ext_resource type="AudioStream" uid="uid://c4t608kar1w2i" path="res://sfx/damage1.wav" id="3_jov7n"]
+[ext_resource type="AudioStream" uid="uid://g68c4n87ueok" path="res://sfx/gunshot4.wav" id="4_uo8h8"]
+[ext_resource type="AudioStream" uid="uid://cn30k4as7evlg" path="res://sfx/death1.wav" id="5_pfkft"]
+[ext_resource type="Shader" uid="uid://yqdvt4wm4frm" path="res://shaders/hit_flash.tres" id="6_0khwo"]
+[ext_resource type="Texture2D" uid="uid://bigtbb054pe5w" path="res://enemy_sprites.png" id="7_0jxwc"]
+[ext_resource type="Script" uid="uid://2i62rtqxayqf" path="res://scripts/sfx_player.gd" id="8_tmchb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_30cdx"]
+radius = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_by5uw"]
+resource_local_to_scene = true
+shader = ExtResource("6_0khwo")
+shader_parameter/enabled = false
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[node name="s1_spec" type="CharacterBody2D" unique_id=1139509445 groups=["enemy"]]
+z_index = 2
+collision_layer = 4
+script = ExtResource("1_uo8h8")
+MAX_SPEED = 15
+ACCELERATION = 20
+MANA_GIVE = 8
+MAX_HEALTH = 35
+PROJECTILE = ExtResource("2_2kfsu")
+PROJECTILE_SPEED = 100.0
+sfx_damage = ExtResource("3_jov7n")
+sfx_shoot = ExtResource("4_uo8h8")
+sfx_death = ExtResource("5_pfkft")
+beh_shotgun = true
+HOLD_DISTANCE = 12
+SHOOT_INTERVAL = 0.85
+SHOTGUN_ANGLE = 20.0
+
+[node name="col" type="CollisionShape2D" parent="." unique_id=1711648449]
+shape = SubResource("CircleShape2D_30cdx")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=1702888534]
+material = SubResource("ShaderMaterial_by5uw")
+texture = ExtResource("7_0jxwc")
+hframes = 8
+vframes = 8
+frame = 16
+
+[node name="nav_agent" type="NavigationAgent2D" parent="." unique_id=982341719]
+path_desired_distance = 3.0
+target_desired_distance = 3.0
+path_postprocessing = 1
+
+[node name="nav_timer" type="Timer" parent="." unique_id=1996378647]
+wait_time = 0.5
+autostart = true
+
+[node name="shoot_timer" type="Timer" parent="." unique_id=842786965]
+wait_time = 1.5
+one_shot = true
+
+[node name="shoot_delay" type="Timer" parent="." unique_id=1792986216]
+wait_time = 0.35
+one_shot = true
+
+[node name="shoot_line" type="Line2D" parent="." unique_id=1545043778]
+points = PackedVector2Array(0, 0, 512, 0)
+width = 0.0
+default_color = Color(0.20127451, 0.6400178, 5.7756904e-07, 0.40392157)
+
+[node name="rewind_timer" type="Timer" parent="." unique_id=1531644780]
+wait_time = 5.0
+autostart = true
+
+[node name="rewind_line" type="Line2D" parent="." unique_id=57040963]
+visible = false
+z_index = -1
+points = PackedVector2Array(0, 0, 0, 0)
+width = 1.0
+default_color = Color(0.34509805, 0.77254903, 0.8352941, 1)
+
+[node name="sfx" type="Node2D" parent="." unique_id=1514908798]
+script = ExtResource("8_tmchb")
+
+[node name="hit_flash_timer" type="Timer" parent="." unique_id=1610229974]
+wait_time = 0.15
+one_shot = true
+
+[node name="rewind_particles" type="CPUParticles2D" parent="." unique_id=657418821]
+emitting = false
+amount = 32
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.2
+emission_shape = 1
+emission_sphere_radius = 3.85
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 24.59
+initial_velocity_max = 24.59
+radial_accel_min = 1.0
+radial_accel_max = 1.0
+color = Color(0.34509805, 0.77254903, 0.8352941, 1)
+
+[node name="burst_timer" type="Timer" parent="." unique_id=822340519]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="nav_timer" to="." method="_on_nav_timer_timeout"]
+[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="shoot_delay" to="." method="_on_shoot_delay_timeout"]
+[connection signal="timeout" from="rewind_timer" to="." method="_on_rewind_timer_timeout"]
+[connection signal="timeout" from="hit_flash_timer" to="." method="_on_hit_flash_timer_timeout"]

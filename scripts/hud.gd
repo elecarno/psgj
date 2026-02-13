@@ -13,6 +13,16 @@ func update_data():
 	
 func set_rewind_overlay():
 	$rewind_overlay.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	
+func set_mana_notif():
+	$mana_notif.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	
+func set_loop_screen(is_death: bool = false):
+	$"../loop_screen".visible = true
+	$"../loop_screen".set_values(is_death)
+	$"../loop_screen/flash".modulate = Color(1.0, 1.0, 1.0, 1.0)
+	$"../loop_screen/sfx_flash".play()
+	
 
 func _physics_process(delta: float) -> void:
 	$lab_loop_count.text = str(timeloop.loop_count)
@@ -30,6 +40,11 @@ func _physics_process(delta: float) -> void:
 	for i in range(0, (timeloop.player.health )):
 		health_markers[i].visible = true
 		
-	var mod_a = $rewind_overlay.modulate.a
-	$rewind_overlay.modulate = Color(1.0, 1.0, 1.0, lerp(mod_a, 0.0, delta*4))
+	var rewind_alpha = $rewind_overlay.modulate.a
+	$rewind_overlay.modulate = Color(1.0, 1.0, 1.0, lerp(rewind_alpha, 0.0, delta*4))
+	var mana_alpha = $mana_notif.modulate.a
+	$mana_notif.modulate = Color(1.0, 1.0, 1.0, lerp(mana_alpha, 0.0, delta*8))
+	
+	var loop_flash_alpha = $"../loop_screen/flash".modulate.a
+	$"../loop_screen/flash".modulate = Color(1.0, 1.0, 1.0, lerp(loop_flash_alpha, 0.0, delta*6))
 	

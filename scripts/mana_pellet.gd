@@ -10,4 +10,5 @@ func _physics_process(delta: float) -> void:
 	if global_position.distance_to(timeloop.player.global_position) < 4:
 		timeloop.stored_mana += 1
 		timeloop.player.sfx.play_sound(timeloop.player.sfx_mana_pickup)
+		timeloop.hud.set_mana_notif()
 		queue_free()
