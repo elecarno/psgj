@@ -8,6 +8,7 @@ var room: Room = null
 @export var MAX_SPEED = 25
 @export var ACCELERATION = 12
 @export var MANA_GIVE = 0
+@export var SHOOT_DELAY = 0.35
 
 @export var MAX_HEALTH: int = 10
 var health: int
@@ -35,11 +36,14 @@ var dead: bool = false
 @export var beh_hold_distance: bool = true
 @export var beh_burstfire: bool = false
 @export var beh_shotgun: bool = false
+@export var beh_beam: bool = false
 @export var HOLD_DISTANCE: int = 48
 @export var SHOOT_INTERVAL: float = 1
 @export var SHOTGUN_ANGLE: float = 30
 
 func _ready() -> void:
+	$shoot_delay.wait_time = SHOOT_DELAY
+	
 	$shoot_timer.wait_time = SHOOT_INTERVAL + randf_range(-0.1, 0.1)
 	health = MAX_HEALTH
 	timeloop.enemies.append(self)
@@ -64,6 +68,8 @@ func reset():
 	$shoot_line.width = 0
 	$rewind_line.width = 0
 	$col.set_deferred("disabled", false)
+	if beh_beam:
+		$beam/line.visible = false
 	print("reset " + name)
 
 
@@ -71,6 +77,8 @@ func deactivate():
 	activated = false
 	$shoot_line.width = 0
 	$rewind_line.width = 0
+	if beh_beam:
+		$beam/line.visible = false
 	print("deactivated " + name)
 
 
@@ -89,7 +97,7 @@ func _physics_process(delta: float) -> void:
 		$sprite.scale = Vector2(1, 1)
 		
 	if show_shoot_line:
-		$shoot_line.width = lerpf($shoot_line.width, 0, delta * 2)
+		$shoot_line.width = lerpf($shoot_line.width, 0, delta*2)
 		
 	$rewind_line.width = lerpf($rewind_line.width, 0, delta*8)
 	$rewind_line.set_point_position(0, to_local(pre_rewind_pos))
@@ -97,6 +105,9 @@ func _physics_process(delta: float) -> void:
 	
 	#if global_position.distance_to(player.global_position) > ignore_radius:
 		#deactivate()
+		
+	if beh_beam:
+		$beam/line.width = lerpf($beam/line.width, 0, delta*6)
 		
 	
 func rewind():
@@ -137,6 +148,9 @@ func die():
 		)
 		timeloop.world.add_child(new_pellet)
 		
+	if beh_beam:
+		$beam/line.visible = false
+		
 	MANA_GIVE = round(MANA_GIVE/2)
 	if MANA_GIVE < 1:
 		MANA_GIVE = 1
@@ -145,11 +159,18 @@ func die():
 	
 func shoot_projectile():
 	if activated:
-		var new_projectile: Projectile = PROJECTILE.instantiate()
-		new_projectile.global_position = global_position
-		new_projectile.direction = shoot_direction
-		new_projectile.MAX_SPEED = PROJECTILE_SPEED
-		timeloop.world.add_child(new_projectile)
+		if not beh_beam:
+			var new_projectile: Projectile = PROJECTILE.instantiate()
+			new_projectile.global_position = global_position
+			new_projectile.direction = shoot_direction
+			new_projectile.MAX_SPEED = PROJECTILE_SPEED
+			timeloop.world.add_child(new_projectile)
+		else:
+			$beam.rotation = shoot_direction.angle()
+			$beam/col.set_deferred("disabled", false)
+			$beam/line.visible = true
+			$beam/line.width = 3
+			$beam_timeout.start()
 		
 		if beh_shotgun:
 			var new_projectile_2: Projectile = PROJECTILE.instantiate()
@@ -181,6 +202,8 @@ func _on_shoot_timer_timeout() -> void:
 		shoot_direction = (player.global_position - global_position).normalized()
 		$shoot_line.width = 1.5
 		$shoot_line.rotation = shoot_direction.angle()
+		#var dist_to_player = global_position.distance_to(player.global_position)
+		#$shoot_line.set_point_position(1, $shoot_line.get_point_position(1).normalized() * dist_to_player)
 		show_shoot_line = true
 		$shoot_delay.start()
 
@@ -202,3 +225,11 @@ func _on_hit_flash_timer_timeout() -> void:
 
 func _on_burst_timer_timeout() -> void:
 	shoot_projectile()
+
+func _on_beam_timeout_timeout() -> void:
+	$beam/col.set_deferred("disabled", true)
+
+
+func _on_beam_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		body.take_damage(2)

@@ -1,48 +1,53 @@
-[gd_scene format=3 uid="uid://bixrjsrl6vjkk"]
+[gd_scene format=3 uid="uid://b2gpyy08cjbf8"]
 
-[ext_resource type="Script" uid="uid://c33w352oy8gnb" path="res://scripts/enemy.gd" id="1_rbrd8"]
-[ext_resource type="PackedScene" uid="uid://c6jatjqfvu7j0" path="res://prefabs/projectile.tscn" id="2_ypotq"]
-[ext_resource type="AudioStream" uid="uid://c4t608kar1w2i" path="res://sfx/damage1.wav" id="3_oj80o"]
-[ext_resource type="AudioStream" uid="uid://boq61qm4ru0b4" path="res://sfx/gunshot1.wav" id="4_rbrd8"]
-[ext_resource type="AudioStream" uid="uid://cn30k4as7evlg" path="res://sfx/death1.wav" id="5_ylo3k"]
-[ext_resource type="Shader" uid="uid://yqdvt4wm4frm" path="res://shaders/hit_flash.tres" id="6_655tu"]
-[ext_resource type="Texture2D" uid="uid://bigtbb054pe5w" path="res://enemy_sprites.png" id="7_qvlpi"]
-[ext_resource type="Script" uid="uid://2i62rtqxayqf" path="res://scripts/sfx_player.gd" id="8_phao5"]
+[ext_resource type="Script" uid="uid://c33w352oy8gnb" path="res://scripts/enemy.gd" id="1_img4f"]
+[ext_resource type="PackedScene" uid="uid://c6jatjqfvu7j0" path="res://prefabs/projectile.tscn" id="2_d5pk8"]
+[ext_resource type="AudioStream" uid="uid://c4t608kar1w2i" path="res://sfx/damage1.wav" id="3_luk8l"]
+[ext_resource type="AudioStream" uid="uid://db1a40rjnoibn" path="res://sfx/gunshot3.wav" id="4_img4f"]
+[ext_resource type="AudioStream" uid="uid://cn30k4as7evlg" path="res://sfx/death1.wav" id="5_mpagq"]
+[ext_resource type="Shader" uid="uid://yqdvt4wm4frm" path="res://shaders/hit_flash.tres" id="6_hwu8t"]
+[ext_resource type="Texture2D" uid="uid://bigtbb054pe5w" path="res://enemy_sprites.png" id="7_q8x5f"]
+[ext_resource type="Script" uid="uid://2i62rtqxayqf" path="res://scripts/sfx_player.gd" id="8_nop5y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_30cdx"]
 radius = 5.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_by5uw"]
 resource_local_to_scene = true
-shader = ExtResource("6_655tu")
+shader = ExtResource("6_hwu8t")
 shader_parameter/enabled = false
 shader_parameter/tint = Color(1, 1, 1, 1)
 
-[node name="s1_cmdr" type="CharacterBody2D" unique_id=1139509445 groups=["enemy"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_img4f"]
+size = Vector2(256, 2)
+
+[node name="s2_enh" type="CharacterBody2D" unique_id=1139509445 groups=["enemy"]]
 z_index = 2
 collision_layer = 4
-script = ExtResource("1_rbrd8")
-MAX_SPEED = 20
-ACCELERATION = 18
-MANA_GIVE = 6
-MAX_HEALTH = 55
-PROJECTILE = ExtResource("2_ypotq")
-PROJECTILE_SPEED = 350.0
-sfx_damage = ExtResource("3_oj80o")
-sfx_shoot = ExtResource("4_rbrd8")
-sfx_death = ExtResource("5_ylo3k")
-HOLD_DISTANCE = 18
-SHOOT_INTERVAL = 1.5
+script = ExtResource("1_img4f")
+MAX_SPEED = 13
+ACCELERATION = 16
+MANA_GIVE = 10
+SHOOT_DELAY = 0.15
+MAX_HEALTH = 45
+PROJECTILE = ExtResource("2_d5pk8")
+PROJECTILE_SPEED = 100.0
+sfx_damage = ExtResource("3_luk8l")
+sfx_shoot = ExtResource("4_img4f")
+sfx_death = ExtResource("5_mpagq")
+beh_beam = true
+SHOOT_INTERVAL = 1.2
+SHOTGUN_ANGLE = 20.0
 
 [node name="col" type="CollisionShape2D" parent="." unique_id=1711648449]
 shape = SubResource("CircleShape2D_30cdx")
 
 [node name="sprite" type="Sprite2D" parent="." unique_id=1702888534]
 material = SubResource("ShaderMaterial_by5uw")
-texture = ExtResource("7_qvlpi")
+texture = ExtResource("7_q8x5f")
 hframes = 8
 vframes = 8
-frame = 8
+frame = 25
 
 [node name="nav_agent" type="NavigationAgent2D" parent="." unique_id=982341719]
 path_desired_distance = 3.0
@@ -64,7 +69,7 @@ one_shot = true
 [node name="shoot_line" type="Line2D" parent="." unique_id=1545043778]
 points = PackedVector2Array(0, 0, 512, 0)
 width = 0.0
-default_color = Color(0.20127451, 0.6400178, 5.7756904e-07, 0.40392157)
+default_color = Color(0.7058824, 0.32156864, 0.32156864, 0.40392157)
 
 [node name="rewind_timer" type="Timer" parent="." unique_id=1531644780]
 wait_time = 5.0
@@ -78,7 +83,7 @@ width = 1.0
 default_color = Color(0.34509805, 0.77254903, 0.8352941, 1)
 
 [node name="sfx" type="Node2D" parent="." unique_id=1514908798]
-script = ExtResource("8_phao5")
+script = ExtResource("8_nop5y")
 
 [node name="hit_flash_timer" type="Timer" parent="." unique_id=1610229974]
 wait_time = 0.15
@@ -105,8 +110,29 @@ color = Color(0.34509805, 0.77254903, 0.8352941, 1)
 wait_time = 0.1
 one_shot = true
 
+[node name="beam" type="Area2D" parent="." unique_id=1497748004]
+collision_layer = 0
+collision_mask = 2
+
+[node name="col" type="CollisionShape2D" parent="beam" unique_id=177944883]
+position = Vector2(128, 0)
+shape = SubResource("RectangleShape2D_img4f")
+disabled = true
+
+[node name="line" type="Line2D" parent="beam" unique_id=74182374]
+z_index = -1
+points = PackedVector2Array(0, 0, 256, 0)
+width = 0.0
+default_color = Color(0.7058824, 0.32156864, 0.32156864, 1)
+
+[node name="beam_timeout" type="Timer" parent="." unique_id=548142432]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="timeout" from="nav_timer" to="." method="_on_nav_timer_timeout"]
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="shoot_delay" to="." method="_on_shoot_delay_timeout"]
 [connection signal="timeout" from="rewind_timer" to="." method="_on_rewind_timer_timeout"]
 [connection signal="timeout" from="hit_flash_timer" to="." method="_on_hit_flash_timer_timeout"]
+[connection signal="body_entered" from="beam" to="." method="_on_beam_body_entered"]
+[connection signal="timeout" from="beam_timeout" to="." method="_on_beam_timeout_timeout"]

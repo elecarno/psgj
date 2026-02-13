@@ -29,10 +29,8 @@ var can_rewind: bool = true
 
 var is_grappling: bool = false
 var grapple_target: Enemy = null
-var possessed_weapons: Array[WEAPONS] = [
-	WEAPONS.PISTOL
-]
-var current_weapon: WEAPONS = WEAPONS.PISTOL # -1 for no weapons
+var possessed_weapons: Array[WEAPONS] = []
+var current_weapon: WEAPONS = -1 # -1 for no weapons
 var current_weapon_idx: int = 0
 var input: Vector2 = Vector2.ZERO
 var rewind_pos: Vector2 = Vector2.ZERO
@@ -157,11 +155,11 @@ func update_weapon():
 	$weapon/sprite.frame_coords = Vector2(current_weapon, 2)
 
 
-func take_damage():
+func take_damage(amount: int = 1):
 	if not player_is_active:
 		return
 	
-	health -= 1
+	health -= amount # almost always going to be the default (1)a
 	$cam.camera_shake(2.5)
 	timeloop.frame_freeze(0.05, 0.5)
 	sfx.play_sound(sfx_damage)
@@ -206,10 +204,11 @@ func _on_parry_cooldown_timeout() -> void:
 
 
 func _on_rewind_timer_timeout() -> void:
-	rewind_pos = global_position
-	$"../rewind_indicator".global_position = rewind_pos
-	$"../rewind_indicator/rewind_particles".emitting = true
-	sfx.play_sound(sfx_rewind_set)
+	if player_is_active:
+		rewind_pos = global_position
+		$"../rewind_indicator".global_position = rewind_pos
+		$"../rewind_indicator/rewind_particles".emitting = true
+		sfx.play_sound(sfx_rewind_set)
 
 
 func _on_rewind_cooldown_timeout() -> void:

@@ -20,9 +20,17 @@ func set_mana_notif():
 func set_loop_screen(is_death: bool = false):
 	$"../loop_screen".visible = true
 	$"../loop_screen".set_values(is_death)
-	$"../loop_screen/flash".modulate = Color(1.0, 1.0, 1.0, 1.0)
+	if is_death:
+		$"../loop_screen/flash_death".modulate = Color(1.0, 1.0, 1.0, 1.0)
+	else:
+		$"../loop_screen/flash".modulate = Color(1.0, 1.0, 1.0, 1.0)
 	$"../loop_screen/sfx_flash".play()
 	
+
+func show_message(message: String):
+	$lab_message.visible = true
+	$lab_message.text = message
+	$message_timeout.start()
 
 func _physics_process(delta: float) -> void:
 	$lab_loop_count.text = str(timeloop.loop_count)
@@ -47,4 +55,8 @@ func _physics_process(delta: float) -> void:
 	
 	var loop_flash_alpha = $"../loop_screen/flash".modulate.a
 	$"../loop_screen/flash".modulate = Color(1.0, 1.0, 1.0, lerp(loop_flash_alpha, 0.0, delta*6))
+	var loop_flash_death_alpha = $"../loop_screen/flash_death".modulate.a
+	$"../loop_screen/flash_death".modulate = Color(1.0, 1.0, 1.0, lerp(loop_flash_death_alpha, 0.0, delta*6))
 	
+func _on_message_timeout_timeout() -> void:
+	$lab_message.visible = false

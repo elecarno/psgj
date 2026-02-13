@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="psgj"
-run/main_scene="uid://cq2ib8mjnjc6d"
+run/main_scene="uid://c7ghv2w3bdco4"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -22,7 +22,6 @@ buses/default_bus_layout="uid://ccikvmmt4bwfw"
 [autoload]
 
 timeloop="*uid://crjj30xnl0wh2"
-util="*uid://cd2i04rmxw8vn"
 
 [display]
 

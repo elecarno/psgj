@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://c7ghv2w3bdco4"]
 
+[ext_resource type="Texture2D" uid="uid://cosim4g2lqap7" path="res://room_cover.png" id="1_05l2w"]
 [ext_resource type="Theme" uid="uid://bfwyjs3f4i28h" path="res://theme_main.tres" id="1_ak2if"]
+[ext_resource type="Script" uid="uid://cllcqi2di411q" path="res://scripts/title_screen.gd" id="1_hafda"]
+[ext_resource type="Texture2D" uid="uid://dixqn2gt433k4" path="res://tex/logo.png" id="2_hafda"]
 [ext_resource type="Shader" uid="uid://dsyjfe3orsxyl" path="res://shaders/crt.gdshader" id="2_ig5kc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_05l2w"]
@@ -28,31 +31,55 @@ shader_parameter/roll_strength = 0.15
 shader_parameter/glow_strength = 0.25
 shader_parameter/glow_threshold = 0.65
 
-[node name="control" type="Control" unique_id=1876565793]
+[node name="title_screen" type="Control" unique_id=811241297]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hafda")
 
-[node name="lab_timer" type="Label" parent="." unique_id=322268315]
+[node name="bg" type="TextureRect" parent="." unique_id=625023810]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -36.0
-offset_top = -79.0
-offset_right = 37.0
-offset_bottom = -55.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+texture = ExtResource("1_05l2w")
+
+[node name="logo" type="TextureRect" parent="." unique_id=776427587]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -117.0
+offset_right = 192.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hafda")
+
+[node name="btn_play" type="Button" parent="." unique_id=771685099]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.00003
+offset_top = 109.0
+offset_right = 61.0
+offset_bottom = 163.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("1_ak2if")
-text = "300/ 300"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_font_sizes/font_size = 16
+text = "PLAY"
 
 [node name="crt" type="ColorRect" parent="." unique_id=101128911]
 material = SubResource("ShaderMaterial_05l2w")
@@ -63,3 +90,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[connection signal="pressed" from="btn_play" to="." method="_on_btn_play_pressed"]

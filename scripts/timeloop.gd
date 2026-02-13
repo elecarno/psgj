@@ -4,7 +4,7 @@ var loop_is_active: bool = true
 
 var was_loop_death: bool = false
 
-@onready var world: Node2D = get_tree().get_root().get_node("world")
+@onready var world: Node2D
 @onready var loop_timer: Timer
 @onready var hud: HUD
 var rooms: Array = []
@@ -17,14 +17,12 @@ var current_loop_time: int = 15
 var stored_mana: int = 0
 var loop_count: int = 1
 
-func _ready() -> void:
+func initialise():
 	loop_timer = world.get_node("loop_timer")
-	
 	player = world.get_node("player")
-	
 	hud = world.get_node("canvas/hud")
 	
-	rooms = world.get_node("sector_one").get_children()
+	rooms = world.get_node("rooms").get_children()
 	rooms.remove_at(0) # removes "sfx_unlock"
 	
 	loop_timer.wait_time = current_loop_time
