@@ -1761,6 +1761,7 @@ color = Color(0.7058824, 0.32156864, 0.32156864, 1)
 stream = ExtResource("33_wbjd1")
 
 [node name="intro_flash" type="ColorRect" parent="canvas" unique_id=1146063063]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

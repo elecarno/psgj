@@ -17,7 +17,7 @@ const DASH_SPEED = 320
 const GRAPPLE_MAX_SPEED = 220
 const GRAPPLE_ACCELERATION = 7
 
-const GRAPPLE_DAMAGE = 10
+const GRAPPLE_DAMAGE = 16
 
 const MAX_HEALTH: int = 3
 var health: int = 3

@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 			$hitbox_timer.start()
 			
 		if player.current_weapon == 2: # pistol
-			new_projectile.PROJECTILE_DAMAGE = 5
+			new_projectile.PROJECTILE_DAMAGE = 4
 			new_projectile.MAX_SPEED = 250
 			$firerate.wait_time = 0.3
 			timeloop.world.add_child(new_projectile)
@@ -66,7 +66,7 @@ func _physics_process(delta: float) -> void:
 			
 
 		if player.current_weapon == 3: # hand cannon
-			new_projectile.PROJECTILE_DAMAGE = 20
+			new_projectile.PROJECTILE_DAMAGE = 16
 			new_projectile.MAX_SPEED = 450
 			$firerate.wait_time = 1
 			timeloop.world.add_child(new_projectile)
