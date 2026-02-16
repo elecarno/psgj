@@ -1,6 +1,6 @@
 extends Control
 
-var sector_one: PackedScene = preload("res://sector_one.tscn")
+var sector_one: PackedScene = preload("res://sector_two.tscn")
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("dash"):

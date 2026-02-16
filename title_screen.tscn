@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://cllcqi2di411q" path="res://scripts/title_screen.gd" id="1_hafda"]
 [ext_resource type="Texture2D" uid="uid://dixqn2gt433k4" path="res://tex/logo.png" id="2_hafda"]
 [ext_resource type="Shader" uid="uid://dsyjfe3orsxyl" path="res://shaders/crt.gdshader" id="2_ig5kc"]
+[ext_resource type="AudioStream" uid="uid://dunw464dxwol2" path="res://soundtrack/psgj_5.wav" id="6_tpml5"]
+[ext_resource type="AudioStream" uid="uid://d1dydcx3dmq7d" path="res://sfx/ambience2.wav" id="7_jqemp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_05l2w"]
 shader = ExtResource("2_ig5kc")
@@ -15,8 +17,8 @@ shader_parameter/gamma = 1.10000004573023
 shader_parameter/curvature = 0.0250000011875
 shader_parameter/corner_soften = 0.06000000285
 shader_parameter/vignette = 0.150000007125
-shader_parameter/scanline_strength = 0.30000001425
-shader_parameter/scanline_density = 1.450000045125
+shader_parameter/scanline_strength = 0.150000007125
+shader_parameter/scanline_density = 2.500000095
 shader_parameter/interlace_strength = 0.2
 shader_parameter/mask_strength = 0.22
 shader_parameter/mask_scale = 1.0
@@ -90,5 +92,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="sfx_mus" type="AudioStreamPlayer" parent="." unique_id=1575918606]
+stream = ExtResource("6_tpml5")
+autoplay = true
+bus = &"Music"
+
+[node name="sfx_bg" type="AudioStreamPlayer" parent="." unique_id=1936272325]
+stream = ExtResource("7_jqemp")
+volume_db = -2.0
+pitch_scale = 0.85
+autoplay = true
 
 [connection signal="pressed" from="btn_play" to="." method="_on_btn_play_pressed"]

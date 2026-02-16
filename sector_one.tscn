@@ -73,7 +73,7 @@ size = Vector2(112, 96)
 size = Vector2(28, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ok6jj"]
-size = Vector2(96, 72)
+size = Vector2(96, 66)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8e4i"]
 size = Vector2(160, 40)
@@ -82,10 +82,10 @@ size = Vector2(160, 40)
 size = Vector2(88, 88)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_come4"]
-size = Vector2(208, 104)
+size = Vector2(208, 98)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0cp0l"]
-size = Vector2(64, 104)
+size = Vector2(64, 98)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j68ct"]
 content_margin_left = 4.0
@@ -137,7 +137,7 @@ shader_parameter/curvature = 0.0250000011875
 shader_parameter/corner_soften = 0.06000000285
 shader_parameter/vignette = 0.150000007125
 shader_parameter/scanline_strength = 0.30000001425
-shader_parameter/scanline_density = 1.450000045125
+shader_parameter/scanline_density = 2.500000095
 shader_parameter/interlace_strength = 0.2
 shader_parameter/mask_strength = 0.22
 shader_parameter/mask_scale = 1.0
@@ -494,7 +494,6 @@ scale = Vector2(8.5, 6.0625)
 texture = ExtResource("16_d11rv")
 
 [node name="exit_area" type="Area2D" parent="rooms/s1-2" unique_id=1256836124]
-visible = false
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("17_kh61u")
@@ -533,7 +532,7 @@ position = Vector2(-29, 6)
 [node name="s1-4" type="Node2D" parent="rooms" unique_id=2034326683]
 position = Vector2(131, 128)
 script = ExtResource("13_frrrd")
-MANA_COST = 6
+MANA_COST = 10
 ROOM_NAME = "Barracks"
 
 [node name="autodoor_v" parent="rooms/s1-4" unique_id=1182985398 instance=ExtResource("14_umree")]
@@ -568,7 +567,6 @@ position = Vector2(-20, 45)
 position = Vector2(17, 51)
 
 [node name="exit_area" type="Area2D" parent="rooms/s1-4" unique_id=929865136]
-visible = false
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("17_kh61u")
@@ -580,7 +578,7 @@ shape = SubResource("RectangleShape2D_facbu")
 [node name="s1-5" type="Node2D" parent="rooms" unique_id=1004655491]
 position = Vector2(233, 158)
 script = ExtResource("13_frrrd")
-MANA_COST = 4
+MANA_COST = 6
 ROOM_NAME = "Barracks"
 ROOM_RADIUS = 96
 
@@ -613,7 +611,6 @@ position = Vector2(71, 7)
 position = Vector2(12, 70)
 
 [node name="exit_area" type="Area2D" parent="rooms/s1-5" unique_id=1387266555]
-visible = false
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("17_kh61u")
@@ -625,6 +622,7 @@ shape = SubResource("RectangleShape2D_b1qrp")
 [node name="s1-6" type="Node2D" parent="rooms" unique_id=1353819781]
 position = Vector2(191, 288)
 script = ExtResource("13_frrrd")
+MANA_COST = 16
 ROOM_NAME = "Checkpoint A"
 
 [node name="autodoor_h" parent="rooms/s1-6" unique_id=31554682 instance=ExtResource("19_r0qx1")]
@@ -659,13 +657,12 @@ position = Vector2(25, 3)
 position = Vector2(0, 28)
 
 [node name="exit_area" type="Area2D" parent="rooms/s1-6" unique_id=1182444478]
-visible = false
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("17_kh61u")
 
 [node name="col" type="CollisionShape2D" parent="rooms/s1-6/exit_area" unique_id=1927423336]
-position = Vector2(1, 12)
+position = Vector2(1, 15)
 shape = SubResource("RectangleShape2D_ok6jj")
 
 [node name="s1-7" type="Node2D" parent="rooms" unique_id=1957529746]
@@ -698,6 +695,7 @@ position = Vector2(-29, 6)
 [node name="s1-8" type="Node2D" parent="rooms" unique_id=2095842547]
 position = Vector2(233, 14)
 script = ExtResource("13_frrrd")
+MANA_COST = 12
 ROOM_NAME = "Hallway"
 
 [node name="autodoor_v" parent="rooms/s1-8" unique_id=232526147 instance=ExtResource("14_umree")]
@@ -723,7 +721,6 @@ texture = ExtResource("16_d11rv")
 position = Vector2(-29, 30)
 
 [node name="exit_area" type="Area2D" parent="rooms/s1-8" unique_id=1119996164]
-visible = false
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("17_kh61u")
@@ -735,6 +732,7 @@ shape = SubResource("RectangleShape2D_h8e4i")
 [node name="s1-9" type="Node2D" parent="rooms" unique_id=1669328930]
 position = Vector2(401, 14)
 script = ExtResource("13_frrrd")
+MANA_COST = 6
 ROOM_NAME = "Checkpoint C"
 ROOM_RADIUS = 128
 
@@ -765,7 +763,6 @@ position = Vector2(53, 28)
 PROJECTILE_SPEED = 135.0
 
 [node name="exit_area" type="Area2D" parent="rooms/s1-9" unique_id=1234212586]
-visible = false
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("17_kh61u")
@@ -777,6 +774,7 @@ shape = SubResource("RectangleShape2D_4lmeg")
 [node name="s1-10" type="Node2D" parent="rooms" unique_id=2120383772]
 position = Vector2(335, 80)
 script = ExtResource("13_frrrd")
+MANA_COST = 4
 ROOM_NAME = "Storage Room"
 
 [node name="autodoor_h" parent="rooms/s1-10" unique_id=1247910490 instance=ExtResource("19_r0qx1")]
@@ -804,6 +802,7 @@ position = Vector2(-11, -36)
 [node name="s1-11" type="Node2D" parent="rooms" unique_id=407322490]
 position = Vector2(191, 368)
 script = ExtResource("13_frrrd")
+MANA_COST = 18
 ROOM_NAME = "Canteen"
 ROOM_RADIUS = 192
 
@@ -854,19 +853,17 @@ position = Vector2(46, 51)
 position = Vector2(-16, 32)
 
 [node name="exit_area" type="Area2D" parent="rooms/s1-11" unique_id=1323506986]
-visible = false
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("17_kh61u")
 
 [node name="col" type="CollisionShape2D" parent="rooms/s1-11/exit_area" unique_id=103909797]
-position = Vector2(41, 28)
+position = Vector2(41, 31)
 shape = SubResource("RectangleShape2D_come4")
 
 [node name="s1-12" type="Node2D" parent="rooms" unique_id=1203359460]
 position = Vector2(83, 408)
 script = ExtResource("13_frrrd")
-MANA_COST = 4
 ROOM_NAME = "Kitchen"
 
 [node name="autodoor_v" parent="rooms/s1-12" unique_id=1414274280 instance=ExtResource("14_umree")]
@@ -921,6 +918,7 @@ position = Vector2(-29, 30)
 [node name="s1-14" type="Node2D" parent="rooms" unique_id=92731285]
 position = Vector2(321, 286)
 script = ExtResource("13_frrrd")
+MANA_COST = 6
 ROOM_NAME = "Commander's Quarters"
 
 [node name="autodoor_v" parent="rooms/s1-14" unique_id=604089893 instance=ExtResource("14_umree")]
@@ -948,7 +946,6 @@ position = Vector2(-29, 30)
 [node name="s1-15" type="Node2D" parent="rooms" unique_id=130074307]
 position = Vector2(99, 296)
 script = ExtResource("13_frrrd")
-MANA_COST = 4
 ROOM_NAME = "Hallway"
 
 [node name="autodoor_v" parent="rooms/s1-15" unique_id=484704540 instance=ExtResource("14_umree")]
@@ -976,6 +973,7 @@ position = Vector2(49, 28)
 [node name="s1-16" type="Node2D" parent="rooms" unique_id=470899992]
 position = Vector2(361, 358)
 script = ExtResource("13_frrrd")
+MANA_COST = 6
 ROOM_NAME = "Hallway"
 
 [node name="autodoor_v" parent="rooms/s1-16" unique_id=1810512399 instance=ExtResource("14_umree")]
@@ -1030,6 +1028,7 @@ position = Vector2(-11, -36)
 [node name="s1-18" type="Node2D" parent="rooms" unique_id=1144628028]
 position = Vector2(521, 358)
 script = ExtResource("13_frrrd")
+MANA_COST = 16
 ROOM_NAME = "Checkpoint B"
 ROOM_RADIUS = 128
 
@@ -1070,6 +1069,7 @@ position = Vector2(0, 58)
 [node name="s1-19" type="Node2D" parent="rooms" unique_id=1428136970]
 position = Vector2(551, 344)
 script = ExtResource("13_frrrd")
+MANA_COST = 4
 ROOM_NAME = "Hallway"
 
 [node name="autodoor_h" parent="rooms/s1-19" unique_id=1426418413 instance=ExtResource("19_r0qx1")]
@@ -1095,19 +1095,18 @@ texture = ExtResource("16_d11rv")
 position = Vector2(-11, -12)
 
 [node name="exit_area" type="Area2D" parent="rooms/s1-19" unique_id=1795858491]
-visible = false
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("17_kh61u")
 
 [node name="col" type="CollisionShape2D" parent="rooms/s1-19/exit_area" unique_id=1668049463]
-position = Vector2(-15, 28)
+position = Vector2(-15, 31)
 shape = SubResource("RectangleShape2D_0cp0l")
 
 [node name="s1-20" type="Node2D" parent="rooms" unique_id=2104127258]
 position = Vector2(491, 200)
 script = ExtResource("13_frrrd")
-MANA_COST = 4
+MANA_COST = 8
 ROOM_NAME = "Security Office"
 
 [node name="autodoor_v" parent="rooms/s1-20" unique_id=1003175955 instance=ExtResource("14_umree")]
@@ -1135,7 +1134,8 @@ position = Vector2(49, 28)
 [node name="s1-21" type="Node2D" parent="rooms" unique_id=1041649762]
 position = Vector2(593, 134)
 script = ExtResource("13_frrrd")
-ROOM_NAME = "Blast Door Room"
+MANA_COST = 16
+ROOM_NAME = "Elevator Hall"
 
 [node name="s2_enh" parent="rooms/s1-21" unique_id=1036053035 instance=ExtResource("23_qv6kk")]
 position = Vector2(32, 36)
@@ -1195,6 +1195,7 @@ position = Vector2(32, -28)
 [node name="s1-22" type="Node2D" parent="rooms" unique_id=1541680544]
 position = Vector2(455, 112)
 script = ExtResource("13_frrrd")
+MANA_COST = 4
 ROOM_NAME = "Archives"
 
 [node name="autodoor_h" parent="rooms/s1-22" unique_id=1364920065 instance=ExtResource("19_r0qx1")]
@@ -1228,6 +1229,9 @@ item = "dash"
 
 [node name="text_log" parent="." unique_id=1452556122 instance=ExtResource("25_gyj6f")]
 position = Vector2(8, -24)
+text = "Rations are down to three weeks. The supply ship from Mortar went dark five hours ago. Patrols showed FRONTIER activity in the region.
+
+I overheard some of the upper security talking about stocks hidden in the core. We should rally and storm them."
 
 [node name="decor" type="TileMapLayer" parent="." unique_id=837051003]
 z_index = 2

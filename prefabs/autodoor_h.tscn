@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://n8wptws4crhb" path="res://sfx/door_lock.wav" id="5_nvtpc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3n1d"]
-size = Vector2(16, 32)
+size = Vector2(16, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2o6r5"]
 size = Vector2(16, 12)

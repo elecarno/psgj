@@ -37,9 +37,12 @@ var dead: bool = false
 @export var beh_burstfire: bool = false
 @export var beh_shotgun: bool = false
 @export var beh_beam: bool = false
+@export var beh_gatling: bool = false
 @export var HOLD_DISTANCE: int = 48
 @export var SHOOT_INTERVAL: float = 1
 @export var SHOTGUN_ANGLE: float = 30
+
+var gatling_is_firing: bool = false
 
 func _ready() -> void:
 	$shoot_delay.wait_time = SHOOT_DELAY
@@ -86,10 +89,12 @@ func _physics_process(delta: float) -> void:
 	if not activated:
 		return
 		
-	if not nav_agent.is_target_reached() and player.global_position.distance_to(global_position) > HOLD_DISTANCE:
-		var nav_point_direction = to_local(nav_agent.get_next_path_position()).normalized()
-		velocity = lerp(velocity, nav_point_direction * MAX_SPEED, ACCELERATION * delta)
-		move_and_slide()
+	
+	if not beh_gatling:
+		if not nav_agent.is_target_reached() and player.global_position.distance_to(global_position) > HOLD_DISTANCE:
+			var nav_point_direction = to_local(nav_agent.get_next_path_position()).normalized()
+			velocity = lerp(velocity, nav_point_direction * MAX_SPEED, ACCELERATION * delta)
+			move_and_slide()
 		
 	if velocity.x < 0:
 		$sprite.scale = Vector2(-1, 1)
@@ -161,9 +166,11 @@ func shoot_projectile():
 	if activated:
 		if not beh_beam:
 			var new_projectile: Projectile = PROJECTILE.instantiate()
-			new_projectile.global_position = global_position
+			new_projectile.global_position = $sprite/shoot_pivot.global_position
 			new_projectile.direction = shoot_direction
 			new_projectile.MAX_SPEED = PROJECTILE_SPEED
+			if beh_gatling:
+				new_projectile.PARRYABLE = false
 			timeloop.world.add_child(new_projectile)
 		else:
 			$beam.rotation = shoot_direction.angle()
@@ -174,21 +181,23 @@ func shoot_projectile():
 		
 		if beh_shotgun:
 			var new_projectile_2: Projectile = PROJECTILE.instantiate()
-			new_projectile_2.global_position = global_position
+			new_projectile_2.global_position = $sprite/shoot_pivot.global_position
 			var new_angle_2 = shoot_direction.angle() + deg_to_rad(SHOTGUN_ANGLE)/2
 			new_projectile_2.direction = Vector2.ONE.from_angle(new_angle_2).normalized()
 			new_projectile_2.MAX_SPEED = PROJECTILE_SPEED
 			timeloop.world.add_child(new_projectile_2)
 			
 			var new_projectile_3: Projectile = PROJECTILE.instantiate()
-			new_projectile_3.global_position = global_position
+			new_projectile_3.global_position = $sprite/shoot_pivot.global_position
 			var new_angle_3 = shoot_direction.angle() - deg_to_rad(SHOTGUN_ANGLE)/2
 			new_projectile_3.direction = Vector2.ONE.from_angle(new_angle_3).normalized()
 			new_projectile_3.MAX_SPEED = PROJECTILE_SPEED
 			timeloop.world.add_child(new_projectile_3)
 		
 		sfx.play_sound(sfx_shoot)
-		$shoot_timer.start()
+		$sprite/shoot_pivot/flash.emitting = true
+		if not beh_gatling:
+			$shoot_timer.start()
 
 
 func _on_nav_timer_timeout() -> void:
@@ -205,11 +214,16 @@ func _on_shoot_timer_timeout() -> void:
 		#var dist_to_player = global_position.distance_to(player.global_position)
 		#$shoot_line.set_point_position(1, $shoot_line.get_point_position(1).normalized() * dist_to_player)
 		show_shoot_line = true
+		$sprite/head.look_at(player.global_position)
 		$shoot_delay.start()
 
 func _on_shoot_delay_timeout() -> void:
 	if activated:
 		shoot_projectile()
+		if beh_gatling:
+			gatling_is_firing = true
+			$gatling_delay.start()
+			$gatling_timeout.start()
 		$shoot_timer.wait_time = SHOOT_INTERVAL + randf_range(-0.15, 0.15)
 		if beh_burstfire:
 			$burst_timer.start()
@@ -233,3 +247,14 @@ func _on_beam_timeout_timeout() -> void:
 func _on_beam_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		body.take_damage(2)
+
+
+func _on_gatling_delay_timeout() -> void:
+	if gatling_is_firing:
+		shoot_projectile()
+		$gatling_delay.start()
+
+
+func _on_gatling_timeout_timeout() -> void:
+	gatling_is_firing = false
+	$shoot_timer.start()

@@ -24,15 +24,16 @@ collision_layer = 4
 script = ExtResource("1_rbrd8")
 MAX_SPEED = 20
 ACCELERATION = 18
-MANA_GIVE = 6
-MAX_HEALTH = 55
+MANA_GIVE = 4
+MAX_HEALTH = 48
 PROJECTILE = ExtResource("2_ypotq")
-PROJECTILE_SPEED = 350.0
+PROJECTILE_SPEED = 352.0
 sfx_damage = ExtResource("3_oj80o")
 sfx_shoot = ExtResource("4_rbrd8")
 sfx_death = ExtResource("5_ylo3k")
-HOLD_DISTANCE = 18
+HOLD_DISTANCE = 32
 SHOOT_INTERVAL = 1.5
+SHOTGUN_ANGLE = 0.0
 
 [node name="col" type="CollisionShape2D" parent="." unique_id=1711648449]
 shape = SubResource("CircleShape2D_30cdx")
@@ -43,6 +44,25 @@ texture = ExtResource("7_qvlpi")
 hframes = 8
 vframes = 8
 frame = 8
+
+[node name="shoot_pivot" type="Node2D" parent="sprite" unique_id=281594638]
+position = Vector2(4, -1.5)
+
+[node name="flash" type="CPUParticles2D" parent="sprite/shoot_pivot" unique_id=872861587]
+emitting = false
+lifetime = 0.1
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+spread = 25.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.3
+initial_velocity_max = 72.73
+angular_velocity_min = -366.55
+angular_velocity_max = 410.18
+linear_accel_min = -78.18
+linear_accel_max = -42.42
+color = Color(0.92941177, 0.88235295, 0.61960787, 1)
 
 [node name="nav_agent" type="NavigationAgent2D" parent="." unique_id=982341719]
 path_desired_distance = 3.0

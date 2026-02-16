@@ -3,6 +3,7 @@ extends Area2D
 
 @export var MAX_SPEED = 100
 @export var PROJECTILE_DAMAGE = 512 # for damaging enemies only
+@export var PARRYABLE: bool = true
 var is_enemy_projectile: bool = true
 var direction: Vector2
 var has_been_parried: bool = false
@@ -38,7 +39,7 @@ func _on_body_entered(body: Node2D) -> void:
 		queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("parry_collider"):
+	if area.is_in_group("parry_collider") and PARRYABLE:
 		print("parried")
 		$sfx.play_sound(sfx_parry)
 		$parry_particles.emitting = true

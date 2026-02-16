@@ -29,8 +29,10 @@ var can_rewind: bool = true
 
 var is_grappling: bool = false
 var grapple_target: Enemy = null
-var possessed_weapons: Array[WEAPONS] = []
-var current_weapon: WEAPONS = -1 # -1 for no weapons
+var possessed_weapons: Array[WEAPONS] = [
+	WEAPONS.PISTOL
+]
+var current_weapon: WEAPONS = WEAPONS.PISTOL # -1 for no weapons
 var current_weapon_idx: int = 0
 var input: Vector2 = Vector2.ZERO
 var rewind_pos: Vector2 = Vector2.ZERO

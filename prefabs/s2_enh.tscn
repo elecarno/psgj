@@ -25,19 +25,19 @@ size = Vector2(256, 2)
 z_index = 2
 collision_layer = 4
 script = ExtResource("1_img4f")
-MAX_SPEED = 13
+MAX_SPEED = 14
 ACCELERATION = 16
-MANA_GIVE = 10
+MANA_GIVE = 8
 SHOOT_DELAY = 0.15
-MAX_HEALTH = 45
+MAX_HEALTH = 48
 PROJECTILE = ExtResource("2_d5pk8")
-PROJECTILE_SPEED = 100.0
+PROJECTILE_SPEED = 0.0
 sfx_damage = ExtResource("3_luk8l")
 sfx_shoot = ExtResource("4_img4f")
 sfx_death = ExtResource("5_mpagq")
 beh_beam = true
 SHOOT_INTERVAL = 1.2
-SHOTGUN_ANGLE = 20.0
+SHOTGUN_ANGLE = 0.0
 
 [node name="col" type="CollisionShape2D" parent="." unique_id=1711648449]
 shape = SubResource("CircleShape2D_30cdx")
@@ -48,6 +48,29 @@ texture = ExtResource("7_q8x5f")
 hframes = 8
 vframes = 8
 frame = 25
+
+[node name="shoot_pivot" type="Node2D" parent="sprite" unique_id=877784478]
+position = Vector2(4, 1.5)
+
+[node name="flash" type="CPUParticles2D" parent="sprite/shoot_pivot" unique_id=883021993]
+emitting = false
+amount = 32
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+lifetime_randomness = 0.25
+spread = 60.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.3
+initial_velocity_max = 72.73
+angular_velocity_min = -366.55
+angular_velocity_max = 410.18
+linear_accel_min = -100.0
+linear_accel_max = -100.0
+radial_accel_min = 10.91
+radial_accel_max = 10.91
+color = Color(0.7058824, 0.32156864, 0.32156864, 1)
 
 [node name="nav_agent" type="NavigationAgent2D" parent="." unique_id=982341719]
 path_desired_distance = 3.0
