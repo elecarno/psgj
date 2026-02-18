@@ -23,6 +23,10 @@ func _on_body_entered(body: Node2D) -> void:
 				timeloop.player.possessed_weapons.append(timeloop.player.WEAPONS.BEAM_CANNON)
 				timeloop.player.update_weapon()
 				timeloop.hud.show_message("Obtained BEAM CANNON [Q]")
+			"health":
+				timeloop.player.MAX_HEALTH += 1
+				timeloop.player.health = timeloop.player.MAX_HEALTH
+				timeloop.hud.show_message("+1 maximum hitpoints")
 		visible = false
 		$col.set_deferred("disabled", true)
 	

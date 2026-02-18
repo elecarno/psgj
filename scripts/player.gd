@@ -19,7 +19,7 @@ const GRAPPLE_ACCELERATION = 7
 
 const GRAPPLE_DAMAGE = 16
 
-const MAX_HEALTH: int = 3
+var MAX_HEALTH: int = 3
 var health: int = 3
 
 var can_dash: bool = false
