@@ -22,6 +22,7 @@ const GRAPPLE_DAMAGE = 16
 var MAX_HEALTH: int = 3
 var health: int = 3
 
+var unlocked_dash: bool = false
 var can_dash: bool = false
 var can_grapple: bool = true
 var can_parry: bool = true

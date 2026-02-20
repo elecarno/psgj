@@ -33,6 +33,9 @@ func show_message(message: String):
 	$message_timeout.start()
 
 func _physics_process(delta: float) -> void:
+	if not timeloop.loop_is_active:
+		return
+	
 	$lab_loop_count.text = str(timeloop.loop_count)
 	$lab_mana.text = str(timeloop.stored_mana)
 	$lab_timer.text = (

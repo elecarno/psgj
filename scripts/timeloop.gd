@@ -13,9 +13,14 @@ var rooms: Array = []
 
 var enemies: Array[Enemy]
 
-var current_loop_time: int = 15
+var current_loop_time: int = 16
 var stored_mana: int = 0
 var loop_count: int = 1
+
+var loop_pos: Vector2 = Vector2.ZERO
+
+var sector_two: PackedScene = preload("res://sector_two.tscn")
+var sector_three: PackedScene = preload("res://sector_three.tscn")
 
 func initialise():
 	loop_timer = world.get_node("loop_timer")
@@ -46,7 +51,7 @@ func new_loop(is_death: bool = false):
 	
 	player.is_grappling = false
 	player.velocity = Vector2.ZERO
-	player.global_position = Vector2.ZERO
+	player.global_position = loop_pos
 	player._on_rewind_timer_timeout()
 	player.health = player.MAX_HEALTH
 	for room in rooms:
@@ -73,7 +78,7 @@ func reset_loop():
 	# duped code from new_loop() to fix grapple bleeding into next loop bug
 	player.is_grappling = false
 	player.velocity = Vector2.ZERO
-	player.global_position = Vector2.ZERO
+	player.global_position = loop_pos
 	player._on_rewind_timer_timeout()
 	player.health = player.MAX_HEALTH
 	
@@ -89,6 +94,53 @@ func rewind_enemies():
 	
 	for enemy in enemies:
 		enemy.rewind()
+		
+		
+func switch_to_sector_two():
+	var current_player_max_health = player.MAX_HEALTH
+	var current_player_weapons = player.possessed_weapons
+	var current_player_weapon_idx = player.current_weapon_idx
+	var current_player_weapon = player.current_weapon
+	var current_player_dash = player.unlocked_dash
+	
+	loop_is_active = false
+	get_tree().get_root().get_node("world").queue_free()
+	var sect_new = sector_two.instantiate()
+	sect_new.name = "world"
+	get_tree().get_root().add_child(sect_new)
+	world = sect_new
+	loop_is_active = true
+	initialise()
+	
+	player.MAX_HEALTH = current_player_max_health
+	player.health = player.MAX_HEALTH
+	player.possessed_weapons = current_player_weapons
+	player.current_weapon_idx = current_player_weapon_idx
+	player.current_weapon = current_player_weapon
+	player.can_dash = current_player_dash
+	
+func switch_to_sector_three():
+	var current_player_max_health = player.MAX_HEALTH
+	var current_player_weapons = player.possessed_weapons
+	var current_player_weapon_idx = player.current_weapon_idx
+	var current_player_weapon = player.current_weapon
+	var current_player_dash = player.unlocked_dash
+	
+	loop_is_active = false
+	get_tree().get_root().get_node("world").queue_free()
+	var sect_new = sector_three.instantiate()
+	sect_new.name = "world"
+	get_tree().get_root().add_child(sect_new)
+	world = sect_new
+	loop_is_active = true
+	initialise()
+	
+	player.MAX_HEALTH = current_player_max_health
+	player.health = player.MAX_HEALTH
+	player.possessed_weapons = current_player_weapons
+	player.current_weapon_idx = current_player_weapon_idx
+	player.current_weapon = current_player_weapon
+	player.can_dash = current_player_dash
 	
 func _physics_process(delta: float) -> void:
 	if not loop_is_active:

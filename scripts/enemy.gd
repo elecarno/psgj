@@ -214,7 +214,8 @@ func _on_shoot_timer_timeout() -> void:
 		#var dist_to_player = global_position.distance_to(player.global_position)
 		#$shoot_line.set_point_position(1, $shoot_line.get_point_position(1).normalized() * dist_to_player)
 		show_shoot_line = true
-		$sprite/head.look_at(player.global_position)
+		if beh_gatling:
+			$sprite/head.look_at(player.global_position)
 		$shoot_delay.start()
 
 func _on_shoot_delay_timeout() -> void:

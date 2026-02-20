@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://b2gpyy08cjbf8" path="res://prefabs/s2_enh.tscn" id="23_qv6kk"]
 [ext_resource type="Texture2D" uid="uid://co0nrwwesjns8" path="res://tex/hud_overlay.png" id="24_q5xbw"]
 [ext_resource type="PackedScene" uid="uid://bfjh3h2hkypgk" path="res://prefabs/pickup.tscn" id="24_rukwi"]
+[ext_resource type="Script" uid="uid://cmct26nphvn7w" path="res://scripts/switch_level.gd" id="24_vhx5d"]
 [ext_resource type="Texture2D" uid="uid://bgdydt8jt17ra" path="res://tex/ui_health.png" id="25_2q8fk"]
 [ext_resource type="PackedScene" uid="uid://leoweo8tkiar" path="res://prefabs/text_log.tscn" id="25_gyj6f"]
 [ext_resource type="Texture2D" uid="uid://b5pq2rx40ku7v" path="res://tex/ui_mana.png" id="26_tfoeu"]
@@ -41,6 +42,7 @@
 [ext_resource type="Texture2D" uid="uid://csflatab1brwk" path="res://tex/text_screen.png" id="36_t7pae"]
 [ext_resource type="Script" uid="uid://8ud5bq0yfbdn" path="res://scripts/text_screen.gd" id="36_tr1v2"]
 [ext_resource type="Script" uid="uid://dl52qwwq3nqt4" path="res://scripts/intro_flash.gd" id="39_dywfn"]
+[ext_resource type="PackedScene" uid="uid://dknx1oxrmuo6v" path="res://prefabs/autodoor_v_ctrl.tscn" id="43_1c76j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
 size = Vector2(5, 7)
@@ -86,6 +88,9 @@ size = Vector2(208, 98)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0cp0l"]
 size = Vector2(64, 98)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1c76j"]
+size = Vector2(16, 16)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j68ct"]
 content_margin_left = 4.0
@@ -1220,6 +1225,19 @@ texture = ExtResource("16_d11rv")
 [node name="unlocker" parent="rooms/s1-22" unique_id=391623889 instance=ExtResource("18_t6rli")]
 position = Vector2(-11, -36)
 
+[node name="autodoor_v" parent="." unique_id=808444202 node_paths=PackedStringArray("room") instance=ExtResource("43_1c76j")]
+position = Vector2(676, 152)
+room = NodePath("../rooms/s1-21")
+
+[node name="switch_level" type="Area2D" parent="." unique_id=1630145634]
+position = Vector2(712, 152)
+collision_mask = 2
+script = ExtResource("24_vhx5d")
+message = "Descend to Sector Two"
+
+[node name="col" type="CollisionShape2D" parent="switch_level" unique_id=178710151]
+shape = SubResource("RectangleShape2D_1c76j")
+
 [node name="pickup_pistol" parent="." unique_id=1874209234 instance=ExtResource("24_rukwi")]
 position = Vector2(316, 284)
 
@@ -1865,6 +1883,8 @@ color = Color(0, 0, 0, 1)
 [connection signal="body_exited" from="rooms/s1-21/entry_trigger" to="rooms/s1-21" method="_on_room_body_exited"]
 [connection signal="body_entered" from="rooms/s1-22/entry_trigger" to="rooms/s1-22" method="_on_room_body_entered"]
 [connection signal="body_exited" from="rooms/s1-22/entry_trigger" to="rooms/s1-22" method="_on_room_body_exited"]
+[connection signal="body_entered" from="switch_level" to="switch_level" method="_on_body_entered"]
+[connection signal="body_exited" from="switch_level" to="switch_level" method="_on_body_exited"]
 [connection signal="timeout" from="canvas/hud/message_timeout" to="canvas/hud" method="_on_message_timeout_timeout"]
 [connection signal="pressed" from="canvas/text_screen/btn_close" to="canvas/text_screen" method="_on_btn_close_pressed"]
 [connection signal="pressed" from="canvas/pause_menu/btn_resume" to="canvas/pause_menu" method="_on_btn_resume_pressed"]

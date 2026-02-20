@@ -3,6 +3,10 @@ extends Node2D
 
 @export var enabled: bool = true
 
+func _ready() -> void:
+	if not get_parent() is Room:
+		$lock.visible = false
+
 func _on_detect_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") and enabled:
 		open_door()

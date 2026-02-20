@@ -10,6 +10,7 @@ func _on_body_entered(body: Node2D) -> void:
 		match item:
 			"dash":
 				timeloop.player.can_dash = true
+				timeloop.player.unlocked_dash = true
 				timeloop.hud.show_message("Obtained DASH ability [SPACE]")
 			"pistol":
 				timeloop.player.possessed_weapons.append(timeloop.player.WEAPONS.PISTOL)
