@@ -4,7 +4,7 @@ extends Area2D
 
 var player_in_unlocker: bool = false
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if player_in_unlocker:
 		if Input.is_action_just_pressed("interact"):
 			if timeloop.stored_mana >= room.MANA_COST:

@@ -178,15 +178,13 @@ tile_set = ExtResource("2_qv6kk")
 [node name="sfx_bg" type="Node2D" parent="." unique_id=1095208870]
 process_mode = 3
 
-[node name="sfx_s1_ambience" type="AudioStreamPlayer2D" parent="sfx_bg" unique_id=250844739]
+[node name="sfx_s1_ambience" type="AudioStreamPlayer" parent="sfx_bg" unique_id=517347911]
 stream = ExtResource("3_rukwi")
 autoplay = true
-panning_strength = 0.0
 
-[node name="mus_s1" type="AudioStreamPlayer2D" parent="sfx_bg" unique_id=281250939]
+[node name="mus_s1" type="AudioStreamPlayer" parent="sfx_bg" unique_id=1001123339]
 stream = ExtResource("4_t7pae")
 autoplay = true
-panning_strength = 0.0
 bus = &"Music"
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=2144539989 groups=["player"]]

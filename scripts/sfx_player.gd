@@ -8,7 +8,7 @@ func play_sound(sound: AudioStream):
 	player.pitch_scale += randf_range(-0.05, 0.05)
 	add_child(player)
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	for player in get_children():
 		if not player.is_playing:
 			player.queue_free()

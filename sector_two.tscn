@@ -197,15 +197,13 @@ tile_set = ExtResource("2_jc52l")
 [node name="sfx_bg" type="Node2D" parent="." unique_id=1095208870]
 process_mode = 3
 
-[node name="sfx_s1_ambience" type="AudioStreamPlayer2D" parent="sfx_bg" unique_id=250844739]
+[node name="sfx_s1_ambience" type="AudioStreamPlayer" parent="sfx_bg" unique_id=276937525]
 stream = ExtResource("3_vjo85")
 autoplay = true
-panning_strength = 0.0
 
-[node name="mus_s2" type="AudioStreamPlayer2D" parent="sfx_bg" unique_id=281250939]
+[node name="mus_s2" type="AudioStreamPlayer" parent="sfx_bg" unique_id=105115029]
 stream = ExtResource("4_v7uww")
 autoplay = true
-panning_strength = 0.0
 bus = &"Music"
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=2144539989 groups=["player"]]
@@ -989,17 +987,11 @@ shape = SubResource("RectangleShape2D_vjo85")
 [node name="unlocker" parent="rooms/s2-14" unique_id=1267250983 instance=ExtResource("18_r47bi")]
 position = Vector2(69, -14)
 
-[node name="s2_enh" parent="rooms/s2-14" unique_id=1913537778 instance=ExtResource("21_6pngk")]
-position = Vector2(133, -31)
-
 [node name="s2_enh2" parent="rooms/s2-14" unique_id=1511641642 instance=ExtResource("21_6pngk")]
-position = Vector2(133, 17)
-
-[node name="s2_gatling" parent="rooms/s2-14" unique_id=1468866300 instance=ExtResource("23_jc52l")]
-position = Vector2(164, -49)
+position = Vector2(170, -5)
 
 [node name="s2_gatling2" parent="rooms/s2-14" unique_id=1172981362 instance=ExtResource("23_jc52l")]
-position = Vector2(164, 37)
+position = Vector2(133, -4)
 
 [node name="s2_spec" parent="rooms/s2-14" unique_id=184026767 instance=ExtResource("19_v7uww")]
 position = Vector2(100, -31)
@@ -1054,8 +1046,8 @@ shape = SubResource("RectangleShape2D_036b0")
 [node name="cover" type="Sprite2D" parent="rooms/s2-16" unique_id=588309364]
 visible = false
 z_index = 64
-position = Vector2(111.000015, 14.500003)
-scale = Vector2(16.500002, 3.0624995)
+position = Vector2(67, 14.500003)
+scale = Vector2(11, 3.0624995)
 texture = ExtResource("16_ds35m")
 
 [node name="unlocker" parent="rooms/s2-16" unique_id=1565998448 instance=ExtResource("18_r47bi")]
@@ -1110,6 +1102,9 @@ position = Vector2(-3, 62)
 
 [node name="s2_spec2" parent="rooms/s2-17" unique_id=2038024346 instance=ExtResource("19_v7uww")]
 position = Vector2(-3, 85)
+
+[node name="unlocker" parent="rooms/s2-17" unique_id=1466248864 instance=ExtResource("18_r47bi")]
+position = Vector2(85, 10)
 
 [node name="s2-18" type="Node2D" parent="rooms" unique_id=430351658]
 position = Vector2(215, 376)
@@ -1229,9 +1224,6 @@ position = Vector2(153, -117)
 [node name="s2_gatling2" parent="rooms/s2-20" unique_id=413533927 instance=ExtResource("23_jc52l")]
 position = Vector2(257, 7)
 
-[node name="s2_guard" parent="rooms/s2-20" unique_id=1918553799 instance=ExtResource("22_t8q2g")]
-position = Vector2(136, -29)
-
 [node name="s2_guard5" parent="rooms/s2-20" unique_id=186151220 instance=ExtResource("22_t8q2g")]
 position = Vector2(105, -114)
 
@@ -1244,20 +1236,11 @@ position = Vector2(136, -62)
 [node name="s2_guard3" parent="rooms/s2-20" unique_id=1940418072 instance=ExtResource("22_t8q2g")]
 position = Vector2(312, -52)
 
-[node name="s2_guard4" parent="rooms/s2-20" unique_id=722694512 instance=ExtResource("22_t8q2g")]
-position = Vector2(312, -78)
-
 [node name="s2_spec" parent="rooms/s2-20" unique_id=1635482635 instance=ExtResource("19_v7uww")]
 position = Vector2(209, -1)
 
-[node name="s2_spec2" parent="rooms/s2-20" unique_id=1696458942 instance=ExtResource("19_v7uww")]
-position = Vector2(209, -50)
-
 [node name="s2_spec3" parent="rooms/s2-20" unique_id=683078298 instance=ExtResource("19_v7uww")]
 position = Vector2(209, -102)
-
-[node name="s2_enh" parent="rooms/s2-20" unique_id=911226866 instance=ExtResource("21_6pngk")]
-position = Vector2(133, 39)
 
 [node name="s2_enh2" parent="rooms/s2-20" unique_id=293658476 instance=ExtResource("21_6pngk")]
 position = Vector2(263, -116)
@@ -1885,7 +1868,7 @@ offset_top = 45.0
 offset_right = 917.0
 offset_bottom = 68.0
 theme = ExtResource("31_c1vw5")
-text = "REACH SECTOR 2"
+text = "DISABLE WARHEAD FAILSAFES"
 horizontal_alignment = 2
 
 [node name="lab_health" type="Label" parent="canvas/hud" unique_id=33003501]

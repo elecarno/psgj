@@ -21,11 +21,13 @@ var loop_pos: Vector2 = Vector2.ZERO
 
 var sector_two: PackedScene = preload("res://sector_two.tscn")
 var sector_three: PackedScene = preload("res://sector_three.tscn")
+var outro_cutscene: PackedScene = preload("res://outro_cutscene.tscn")
 
 func initialise():
 	loop_timer = world.get_node("loop_timer")
 	player = world.get_node("player")
 	hud = world.get_node("canvas/hud")
+	enemies = []
 	
 	rooms = world.get_node("rooms").get_children()
 	rooms.remove_at(0) # removes "sfx_unlock"
@@ -133,6 +135,7 @@ func switch_to_sector_three():
 	get_tree().get_root().add_child(sect_new)
 	world = sect_new
 	loop_is_active = true
+	loop_pos = Vector2.ZERO
 	initialise()
 	
 	player.MAX_HEALTH = current_player_max_health
@@ -142,7 +145,13 @@ func switch_to_sector_three():
 	player.current_weapon = current_player_weapon
 	player.can_dash = current_player_dash
 	
-func _physics_process(delta: float) -> void:
+func load_ending():
+	loop_is_active = false
+	get_tree().get_root().get_node("world").queue_free()
+	var ending = outro_cutscene.instantiate()
+	get_tree().get_root().add_child(ending)
+	
+func _physics_process(_delta: float) -> void:
 	if not loop_is_active:
 		return
 	

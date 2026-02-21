@@ -1,6 +1,6 @@
 extends ColorRect
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not timeloop.loop_is_active:
 		return
 		

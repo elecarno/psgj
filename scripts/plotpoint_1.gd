@@ -2,7 +2,7 @@ extends Area2D
 
 var player_in_area: bool = false
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if player_in_area:
 		if Input.is_action_just_pressed("interact"):
 			timeloop.loop_pos = global_position
@@ -13,6 +13,7 @@ func _physics_process(delta: float) -> void:
 			$sfx2.play()
 			$covers.visible = true
 			timeloop.hud.get_node("lab_unlock").visible = false
+			timeloop.hud.get_node("lab_objective").text = "REACH SECTOR THREE"
 			$col.set_deferred("disabled", true)
 
 func _on_body_entered(body: Node2D) -> void:

@@ -183,14 +183,14 @@ func shoot_projectile():
 			var new_projectile_2: Projectile = PROJECTILE.instantiate()
 			new_projectile_2.global_position = $sprite/shoot_pivot.global_position
 			var new_angle_2 = shoot_direction.angle() + deg_to_rad(SHOTGUN_ANGLE)/2
-			new_projectile_2.direction = Vector2.ONE.from_angle(new_angle_2).normalized()
+			new_projectile_2.direction = Vector2.from_angle(new_angle_2).normalized()
 			new_projectile_2.MAX_SPEED = PROJECTILE_SPEED
 			timeloop.world.add_child(new_projectile_2)
 			
 			var new_projectile_3: Projectile = PROJECTILE.instantiate()
 			new_projectile_3.global_position = $sprite/shoot_pivot.global_position
 			var new_angle_3 = shoot_direction.angle() - deg_to_rad(SHOTGUN_ANGLE)/2
-			new_projectile_3.direction = Vector2.ONE.from_angle(new_angle_3).normalized()
+			new_projectile_3.direction = Vector2.from_angle(new_angle_3).normalized()
 			new_projectile_3.MAX_SPEED = PROJECTILE_SPEED
 			timeloop.world.add_child(new_projectile_3)
 		

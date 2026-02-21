@@ -1,0 +1,495 @@
+[gd_scene format=3 uid="uid://k0jy4pxq6130"]
+
+[ext_resource type="Script" uid="uid://daglcddpp5a4m" path="res://scripts/outro_cutscene.gd" id="1_uwags"]
+[ext_resource type="Texture2D" uid="uid://cosim4g2lqap7" path="res://room_cover.png" id="2_uwags"]
+[ext_resource type="Theme" uid="uid://bfwyjs3f4i28h" path="res://theme_main.tres" id="3_r2rcc"]
+[ext_resource type="Texture2D" uid="uid://djl5n4yi1ardt" path="res://tex/flag_bloc.png" id="4_cntwo"]
+[ext_resource type="Texture2D" uid="uid://dm5jkcervyd" path="res://tex/flag_frontier.png" id="5_gpgbr"]
+[ext_resource type="Shader" uid="uid://dsyjfe3orsxyl" path="res://shaders/crt.gdshader" id="6_65evq"]
+[ext_resource type="AudioStream" uid="uid://d1dydcx3dmq7d" path="res://sfx/ambience2.wav" id="7_yorwf"]
+[ext_resource type="AudioStream" uid="uid://ddc2n3d2icwv3" path="res://sfx/beep1.wav" id="8_c1wcp"]
+[ext_resource type="AudioStream" uid="uid://bd1r6jm7qxa85" path="res://sfx/beep3.mp3" id="9_qptlt"]
+[ext_resource type="AudioStream" uid="uid://bawajo3x0e5yv" path="res://sfx/beep4.wav" id="10_ontum"]
+[ext_resource type="AudioStream" uid="uid://dunw464dxwol2" path="res://soundtrack/psgj_5.wav" id="10_vr5o1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_05l2w"]
+shader = ExtResource("6_65evq")
+shader_parameter/brightness = 1.1600000551
+shader_parameter/contrast = 1.0000000475
+shader_parameter/saturation = 1.1
+shader_parameter/gamma = 1.10000004573023
+shader_parameter/curvature = 0.0250000011875
+shader_parameter/corner_soften = 0.06000000285
+shader_parameter/vignette = 0.150000007125
+shader_parameter/scanline_strength = 0.150000007125
+shader_parameter/scanline_density = 2.500000095
+shader_parameter/interlace_strength = 0.2
+shader_parameter/mask_strength = 0.22
+shader_parameter/mask_scale = 1.0
+shader_parameter/chroma_offset_px = 1.6
+shader_parameter/luma_smear_px = 2.2
+shader_parameter/jitter_px = 0.0
+shader_parameter/wobble_px = 0.50000002375
+shader_parameter/tape_noise = 0.0
+shader_parameter/tape_lines = 0.0
+shader_parameter/roll_speed = 0.10000000475
+shader_parameter/roll_strength = 0.15
+shader_parameter/glow_strength = 0.25
+shader_parameter/glow_threshold = 0.65
+
+[sub_resource type="Animation" id="Animation_suuxw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lab_text:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("beep3:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("beep1:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("beep2:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("flag_bloc:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("flag_frontier:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_660lu"]
+resource_name = "intro_cutscene"
+length = 60.0
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lab_text:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.41666666, 2, 2.3333333, 2.6666667, 4.0833335, 4.5, 4.9166665, 5.3333335, 6.416667, 6.916667, 7.8333335, 9, 14.166667, 16.333334, 18.583334, 19.5, 20.5, 21.5, 39.583332, 41, 42.5, 44, 45.583332, 47.166668, 48.833332, 53.416668),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["", ".", "..", "...", "MINISTRY SHIP SYSTEMS ------------------------------", "MINISTRY SHIP SYSTEMS ------------------------------
+
+SHIP STATUS:", "MINISTRY SHIP SYSTEMS ------------------------------
+
+SHIP STATUS: ALL SYSTEMS OPERATIONAL", "MINISTRY SHIP SYSTEMS ------------------------------
+
+SHIP STATUS: ALL SYSTEMS OPERATIONAL
+CREW STATUS:", "MINISTRY SHIP SYSTEMS ------------------------------
+
+SHIP STATUS: ALL SYSTEMS OPERATIONAL
+CREW STATUS: 98/102 (FOUR TEMPORAL ANOMALIES)", "MINISTRY SHIP SYSTEMS ------------------------------
+
+SHIP STATUS: ALL SYSTEMS OPERATIONAL
+CREW STATUS: 98/102 (FOUR TEMPORAL ANOMALIES)
+
+TIME TO PERIAPSIS OF HALLOW IV: ", "MINISTRY SHIP SYSTEMS ------------------------------
+
+SHIP STATUS: ALL SYSTEMS OPERATIONAL
+CREW STATUS: 98/102 (FOUR TEMPORAL ANOMALIES)
+
+TIME TO PERIAPSIS OF HALLOW IV: 12 MINUTES", "MINISTRY SHIP SYSTEMS ------------------------------
+
+SHIP STATUS: ALL SYSTEMS OPERATIONAL
+CREW STATUS: 98/102 (FOUR TEMPORAL ANOMALIES)
+
+TIME TO PERIAPSIS OF HALLOW IV: 12 MINUTES
+
+NO ANTI-ORBITAL DEFENCES HAVE BEEN ENCOUNTERED", "MINISTRY SHIP SYSTEMS ------------------------------
+
+SHIP STATUS: ALL SYSTEMS OPERATIONAL
+CREW STATUS: 98/102 (FOUR TEMPORAL ANOMALIES)
+
+TIME TO PERIAPSIS OF HALLOW IV: 12 MINUTES
+
+NO ANTI-ORBITAL DEFENCES HAVE BEEN ENCOUNTERED
+
+
+[WOULD YOU LIKE TO REVIEW THE BRIEFING?]", "THE BLOC is nearing defeat.", "THE FRONTIER advances.", "You will infiltrate the BLOC fortress known as THE DAM.", "You will infiltrate the BLOC fortress known as THE DAM.
+
+The fortress contains the largest known stock of Antimatter Warheads in human space.", "You will infiltrate the BLOC fortress known as THE DAM.
+
+The fortress contains the largest known stock of Antimatter Warheads in human space.
+
+Furthermore, it contains the locations of all remaining BLOC bases and settlements.", "You will infiltrate the BLOC fortress known as THE DAM.
+
+The fortress contains the largest known stock of Antimatter Warheads in human space.
+
+Furthermore, it contains the locations of all remaining BLOC bases and settlements.
+
+You will fight your way to the heart of the fortress, and end this war.", "YOU ARE THE WEAPON", "YOU ARE THE WEAPON
+
+TIME IS WHAT THEY FEAR", "YOU ARE THE WEAPON
+
+TIME IS WHAT THEY FEAR
+TIME IS YOUR ALLY", "YOU ARE THE WEAPON
+
+TIME IS WHAT THEY FEAR
+TIME IS YOUR ALLY
+YOU SHALL BE WHAT THEY FEAR", "YOU ARE THE WEAPON
+
+TIME IS WHAT THEY FEAR
+TIME IS YOUR ALLY
+YOU SHALL BE WHAT THEY FEAR
+
+BRING DEATH", "YOU ARE THE WEAPON
+
+TIME IS WHAT THEY FEAR
+TIME IS YOUR ALLY
+YOU SHALL BE WHAT THEY FEAR
+
+BRING DEATH
+BRING ONLY DEATH", "YOU ARE THE WEAPON
+
+TIME IS WHAT THEY FEAR
+TIME IS YOUR ALLY
+YOU SHALL BE WHAT THEY FEAR
+
+BRING DEATH
+BRING ONLY DEATH
+
+FOR YOU SHALL GROW AND THEY SHALL ROT", "YOU ARE THE WEAPON
+
+TIME IS WHAT THEY FEAR
+TIME IS YOUR ALLY
+YOU SHALL BE WHAT THEY FEAR
+
+BRING DEATH
+BRING ONLY DEATH
+
+FOR YOU SHALL GROW AND THEY SHALL ROT"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("beep3:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4166667, 0.41676664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("beep1:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2, 2.3333333, 9, 39.583336, 41.000004, 42.500004, 44.000004, 45.583336, 47.16667, 48.833336),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true, true, true, true, true, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("beep2:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.6666667, 4, 4.5, 4.9166665, 5.3333335, 6.4166665, 6.9166665, 7.8333335, 14.133224, 16.333334, 18.583334, 19.5, 20.5, 21.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true, true, true, true, true, true, true, true, true, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("flag_bloc:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 14.133224, 16.333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("flag_frontier:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 16.333334, 18.583334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_b6422"]
+resource_name = "outro_cutscene"
+length = 68.0
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lab_text:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.619502, 3.119502, 4.586169, 11.333333, 14.916667, 22.083334, 24, 29, 36, 43.25, 50, 57.333336),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["RETRIEVING ALL BLOC SETTLEMENT AND BASE LOCATIONS...", "RETRIEVING ALL BLOC SETTLEMENT AND BASE LOCATIONS...
+
+LOCATIONS RETRIEVED... PREPARING INTERSTELLAR MISSILES SYSTEMS...", "RETRIEVING ALL BLOC SETTLEMENT AND BASE LOCATIONS...
+
+LOCATIONS RETRIEVED... PREPARING INTERSTELLAR MISSILES SYSTEMS...
+
+ANTIMATTER WARHEADS ARMED", "RETRIEVING ALL BLOC SETTLEMENT AND BASE LOCATIONS...
+
+LOCATIONS RETRIEVED... PREPARING INTERSTELLAR MISSILES SYSTEMS...
+
+ANTIMATTER WARHEADS ARMED
+
+PLEASE CONFIRM LAUNCH:
+            [YES]    NO", "RETRIEVING ALL BLOC SETTLEMENT AND BASE LOCATIONS...
+
+LOCATIONS RETRIEVED... PREPARING INTERSTELLAR MISSILES SYSTEMS...
+
+ANTIMATTER WARHEADS ARMED
+
+PLEASE CONFIRM LAUNCH:
+            [YES]    NO
+
+-----------------------------------------------------
+LAUNCH COMPLETE.", "By the time the last bombs dropped, the death toll of the FRONTIER-BLOC war had reached 14 trillion.", "The destruction of the Bloc was the loss of a unifying enemy for the people of the Frontier.", "The destruction of the Bloc was the loss of a unifying enemy for the people of the Frontier.
+
+Within four years the Frontier would collapse due to the turmoil incurred by unregulated and commonplace time travel.", "Only a decade after that, humanity would wipe itself out.", "Yet on a lonely planet, around a forgotten star:
+
+                          you remain.", "Yet on a lonely planet, around a forgotten star:
+
+                          you remain.
+
+
+YOU SHALL GROW AND THEY SHALL ROT.", "", "Thank you for playing."]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("beep3:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("beep1:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("beep2:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("flag_bloc:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("flag_frontier:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 50, 57.333336),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_suuxw"]
+_data = {
+&"RESET": SubResource("Animation_suuxw"),
+&"intro_cutscene": SubResource("Animation_660lu"),
+&"outro_cutscene": SubResource("Animation_b6422")
+}
+
+[node name="outro_cutscene" type="Control" unique_id=811241297]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uwags")
+
+[node name="bg" type="TextureRect" parent="." unique_id=625023810]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_uwags")
+
+[node name="lab_text" type="Label" parent="." unique_id=582897174]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -126.0
+offset_right = 240.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_r2rcc")
+theme_override_font_sizes/font_size = 12
+autowrap_mode = 3
+clip_text = true
+
+[node name="flag_bloc" type="TextureRect" parent="." unique_id=776427587]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -64.0
+offset_right = 96.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_cntwo")
+
+[node name="flag_frontier" type="TextureRect" parent="." unique_id=2097215381]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -64.0
+offset_right = 96.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_gpgbr")
+
+[node name="crt" type="ColorRect" parent="." unique_id=101128911]
+material = SubResource("ShaderMaterial_05l2w")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="anim" type="AnimationPlayer" parent="." unique_id=1220600672]
+libraries/ = SubResource("AnimationLibrary_suuxw")
+autoplay = &"outro_cutscene"
+
+[node name="ambience" type="AudioStreamPlayer" parent="." unique_id=1395593769]
+stream = ExtResource("7_yorwf")
+autoplay = true
+
+[node name="beep1" type="AudioStreamPlayer" parent="." unique_id=1714577841]
+stream = ExtResource("8_c1wcp")
+
+[node name="beep2" type="AudioStreamPlayer" parent="." unique_id=471288160]
+stream = ExtResource("9_qptlt")
+
+[node name="beep3" type="AudioStreamPlayer" parent="." unique_id=1026049980]
+stream = ExtResource("10_ontum")
+
+[node name="sfx_mus" type="AudioStreamPlayer" parent="." unique_id=1964108354]
+stream = ExtResource("10_vr5o1")
+autoplay = true
+bus = &"Music"
+
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
