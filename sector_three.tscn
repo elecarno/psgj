@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cex60lnvav15l" path="res://scripts/loop_timer.gd" id="1_h8ikj"]
 [ext_resource type="TileSet" uid="uid://d370i1gj848km" path="res://tileset_main.tres" id="2_gyet7"]
 [ext_resource type="AudioStream" uid="uid://n74tj0ijyec2" path="res://sfx/ambience1.wav" id="3_rewvp"]
-[ext_resource type="AudioStream" uid="uid://clmlovndu56mc" path="res://soundtrack/psgj_7.wav" id="4_nyya4"]
+[ext_resource type="AudioStream" uid="uid://cu5rfdugtb5hl" path="res://soundtrack/psgj_8.wav" id="4_nyya4"]
 [ext_resource type="Script" uid="uid://d1k1f6f3gxlb4" path="res://scripts/player.gd" id="5_8cgpd"]
 [ext_resource type="Texture2D" uid="uid://bcorfdj857iql" path="res://player_sprites.png" id="6_s1kgp"]
 [ext_resource type="Script" uid="uid://bufpgle78vfiw" path="res://scripts/cam.gd" id="7_4uq47"]
@@ -1799,6 +1799,7 @@ Grapple [E]
 Rewind [R]
 Weapons [Q]
 Shoot [lmb]
+Parry [rmb]
 Dash [Space]"
 horizontal_alignment = 3
 
@@ -2077,4 +2078,5 @@ color = Color(0.47067964, 0.47067964, 0.50456715, 1)
 [connection signal="timeout" from="canvas/hud/message_timeout" to="canvas/hud" method="_on_message_timeout_timeout"]
 [connection signal="pressed" from="canvas/text_screen/btn_close" to="canvas/text_screen" method="_on_btn_close_pressed"]
 [connection signal="pressed" from="canvas/pause_menu/btn_resume" to="canvas/pause_menu" method="_on_btn_resume_pressed"]
+[connection signal="pressed" from="canvas/pause_menu/btn_quit" to="canvas/pause_menu" method="_on_btn_quit_pressed"]
 [connection signal="pressed" from="canvas/loop_screen/btn_play" to="canvas/loop_screen" method="_on_btn_play_pressed"]

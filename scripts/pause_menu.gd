@@ -10,3 +10,7 @@ func _input(event: InputEvent) -> void:
 func _on_btn_resume_pressed() -> void:
 	visible = false
 	get_tree().paused = false
+
+
+func _on_btn_quit_pressed() -> void:
+	timeloop.load_title()

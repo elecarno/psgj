@@ -33,7 +33,9 @@ shader_parameter/roll_strength = 0.15
 shader_parameter/glow_strength = 0.25
 shader_parameter/glow_threshold = 0.65
 
-[node name="title_screen" type="Control" unique_id=811241297]
+[node name="title_screen" type="CanvasLayer" unique_id=1118037810]
+
+[node name="title_screen" type="Control" parent="." unique_id=811241297]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,7 +44,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hafda")
 
-[node name="bg" type="TextureRect" parent="." unique_id=625023810]
+[node name="bg" type="TextureRect" parent="title_screen" unique_id=625023810]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,7 +53,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_05l2w")
 
-[node name="logo" type="TextureRect" parent="." unique_id=776427587]
+[node name="logo" type="TextureRect" parent="title_screen" unique_id=776427587]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -66,7 +68,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_hafda")
 
-[node name="btn_play" type="Button" parent="." unique_id=771685099]
+[node name="btn_play" type="Button" parent="title_screen" unique_id=771685099]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -83,7 +85,7 @@ theme = ExtResource("1_ak2if")
 theme_override_font_sizes/font_size = 16
 text = "PLAY"
 
-[node name="crt" type="ColorRect" parent="." unique_id=101128911]
+[node name="crt" type="ColorRect" parent="title_screen" unique_id=101128911]
 material = SubResource("ShaderMaterial_05l2w")
 layout_mode = 1
 anchors_preset = 15
@@ -93,15 +95,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="sfx_mus" type="AudioStreamPlayer" parent="." unique_id=1575918606]
+[node name="sfx_mus" type="AudioStreamPlayer" parent="title_screen" unique_id=1575918606]
 stream = ExtResource("6_tpml5")
 autoplay = true
 bus = &"Music"
 
-[node name="sfx_bg" type="AudioStreamPlayer" parent="." unique_id=1936272325]
+[node name="sfx_bg" type="AudioStreamPlayer" parent="title_screen" unique_id=1936272325]
 stream = ExtResource("7_jqemp")
 volume_db = -2.0
 pitch_scale = 0.85
 autoplay = true
 
-[connection signal="pressed" from="btn_play" to="." method="_on_btn_play_pressed"]
+[connection signal="pressed" from="title_screen/btn_play" to="title_screen" method="_on_btn_play_pressed"]

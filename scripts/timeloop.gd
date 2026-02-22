@@ -19,6 +19,7 @@ var loop_count: int = 1
 
 var loop_pos: Vector2 = Vector2.ZERO
 
+var title_screen: PackedScene = preload("res://title_screen.tscn")
 var sector_two: PackedScene = preload("res://sector_two.tscn")
 var sector_three: PackedScene = preload("res://sector_three.tscn")
 var outro_cutscene: PackedScene = preload("res://outro_cutscene.tscn")
@@ -150,6 +151,15 @@ func load_ending():
 	get_tree().get_root().get_node("world").queue_free()
 	var ending = outro_cutscene.instantiate()
 	get_tree().get_root().add_child(ending)
+	
+func load_title():
+	loop_is_active = false
+	get_tree().get_root().get_node("world").queue_free()
+	var title = title_screen.instantiate()
+	get_tree().get_root().add_child(title)
+	current_loop_time = 16
+	stored_mana = 0
+	loop_count = 1
 	
 func _physics_process(_delta: float) -> void:
 	if not loop_is_active:

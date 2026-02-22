@@ -1223,9 +1223,81 @@ texture = ExtResource("16_d11rv")
 [node name="unlocker" parent="rooms/s1-22" unique_id=391623889 instance=ExtResource("18_t6rli")]
 position = Vector2(-11, -36)
 
-[node name="autodoor_v" parent="." unique_id=808444202 node_paths=PackedStringArray("room") instance=ExtResource("43_1c76j")]
+[node name="autodoor_v_ctrl" parent="." unique_id=808444202 node_paths=PackedStringArray("room") instance=ExtResource("43_1c76j")]
 position = Vector2(676, 152)
 room = NodePath("../rooms/s1-21")
+
+[node name="text_logs" type="Node2D" parent="." unique_id=1024455063]
+
+[node name="text_log" parent="text_logs" unique_id=1452556122 instance=ExtResource("25_gyj6f")]
+position = Vector2(8, -24)
+text = "Rations are down to three weeks. The supply ship from Mortar went dark five hours ago. Patrols showed FRONTIER activity in the region.
+
+I overheard some of the upper security talking about stocks hidden in the core. We should rally and storm them."
+
+[node name="text_log2" parent="text_logs" unique_id=530678040 instance=ExtResource("25_gyj6f")]
+position = Vector2(108, 187)
+text = "I have recieved news that my brother was killed in the battle for Ardur III. Barely enough ships even made it out of the system to relay the reports. They said a time analysis showed he was killed fourteen times before being laid to rest, but I've heard the temporal weapons can malfunction. Some people say they never truly turn off. Maybe he's still out there, dying over and over again. Maybe that will be my fate as well."
+
+[node name="text_log3" parent="text_logs" unique_id=1874209234 instance=ExtResource("25_gyj6f")]
+position = Vector2(120, -25)
+text = "This pool table is starting to rot with all the moisture in here. You'd think a secret base on the farthest out planet from a star would be cold, but no, apparently whatever they're doing in the reactor is making so much excess heat it's overloading the ventilation throughout the base.
+
+That's what the generals say but I'm guessing they just decided to dump all of the heat into Sector 1."
+
+[node name="text_log4" parent="text_logs" unique_id=178283448 instance=ExtResource("25_gyj6f")]
+position = Vector2(224, -91)
+text = "The showers stopped working a month ago, started getting black sludge through the pipes.
+
+I heard they got private showers in the core, I wonder if they're working."
+
+[node name="text_log5" parent="text_logs" unique_id=190491926 instance=ExtResource("25_gyj6f")]
+position = Vector2(318, 84)
+text = "All these boxes have ben emptied.
+
+I heard a tip that a Sector 2 team passed through here the other day, I bet they took everything for themselves."
+
+[node name="text_log6" parent="text_logs" unique_id=431733399 instance=ExtResource("25_gyj6f")]
+position = Vector2(13, 312)
+text = "The hangar has experience a major decompression event and is closed until further notice."
+
+[node name="text_log7" parent="text_logs" unique_id=88726447 instance=ExtResource("25_gyj6f")]
+position = Vector2(266, 307)
+text = "COMMANDER'S LOG:
+
+The soldiers are hungry and cannot clean themselves. I have requested further supplies from Sector 3 yet all correspondence has been ignored. Sometimes they send patrols into here without any warning. They take what they want and then they leave.
+
+I have recieved an encrypted transmission that the FRONTIER is coming. When they arrive I will fight for myself and my soldiers. I will not fight for the BLOC any longer."
+
+[node name="text_log8" parent="text_logs" unique_id=517639603 instance=ExtResource("25_gyj6f")]
+position = Vector2(88, 432)
+text = "Someone killed the kitchen staff... who killed the kitchen staff?"
+
+[node name="text_log9" parent="text_logs" unique_id=1559694105 instance=ExtResource("25_gyj6f")]
+position = Vector2(452, 438)
+text = "As with everything else in this sector, medical supplies are running low. We have nothing useful but bandages left.
+
+I heard they've got time drugs in Sector Three. Something that can protect you from the FRONTIER's weapons. I can't imagine they'll ever share them with us."
+
+[node name="text_log10" parent="text_logs" unique_id=2016255676 instance=ExtResource("25_gyj6f")]
+position = Vector2(508, 205)
+text = "These people are rowdy and uncontrollable. I have orders from Sector Three to cut off their supplies. Sector Two has been deemed sufficient enough protection for now."
+
+[node name="text_log11" parent="text_logs" unique_id=1416673681 instance=ExtResource("25_gyj6f")]
+position = Vector2(234, 228)
+text = "I can't sleep with all this rattling in the pipes overhead. Sometimes I'm gratefulf for it though. I fear that the FRONTIER is already here, that their time weapons are already working against us and that if I fall asleep I'll just wake up in the same day again. What if it's not just one day? What if we're all reliving the entire war? Over and over again, trillions dying forever."
+
+[node name="text_log12" parent="text_logs" unique_id=1274555764 instance=ExtResource("25_gyj6f")]
+position = Vector2(446, 106)
+text = "BLOC HISTORY #1:
+The BLOC as an institution stretches back to the earliest days of interstellar colonisation, however all public records have been purged as to the nature of the BLOC's founding and rise to power.
+
+The BLOC is the only major power anyone has known for several millenia, if not longer. There are some who even believe the BLOC to have existed since before the dawn of human spaceflight. Amongst these peoples are those who say the core ideals of BLOC society were forged in a single (now ancient) book."
+
+[node name="text_log13" parent="text_logs" unique_id=1810519493 instance=ExtResource("25_gyj6f")]
+position = Vector2(458, 130)
+text = "BLOC HISTORY #2:
+The primary administration of the BLOC exists on a planet in a star system close to the center of the galaxy. The exact planet is unknown to all but those in the highest echelons of BLOC society. When a political figure leaves office they are permanently memory wiped of all information regarding this central administrative planet."
 
 [node name="switch_level" type="Area2D" parent="." unique_id=1630145634]
 position = Vector2(712, 152)
@@ -1236,18 +1308,12 @@ message = "Descend to Sector Two"
 [node name="col" type="CollisionShape2D" parent="switch_level" unique_id=178710151]
 shape = SubResource("RectangleShape2D_1c76j")
 
-[node name="pickup_pistol" parent="." unique_id=1874209234 instance=ExtResource("24_rukwi")]
+[node name="pickup_pistol" parent="." unique_id=842166100 instance=ExtResource("24_rukwi")]
 position = Vector2(316, 284)
 
 [node name="pickup_dash" parent="." unique_id=31712142 instance=ExtResource("24_rukwi")]
 position = Vector2(492, 212)
 item = "dash"
-
-[node name="text_log" parent="." unique_id=1452556122 instance=ExtResource("25_gyj6f")]
-position = Vector2(8, -24)
-text = "Rations are down to three weeks. The supply ship from Mortar went dark five hours ago. Patrols showed FRONTIER activity in the region.
-
-I overheard some of the upper security talking about stocks hidden in the core. We should rally and storm them."
 
 [node name="decor" type="TileMapLayer" parent="." unique_id=837051003]
 z_index = 2
@@ -1622,6 +1688,7 @@ Grapple [E]
 Rewind [R]
 Weapons [Q]
 Shoot [lmb]
+Parry [rmb]
 Dash [Space]"
 horizontal_alignment = 3
 
@@ -1886,4 +1953,5 @@ color = Color(0, 0, 0, 1)
 [connection signal="timeout" from="canvas/hud/message_timeout" to="canvas/hud" method="_on_message_timeout_timeout"]
 [connection signal="pressed" from="canvas/text_screen/btn_close" to="canvas/text_screen" method="_on_btn_close_pressed"]
 [connection signal="pressed" from="canvas/pause_menu/btn_resume" to="canvas/pause_menu" method="_on_btn_resume_pressed"]
+[connection signal="pressed" from="canvas/pause_menu/btn_quit" to="canvas/pause_menu" method="_on_btn_quit_pressed"]
 [connection signal="pressed" from="canvas/loop_screen/btn_play" to="canvas/loop_screen" method="_on_btn_play_pressed"]
